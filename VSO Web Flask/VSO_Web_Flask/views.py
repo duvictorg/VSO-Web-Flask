@@ -13,5 +13,11 @@ def home():
     return render_template(
         'index.html',
         title='Home Page',
-        year=datetime.now().year,
     )
+
+@app.route('/weather')
+def weather():
+    return render_template(
+        'weather.html',
+        title='Weather Page',
+    ) 
