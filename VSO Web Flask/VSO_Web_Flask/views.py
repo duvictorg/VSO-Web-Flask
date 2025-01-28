@@ -21,10 +21,12 @@ def home():
 
 @app.route('/weather', methods = ['GET'])
 def weather():
-    URL = 'https://api.openweathermap.org/data/2.5/weather?q=' + request.form['ville'] + '&limit=1&appid=1446ca8783c1ae2790262ec9c1510b9c'
+    ville = request.args.get('ville', default = 'Paris', type = str)
+    api_weather = 'https://api.openweathermap.org/data/2.5/weather?q=' + ville + '&limit=1&appid=1446ca8783c1ae2790262ec9c1510b9c'
     return render_template(
         'weather.html',
         title='Weather Page',
+        meteo_ville = requests.get(api_weather).json()
     ) 
 
 @app.route('/fetch_todos', methods=['GET'])
