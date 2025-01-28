@@ -70,7 +70,6 @@
     <Content Include="VSO_Web_Flask\static\scripts\_references.js" />
     <Content Include="VSO_Web_Flask\templates\index.html" />
     <Content Include="VSO_Web_Flask\templates\weather.html" />
-    <Content Include="VSO_Web_Flask\Tp\Exercice1\requirement.txt" />
     <Content Include="VSO_Web_Flask\Tp\Exercice1\todos.csv" />
   </ItemGroup>
   <ItemGroup>
