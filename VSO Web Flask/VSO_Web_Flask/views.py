@@ -2,7 +2,7 @@
 Routes and views for the flask application.
 """
 
-from flask import render_template, jsonify
+from flask import render_template, jsonify, request
 import requests
 from markupsafe import escape
 from VSO_Web_Flask import app
@@ -19,9 +19,9 @@ def home():
         title='Home Page',
     )
 
-@app.route('/weather/<Ville>')
+@app.route('/weather', methods = ['GET'])
 def weather():
-    URL = 'https://api.openweathermap.org/data/2.5/weather?q=' + str(Ville) + '&limit=1&appid=1446ca8783c1ae2790262ec9c1510b9c'
+    URL = 'https://api.openweathermap.org/data/2.5/weather?q=' + request.form['ville'] + '&limit=1&appid=1446ca8783c1ae2790262ec9c1510b9c'
     return render_template(
         'weather.html',
         title='Weather Page',
