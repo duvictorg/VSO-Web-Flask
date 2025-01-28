@@ -28,6 +28,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="runserver.py" />
+    <Compile Include="VSO_Web_Flask\db.py" />
     <Compile Include="VSO_Web_Flask\__init__.py" />
     <Compile Include="VSO_Web_Flask\views.py" />
   </ItemGroup>
@@ -64,6 +65,7 @@
     <Content Include="VSO_Web_Flask\static\scripts\respond.min.js" />
     <Content Include="VSO_Web_Flask\static\scripts\_references.js" />
     <Content Include="VSO_Web_Flask\templates\index.html" />
+    <Content Include="VSO_Web_Flask\templates\weather.html" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 
