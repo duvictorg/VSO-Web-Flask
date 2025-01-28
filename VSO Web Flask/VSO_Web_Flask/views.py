@@ -2,11 +2,9 @@
 Routes and views for the flask application.
 """
 
-from datetime import datetime
 from flask import render_template, jsonify
 import requests
 from markupsafe import escape
-from flask import render_template
 from VSO_Web_Flask import app
 from .Tp.Exercice1.placeholder import *
 
