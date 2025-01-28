@@ -19,6 +19,7 @@
     <RootNamespace>VSO Web Flask</RootNamespace>
     <InterpreterId>
     </InterpreterId>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="runserver.py" />
+    <Compile Include="VSO_Web_Flask\controller.py" />
     <Compile Include="VSO_Web_Flask\db.py" />
     <Compile Include="VSO_Web_Flask\Tp\Exercice1\placeholder.py" />
     <Compile Include="VSO_Web_Flask\__init__.py" />
