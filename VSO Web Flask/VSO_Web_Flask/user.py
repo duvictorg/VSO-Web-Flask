@@ -57,3 +57,12 @@ class UserModel:
         if user and sha256(password.encode()).hexdigest():
             return True
         return False
+
+    def alter_password(self, username, new_password):
+        user = self.get_user_by_username(username)
+        if user:
+            user_id = user['id']
+            hashed_password = sha256(new_password.encode()).hexdigest()
+            self.db.execute("UPDATE passwords SET password = '" + hashed_password + "' WHERE id = '" + str(user_id) + "';")
+            return True
+        return False
