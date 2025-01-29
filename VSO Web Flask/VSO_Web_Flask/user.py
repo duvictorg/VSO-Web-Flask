@@ -47,9 +47,12 @@ class UserModel:
         result = self.db.query("SELECT * FROM username WHERE username = '"+ username + "';")
         return result[0] if result else None
 
-    def get_name(self, first_name, last_name,role):
-        result = self.db.query("SELECT * FROM students WHERE first_name = ('"+ first_name + "' AND last_name = '" + last_name +"');") if role == 0 else self.db.execute("SELECT * FROM teachers WHERE first_name = ('"+ first_name + "' AND last_name = '" + last_name +"');")
-        return (result[2],result[3]) if result else None
+    def get_name(self,username):
+        id_role = str(self.get_teacher_or_student_id(username))
+        role = self.get_role(username)
+        if id_role:
+            result = self.db.query("SELECT first_name,last_name FROM students WHERE student_id = " + id_role + ";") if role == 0 else self.db.execute("SELECT first_name,last_name FROM teachers WHERE teacher_id = " + id_role + ";")
+        return (result[0]['first_name'], result[0]['last_name']) if result else None
 
     def check_password(self, username, password):
         user = self.get_user_by_username(username)
@@ -69,20 +72,17 @@ class UserModel:
     def get_teacher_or_student_id(self,username):
         user_id = self.get_user_by_username(username)
         if user_id:
-            user_id = user_id['id']
-        result = self.db.query("SELECT student_id FROM students WHERE id = ('" + user_id + "');")
-        if result:
-            return result['student_id']
-        else:
-            result = self.db.query("SELECT teacher_id FROM teachers WHERE id = ('" + user_id + "');")
-            return result['teacher_id']
+            user_id = str(user_id['id'])
+            role = self.get_role(username)
+            result = self.db.query("SELECT student_id FROM students WHERE id = ('" + user_id + "');")[0] if role == 0 else self.db.query("SELECT teacher_id FROM teachers WHERE id = ('" + user_id + "');")[0]
+            return result[next(iter(result))] if result else False
 
     def alter_password(self, username, new_password):
         user = self.get_user_by_username(username)
         if user:
-            user_id = user['id']
+            user_id = str(user['id'])
             hashed_password = sha256(new_password.encode()).hexdigest()
-            self.db.execute("UPDATE passwords SET password = '" + hashed_password + "' WHERE id = '" + str(user_id) + "';")
+            self.db.execute("UPDATE passwords SET password = '" + hashed_password + "' WHERE id = '" + user_id + "';")
             return True
         return False
 
@@ -98,8 +98,8 @@ class UserModel:
     def alter_class(self, username, new_class):
         user = self.get_user_by_username(username)
         if user:
-            user_id = user['id']
-            self.db.execute("UPDATE teachers SET class = '" + new_class + "' WHERE id = '" + str(user_id) + "';")
+            user_id = str(user['id'])
+            self.db.execute("UPDATE teachers SET class = '" + new_class + "' WHERE id = '" + user_id + "';")
             return True
         return False
 
