@@ -19,6 +19,30 @@ def connect_to_database():
         print(f"Erreur lors de la connexion a la base de donnees : {e}")
         return None
 
+def create_user():
+    pass
+
+def delete_user():
+    pass
+
+def alter_password():
+    pass
+
+def add_grade():
+    pass
+
+def delete_grade():
+    pass
+
+def alter_grade():
+    pass
+
+def alter_maximum_grade():
+    pass
+
+def alter_information_grade():
+    pass
+
 db_connection = connect_to_database()
 if db_connection:
     db_connection.close()
