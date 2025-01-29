@@ -33,10 +33,11 @@ class UserModel:
         if user:
             user_id = user['id']
             id_role = self.get_teacher_or_student_id(username)
+            role = self.get_role(username)
             tables = ['passwords', 'students', 'teachers', 'grades', 'username']
             for table in tables:
                 if table == 'grades':
-                    self.db.execute("DELETE FROM grades WHERE " + column + " = '" + str(user_id) + "';")
+                    self.db.execute("DELETE FROM grades WHERE student_id = '" + str(id_role) + "';") if role == 0 else self.db.execute("DELETE FROM grades WHERE teacher_id = '" + str(id_role) + "';")
                 else:
                     self.db.execute("DELETE FROM " + table + " WHERE id = '" + str(user_id) + "';")
             return True
