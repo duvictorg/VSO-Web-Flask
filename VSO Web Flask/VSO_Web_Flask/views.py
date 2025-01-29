@@ -42,3 +42,11 @@ def fetch_todos():
     todos = response.json()
     save_to_csv(todos)
     return jsonify(todos)
+
+@app.route('/main')
+def main():
+    """Renders the main page."""
+    return render_template(
+        'main.html',
+        title='Main Page',
+    )
