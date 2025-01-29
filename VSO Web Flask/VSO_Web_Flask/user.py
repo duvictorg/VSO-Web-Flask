@@ -44,7 +44,7 @@ class UserModel:
         return False   
 
     def get_user_by_username(self, username):
-        result = self.db.query("SELECT * FROM username WHERE username = '"+username + "';")
+        result = self.db.query("SELECT * FROM username WHERE username = '"+ username + "';")
         return result[0] if result else None
 
     def get_name(self, first_name, last_name,role):
@@ -58,11 +58,13 @@ class UserModel:
         return False
 
     def get_role(self,username):
-        result = self.db.query("SELECT * FROM students WHERE id = ('" + str(self.get_user_by_username(username)) + "');")
-        if result:
-            return 0
-        else:
-            return 1
+        user_id = self.get_user_by_username(username)
+        if user_id:
+            result = self.db.query("SELECT * FROM students WHERE id = " + str(user_id['id']) + ";")
+            if result:
+                return 0
+            else:
+                return 1
 
     def get_teacher_or_student_id(self,username):
         user_id = self.get_user_by_username(username)
@@ -90,6 +92,8 @@ class UserModel:
     def delete_grade():
         pass
 
+    def get_grades():
+        pass
     
     def alter_class(self, username, new_class):
         user = self.get_user_by_username(username)

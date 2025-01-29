@@ -16,6 +16,8 @@ from .user import UserModel
 def home():
     """Renders the home page."""
     user1 = UserModel()
+    print(user1.get_role('Martin.P'))
+    print(user1.get_role('Martin.P2'))
     return render_template(
         'index.html',
         title='Home Page',
