@@ -19,7 +19,6 @@ class UserModel:
         hashed_password = sha256(password.encode()).hexdigest()
         if self.get_user_by_username(username) == None:
             self.insert_user(first_name, last_name, role, matiere, hashed_password, username)
-            
 
         elif self.get_name(first_name,last_name, role) == None:
             index = 2
@@ -29,26 +28,21 @@ class UserModel:
             self.insert_user(first_name, last_name, role, matiere, hashed_password, username)
         return self.db.cursor.lastrowid
 
-
     def delete_user(self, username):
-    user = self.get_user_by_username(username)
-    if user:
-        user_id = user['id']
+        user = self.get_user_by_username(username)
+        if user:
+            user_id = user['id']
+            role_check = self.db.query("SELECT id FROM students WHERE id = '" + str(user_id) + "';")
+            column = 'student_id' if role_check else 'teacher_id'
         
-        # V�rifier si l'utilisateur est un �tudiant ou un enseignant
-        role_check = self.db.query("SELECT id FROM students WHERE id = '" + str(user_id) + "';")
-        column = 'student_id' if role_check else 'teacher_id'
-        
-        tables = ['passwords', 'students', 'teachers', 'grades', 'username']
-        for table in tables:
-            if table == 'grades':
-                self.db.execute("DELETE FROM " + table + " WHERE " + column + " = '" + str(user_id) + "';")
-            else:
-                self.db.execute("DELETE FROM " + table + " WHERE id = '" + str(user_id) + "';")
-        return True
-    return False
-
-
+            tables = ['passwords', 'students', 'teachers', 'grades', 'username']
+            for table in tables:
+                if table == 'grades':
+                    self.db.execute("DELETE FROM " + table + " WHERE " + column + " = '" + str(user_id) + "';")
+                else:
+                    self.db.execute("DELETE FROM " + table + " WHERE id = '" + str(user_id) + "';")
+            return True
+        return False   
 
     def get_user_by_username(self, username):
         result = self.db.query("SELECT * FROM username WHERE username = '"+username + "';")
@@ -63,43 +57,3 @@ class UserModel:
         if user and sha256(password.encode()).hexdigest():
             return True
         return False
-
-<<<<<<< HEAD
-=======
-    def get_teacher_or_student_id(self,username):
-        user_id = self.get_user_by_username(username)
-        if user_id:
-            user_id = user_id['id']
-        result = self.db.query("SELECT student_id FROM students WHERE id = ('" + user_id + "');")
-        if result:
-            return result['student_id']
-        else:
-            result = self.db.query("SELECT teacher_id FROM teachers WHERE id = ('" + user_id + "');")
-            return result['teacher_id']
-
-    def alter_password(self,username,password,new_password):
-        if self.check_password(username,password):
-            user_id = self.get_user_by_username(username)['id']
-
-
-    def add_grade():
-        pass
-
-    def delete_grade():
-        pass
-
-    def alter_class():
-        pass
-
-    def alter_grade():
-        pass
-
-    def alter_maximum_grade():
-        pass
-
-    def alter_coef():
-        pass
-
-    def alter_info_grade():
-        pass
->>>>>>> e8cab7962ff341ee3bb2b0c9a0eca050bfcf313c
