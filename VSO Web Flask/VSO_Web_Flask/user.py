@@ -32,13 +32,11 @@ class UserModel:
         user = self.get_user_by_username(username)
         if user:
             user_id = user['id']
-            role_check = self.db.query("SELECT id FROM students WHERE id = '" + str(user_id) + "';")
-            column = 'student_id' if role_check else 'teacher_id'
-        
+            id_role = self.get_teacher_or_student_id(username)
             tables = ['passwords', 'students', 'teachers', 'grades', 'username']
             for table in tables:
                 if table == 'grades':
-                    self.db.execute("DELETE FROM " + table + " WHERE " + column + " = '" + str(user_id) + "';")
+                    self.db.execute("DELETE FROM grades WHERE " + column + " = '" + str(user_id) + "';")
                 else:
                     self.db.execute("DELETE FROM " + table + " WHERE id = '" + str(user_id) + "';")
             return True
@@ -57,6 +55,9 @@ class UserModel:
         if user and sha256(password.encode()).hexdigest():
             return True
         return False
+
+    def get_role(self,username):
+        result = self.db.query("SELECT * FROM students WHERE id = ('" +  "');") if result else self.db.query("SELECT * FROM username WHERE id = ('"+  + "');")
 
     def get_teacher_or_student_id(self,username):
         user_id = self.get_user_by_username(username)
