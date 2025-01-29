@@ -73,8 +73,10 @@
     <Content Include="VSO_Web_Flask\static\scripts\respond.min.js" />
     <Content Include="VSO_Web_Flask\static\scripts\_references.js" />
     <Content Include="VSO_Web_Flask\templates\index.html" />
-    <Content Include="VSO_Web_Flask\templates\Style\style.css" />
-    <Content Include="VSO_Web_Flask\templates\Style\style.js" />
+    <Content Include="VSO_Web_Flask\templates\main.html" />
+    <Content Include="VSO_Web_Flask\static\content\main.css" />
+    <Content Include="VSO_Web_Flask\static\content\style.css" />
+    <Content Include="VSO_Web_Flask\static\scripts\style.js" />
     <Content Include="VSO_Web_Flask\templates\weather.html" />
     <Content Include="VSO_Web_Flask\Tp\Exercice1\todos.csv" />
   </ItemGroup>
