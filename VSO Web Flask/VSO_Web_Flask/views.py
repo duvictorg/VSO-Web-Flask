@@ -6,7 +6,9 @@ from flask import render_template, jsonify, request
 import requests
 from markupsafe import escape
 from VSO_Web_Flask import app
+from VSO_Web_Flask import user
 from .Tp.Exercice1.placeholder import *
+from .user import UserModel
 
 
 
@@ -14,6 +16,8 @@ from .Tp.Exercice1.placeholder import *
 @app.route('/home')
 def home():
     """Renders the home page."""
+    user1 = UserModel()
+    user1.create_user('Martin','Pedro','1234',1,'truc')
     return render_template(
         'index.html',
         title='Home Page',
