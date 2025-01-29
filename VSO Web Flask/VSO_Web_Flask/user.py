@@ -56,8 +56,12 @@ class UserModel:
 
     def check_password(self, username, password):
         user = self.get_user_by_username(username)
-        if user and sha256(password.encode()).hexdigest():
-            return True
+        if user:
+            result = self.db.query("SELECT password FROM passwords WHERE id = " + str(user['id']) + ";")
+            if sha256(password.encode()).hexdigest() == result[0]['password']:
+                return True
+            else:
+                return False
         return False
 
     def get_role(self,username):
@@ -77,12 +81,9 @@ class UserModel:
             result = self.db.query("SELECT student_id FROM students WHERE id = ('" + user_id + "');")[0] if role == 0 else self.db.query("SELECT teacher_id FROM teachers WHERE id = ('" + user_id + "');")[0]
             return result[next(iter(result))] if result else False
 
-    def alter_password(self, username, new_password):
-        user = self.get_user_by_username(username)
-        if user:
-            user_id = str(user['id'])
-            hashed_password = sha256(new_password.encode()).hexdigest()
-            self.db.execute("UPDATE passwords SET password = '" + hashed_password + "' WHERE id = '" + user_id + "';")
+    def alter_password(self, username, password ,new_password):
+        if self.check_password(username,password) and new_password != password:
+            self.db.execute("UPDATE passwords SET password = '" + sha256(new_password.encode()).hexdigest() + "' WHERE id = " + str(self.get_user_by_username(username)['id']) + ";")
             return True
         return False
 

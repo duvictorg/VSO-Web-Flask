@@ -16,7 +16,7 @@ from .user import UserModel
 def home():
     """Renders the home page."""
     user1 = UserModel()
-    print(user1.get_name('Martin.P2'))
+    print(user1.alter_password('Martin.P2','1234','123'))
     return render_template(
         'index.html',
         title='Home Page',
