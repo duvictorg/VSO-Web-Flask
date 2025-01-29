@@ -40,6 +40,9 @@ def alter_grade():
 def alter_maximum_grade():
     pass
 
+def alter_coef():
+    pass
+
 def alter_information_grade():
     pass
 
