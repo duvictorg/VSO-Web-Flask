@@ -63,3 +63,4 @@ class UserModel:
         if user and sha256(password.encode()).hexdigest():
             return True
         return False
+
