@@ -96,11 +96,9 @@ class UserModel:
     def get_grades():
         pass
     
-    def alter_class(self, username, new_class):
-        user = self.get_user_by_username(username)
-        if user:
-            user_id = str(user['id'])
-            self.db.execute("UPDATE teachers SET class = '" + new_class + "' WHERE id = '" + user_id + "';")
+    def alter_class(self, username, new_class, password):
+        if self.check_password(username,password):
+            self.db.execute("UPDATE teachers SET class = '" + new_class + "' WHERE id = '" + str(self.get_user_by_username(username)['id']) + "';")
             return True
         return False
 
