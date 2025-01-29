@@ -57,7 +57,11 @@ class UserModel:
         return False
 
     def get_role(self,username):
-        result = self.db.query("SELECT * FROM students WHERE id = ('" +  "');") if result else self.db.query("SELECT * FROM username WHERE id = ('"+  + "');")
+        result = self.db.query("SELECT * FROM students WHERE id = ('" + str(self.get_user_by_username(username)) + "');")
+        if result:
+            return 0
+        else:
+            return 1
 
     def get_teacher_or_student_id(self,username):
         user_id = self.get_user_by_username(username)
