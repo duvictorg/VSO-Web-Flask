@@ -19,8 +19,9 @@ class UserModel:
         hashed_password = sha256(password.encode()).hexdigest()
         if self.get_user_by_username(username) == None:
             self.insert_user(first_name, last_name, role, matiere, hashed_password, username)
+            
 
-            def delete_user(self, username):
+def delete_user(self, username):
     user = self.get_user_by_username(username)
     if user:
         user_id = user['id']
