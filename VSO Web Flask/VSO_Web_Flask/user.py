@@ -19,8 +19,18 @@ class UserModel:
         hashed_password = sha256(password.encode()).hexdigest()
         if self.get_user_by_username(username) == None:
             self.insert_user(first_name, last_name, role, matiere, hashed_password, username)
+            
 
-            def delete_user(self, username):
+        elif self.get_name(first_name,last_name, role) == None:
+            index = 2
+            while self.get_user_by_username(username) != None:
+                username = str(first_name+'.'+last_name[0] + str(index))
+                index+=1
+            self.insert_user(first_name, last_name, role, matiere, hashed_password, username)
+        return self.db.cursor.lastrowid
+
+
+    def delete_user(self, username):
     user = self.get_user_by_username(username)
     if user:
         user_id = user['id']
@@ -38,15 +48,7 @@ class UserModel:
         return True
     return False
 
-            
 
-        elif self.get_name(first_name,last_name, role) == None:
-            index = 2
-            while self.get_user_by_username(username) != None:
-                username = str(first_name+'.'+last_name[0] + str(index))
-                index+=1
-            self.insert_user(first_name, last_name, role, matiere, hashed_password, username)
-        return self.db.cursor.lastrowid
 
     def get_user_by_username(self, username):
         result = self.db.query("SELECT * FROM username WHERE username = '"+username + "';")
