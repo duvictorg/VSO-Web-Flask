@@ -89,8 +89,15 @@ class UserModel:
     def delete_grade():
         pass
 
-    def alter_class():
-        pass
+    
+    def alter_class(self, username, new_class):
+        user = self.get_user_by_username(username)
+        if user:
+            user_id = user['id']
+            self.db.execute("UPDATE teachers SET class = '" + new_class + "' WHERE id = '" + str(user_id) + "';")
+            return True
+        return False
+
 
     def alter_grade():
         pass
