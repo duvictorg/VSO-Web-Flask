@@ -19,6 +19,25 @@ class UserModel:
         hashed_password = sha256(password.encode()).hexdigest()
         if self.get_user_by_username(username) == None:
             self.insert_user(first_name, last_name, role, matiere, hashed_password, username)
+
+            def delete_user(self, username):
+    user = self.get_user_by_username(username)
+    if user:
+        user_id = user['id']
+        
+        # Vérifier si l'utilisateur est un étudiant ou un enseignant
+        role_check = self.db.query("SELECT id FROM students WHERE id = '" + str(user_id) + "';")
+        column = 'student_id' if role_check else 'teacher_id'
+        
+        tables = ['passwords', 'students', 'teachers', 'grades', 'username']
+        for table in tables:
+            if table == 'grades':
+                self.db.execute("DELETE FROM " + table + " WHERE " + column + " = '" + str(user_id) + "';")
+            else:
+                self.db.execute("DELETE FROM " + table + " WHERE id = '" + str(user_id) + "';")
+        return True
+    return False
+
             
 
         elif self.get_name(first_name,last_name, role) == None:
