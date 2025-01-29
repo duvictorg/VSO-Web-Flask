@@ -70,10 +70,14 @@ class UserModel:
             result = self.db.query("SELECT teacher_id FROM teachers WHERE id = ('" + user_id + "');")
             return result['teacher_id']
 
-    def alter_password(self,username,password,new_password):
-        if self.check_password(username,password):
-            user_id = self.get_user_by_username(username)['id']
-
+    def alter_password(self, username, new_password):
+        user = self.get_user_by_username(username)
+        if user:
+            user_id = user['id']
+            hashed_password = sha256(new_password.encode()).hexdigest()
+            self.db.execute("UPDATE passwords SET password = '" + hashed_password + "' WHERE id = '" + str(user_id) + "';")
+            return True
+        return False
 
     def add_grade():
         pass
@@ -95,11 +99,4 @@ class UserModel:
 
     def alter_info_grade():
         pass
-    def alter_password(self, username, new_password):
-        user = self.get_user_by_username(username)
-        if user:
-            user_id = user['id']
-            hashed_password = sha256(new_password.encode()).hexdigest()
-            self.db.execute("UPDATE passwords SET password = '" + hashed_password + "' WHERE id = '" + str(user_id) + "';")
-            return True
-        return False
+    
