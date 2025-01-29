@@ -19,7 +19,6 @@ class UserModel:
         hashed_password = sha256(password.encode()).hexdigest()
         if self.get_user_by_username(username) == None:
             self.insert_user(first_name, last_name, role, matiere, hashed_password, username)
-            
 
         elif self.get_name(first_name,last_name, role) == None:
             index = 2
@@ -29,26 +28,21 @@ class UserModel:
             self.insert_user(first_name, last_name, role, matiere, hashed_password, username)
         return self.db.cursor.lastrowid
 
-
     def delete_user(self, username):
-    user = self.get_user_by_username(username)
-    if user:
-        user_id = user['id']
+        user = self.get_user_by_username(username)
+        if user:
+            user_id = user['id']
+            role_check = self.db.query("SELECT id FROM students WHERE id = '" + str(user_id) + "';")
+            column = 'student_id' if role_check else 'teacher_id'
         
-        # Vérifier si l'utilisateur est un étudiant ou un enseignant
-        role_check = self.db.query("SELECT id FROM students WHERE id = '" + str(user_id) + "';")
-        column = 'student_id' if role_check else 'teacher_id'
-        
-        tables = ['passwords', 'students', 'teachers', 'grades', 'username']
-        for table in tables:
-            if table == 'grades':
-                self.db.execute("DELETE FROM " + table + " WHERE " + column + " = '" + str(user_id) + "';")
-            else:
-                self.db.execute("DELETE FROM " + table + " WHERE id = '" + str(user_id) + "';")
-        return True
-    return False
-
-
+            tables = ['passwords', 'students', 'teachers', 'grades', 'username']
+            for table in tables:
+                if table == 'grades':
+                    self.db.execute("DELETE FROM " + table + " WHERE " + column + " = '" + str(user_id) + "';")
+                else:
+                    self.db.execute("DELETE FROM " + table + " WHERE id = '" + str(user_id) + "';")
+            return True
+        return False   
 
     def get_user_by_username(self, username):
         result = self.db.query("SELECT * FROM username WHERE username = '"+username + "';")
