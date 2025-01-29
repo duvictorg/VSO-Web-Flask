@@ -2,10 +2,11 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/Style/Login.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content/Index.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <meta charset="utf-8">
     <div class="wrapper">
         <div class="title-text">
             <div class="title login">
@@ -32,14 +33,11 @@
                         <input type="password" placeholder="Password" >
                     </div>
                     <div class="pass-link">
-                        <a href="#">Mot de passe oubl�?</a>
+                        <a href="#">Mot de passe oublié?</a>
                     </div>
                     <div class="field btn">
                         <a class="btn-layer" href="main.html"></a>
                         <input type="submit" value="Connexion">
-                    </div>
-                    <div class="signup-link">
-                        Pas de Compte? <a href="">Cr�er un nouveau</a>
                     </div>
                 </form>
                 <form action="#" class="signup">
@@ -60,6 +58,6 @@
             </div>
         </div>
     </div>
-    <a href="main.html">main page</a>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/Index.js') }}"></script>
 </body>
 </html>
