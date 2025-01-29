@@ -17,7 +17,7 @@ from .user import UserModel
 def home():
     """Renders the home page."""
     user1 = UserModel()
-    user1.create_user('Martin','Pedro','1234',1,'truc')
+    user1.create_user('Martin','Pedro','1234',0,'truc')
     return render_template(
         'index.html',
         title='Home Page',
