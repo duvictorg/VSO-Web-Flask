@@ -60,7 +60,9 @@ class AuthenticationController:
         pass
 
     def get_info_student(self,id):
-        if session['role'] != 0:
+        if "role" not in session:
+            return {"error": "Utilisateur non autorise pour le role"}
+        if session['role'] !=0:
             return {"error": "Utilisateur non autorise pour le role"}
         if "username" not in session:
             return {"error": "Utilisateur non connecte"}
@@ -79,7 +81,9 @@ class AuthenticationController:
         }
 
     def get_info_teacher(self,id):
-        if session['role'] != 1:
+        if "role" not in session:
+            return {"error": "Utilisateur non autorise pour le role"}
+        if session['role'] !=1:
             return {"error": "Utilisateur non autorise pour le role"}
         if "username" not in session:
             return {"error": "Utilisateur non connecte"}
