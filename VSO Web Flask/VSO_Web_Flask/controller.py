@@ -12,6 +12,7 @@ class AuthenticationController:
             session['user_id'] = user['id']
             session['username'] = user['username']
             session['role'] = self.user_model.get_role()
+            session['matiere'] = self.user_model.get_class(session['user_id'])
             return {"success": "Connexion reussie", "Nom d'utilisateur": user['username'], "role": session['role']} 
         return {"error": "Nom d'utilisateur ou mot de passe incorrect"}
 
@@ -42,7 +43,7 @@ class AuthenticationController:
 
     def add_grade(self,first_name_student,last_name_student,grade,max_grade,informations,coef):
         student_id = self.user_model.get_student_id_by_name(first_name_student,last_name_student)
-        print(student_id)
+        self.user_model.add_grade(student_id,grade,max_grade,session['matiere'],informations,coef)
 
     def delete_grade(self):
         pass

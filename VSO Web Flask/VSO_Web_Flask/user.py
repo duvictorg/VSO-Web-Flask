@@ -1,3 +1,4 @@
+from flask import session
 from .db import Database
 from hashlib import sha256
 
@@ -90,10 +91,11 @@ class UserModel:
             return True
         return False
 
-    def add_grade(self,student_id,grade,max_grade,informations,coef):
+    def add_grade(self,student_id,grade,max_grade,classe,informations,coef):
         sql = "INSERT INTO grades (student_id,teacher_id,grade,max_grade,class,informations,coef) "
         sql += ("VALUES (" + str(student_id) + "," + str(self.get_teacher_or_student_id()) + "," + str(grade) + "," + str(max_grade) + ",")
-        sql += ("'" + informations + "'," + str(coef))
+        sql += ("'" + classe + "','" + informations + "'," + str(coef) + ");")
+        print(sql)
         self.db.execute(sql)
 
     def delete_grade():
@@ -124,4 +126,8 @@ class UserModel:
     def get_student_id_by_name(self,first_name,last_name):
         result = self.db.query("SELECT student_id FROM students WHERE first_name = '" + first_name + "' AND last_name = '" + last_name +"';")
         return result[0]['student_id'] if result else False
+
+    def get_class(self,id):
+        result = self.db.query("SELECT class FROM teachers WHERE id = " + str(id))
+        return result[0]['class'] if result else False
     
