@@ -340,3 +340,7 @@ form .btn {
 .sign-up-mode .form-inner {
     transform: translateX(-50%);
 }
+
+.matiere-field {
+    display: none;
+}
