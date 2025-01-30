@@ -24,7 +24,9 @@ class AuthenticationController:
         return {"success": "Inscription reussie", "Nom d'utilisateur" : self.user_model.username} if r != False else {"error": "Personne deja existante"}
 
     def delete_account(self):
-        pass
+        self.user_model.delete_user()
+        session.clear()
+        return {"success": "Utilisateur efface"}
 
     def change_password(self):
         pass
@@ -38,8 +40,9 @@ class AuthenticationController:
     def search_student(self):
         pass
 
-    def add_grade(self):
-        pass
+    def add_grade(self,first_name_student,last_name_student,grade,max_grade,informations,coef):
+        student_id = self.user_model.get_student_id_by_name(first_name_student,last_name_student)
+        print(student_id)
 
     def delete_grade(self):
         pass

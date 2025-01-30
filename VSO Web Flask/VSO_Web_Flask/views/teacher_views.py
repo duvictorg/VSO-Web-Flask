@@ -15,9 +15,14 @@ class TeacherViews:
             teacher = self.controller.get_info_teacher(teacher_id)
             if "error" in teacher:
                 return redirect(url_for("auth_bp.login"))
-            return render_template("main.html")
+            return render_template("main.html", teacher=teacher)
         
         @self.teacher_bp.route("/list")
         def list_teachers():
             teachers = self.controller.list_teachers()
+            return render_template("main.html")
+
+        @self.teacher_bp.route("/grades/add")
+        def add_grades():
+            self.controller.add_grade('Martin','Pedro',10,20,'a echoue',14)
             return render_template("main.html")

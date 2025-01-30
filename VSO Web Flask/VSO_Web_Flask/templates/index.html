@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content/Index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -19,9 +19,9 @@
         <div class="form-container">
             <div class="slide-controls">
                 <input type="radio" name="slide" id="login" checked>
-                <input type="radio" name="slide" id="signup" checked>
-                <label for="login" class="slide login">Connexion</label>
-                <label for="signup" class="slide signup">Inscription</label>
+                <input type="radio" name="slide" id="signup">
+                <label for="login" class="slide login" id="sign-in-btn">Connexion</label>
+                <label for="signup" class="slide signup" id="sign-up-btn">Inscription</label>
                 <div class="slider-tab"></div>
             </div>
             <div class="form-inner">
@@ -61,6 +61,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/Index.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
 </body>
 </html>
