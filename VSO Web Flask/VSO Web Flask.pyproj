@@ -19,6 +19,7 @@
     <RootNamespace>VSO Web Flask</RootNamespace>
     <InterpreterId>Global|PythonCore|3.12</InterpreterId>
     <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
+    <SuppressPackageInstallationPrompt>True</SuppressPackageInstallationPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,21 +33,21 @@
     <Compile Include="runserver.py" />
     <Compile Include="VSO_Web_Flask\controller.py" />
     <Compile Include="VSO_Web_Flask\db.py" />
-    <Compile Include="VSO_Web_Flask\Tp\Exercice1\placeholder.py" />
     <Compile Include="VSO_Web_Flask\user.py" />
+    <Compile Include="VSO_Web_Flask\views\student_views.py" />
+    <Compile Include="VSO_Web_Flask\views\teacher_views.py" />
     <Compile Include="VSO_Web_Flask\__init__.py" />
-    <Compile Include="VSO_Web_Flask\views.py" />
+    <Compile Include="VSO_Web_Flask\views\auth.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="VSO_Web_Flask\" />
+    <Folder Include="VSO_Web_Flask\views\" />
     <Folder Include="VSO_Web_Flask\templates\Style\" />
-    <Folder Include="VSO_Web_Flask\Tp\" />
     <Folder Include="VSO_Web_Flask\static\" />
     <Folder Include="VSO_Web_Flask\static\content\" />
     <Folder Include="VSO_Web_Flask\static\fonts\" />
     <Folder Include="VSO_Web_Flask\static\scripts\" />
     <Folder Include="VSO_Web_Flask\templates\" />
-    <Folder Include="VSO_Web_Flask\Tp\Exercice1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
@@ -78,8 +79,6 @@
     <Content Include="VSO_Web_Flask\static\content\main.css" />
     <Content Include="VSO_Web_Flask\static\content\style.css" />
     <Content Include="VSO_Web_Flask\static\scripts\style.js" />
-    <Content Include="VSO_Web_Flask\templates\weather.html" />
-    <Content Include="VSO_Web_Flask\Tp\Exercice1\todos.csv" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.12" />

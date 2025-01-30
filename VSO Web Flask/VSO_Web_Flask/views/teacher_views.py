@@ -1,0 +1,23 @@
+from flask import Blueprint, render_template, session
+
+from VSO_Web_Flask.controller import AuthenticationController
+
+class TeacherViews:
+    def __init__(self):
+        self.teacher_bp = Blueprint("teacher_bp", __name__)
+        self.controller = AuthenticationController()
+        self.register_route()
+
+    def register_route(self):
+        @self.teacher_bp.route("/me")
+        def teacher_details():
+            teacher_id = session.get("user_id")
+            teacher = self.controller.get_info_teacher(teacher_id)
+            if "error" in teacher:
+                return render_template("index.html")
+            return render_template("main.html")
+        
+        @self.teacher_bp.route("/list")
+        def list_teachers():
+            teachers = self.controller.list_teachers()
+            return render_template("main.html")
