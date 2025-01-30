@@ -20,3 +20,13 @@ Prof_btn.addEventListener('click', () => {
 eleve_btn.addEventListener('click', () => {
     container.classList.remove("");
 });
+
+
+function afficherDiv() {
+    var div = document.getElementById("maDiv");
+    if (div.style.display === "none") {
+        div.style.display = "block"; // Affiche la div
+    } else {
+        div.style.display = "none"; // Cache la div si elle est déjà visible
+    }
+}
