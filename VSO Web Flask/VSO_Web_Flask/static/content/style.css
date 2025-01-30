@@ -172,6 +172,10 @@ html, body {
     color: #ffffff;
 }
 
+.slide-controls label.eleve {
+    color: #ffffff;
+}
+
 .slide-controls .slider-tab {
     position: absolute;
     height: 100%;
@@ -191,7 +195,17 @@ input[type="radio"] {
     left: 50%;
 }
 
+#eleve:checked ~ .slider-tab {
+    left: 50%;
+}
+
 #signup:checked ~ label.signup {
+    color: #fff;
+    cursor: default;
+    user-select: none;
+}
+
+#eleve:checked ~ label.eleve {
     color: #fff;
     cursor: default;
     user-select: none;
@@ -201,11 +215,19 @@ input[type="radio"] {
     color: #ffffff;
 }
 
+#eleve:checked ~ label.Prof {
+    color: #ffffff;
+}
+
 #login:checked ~ label.signup {
     color: #ffffff;
 }
 
-#login:checked ~ label.login {
+#login:checked ~ label.signup {
+    color: #ffffff;
+}
+
+#Prof:checked ~ label.Prof {
     cursor: default;
     user-select: none;
 }
@@ -317,4 +339,8 @@ form .btn {
 
 .sign-up-mode .form-inner {
     transform: translateX(-50%);
+}
+
+.matiere-field {
+    display: none;
 }
