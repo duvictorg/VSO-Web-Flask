@@ -11,13 +11,11 @@ class AuthenticationController:
         if user and self.user_model.check_password(password):
             session['user_id'] = user['id']
             session['username'] = user['username']
-            print(session)
-            return {"success": "Connexion reussie", "Nom d'utilisateur": user['username']} 
+            return {"success": "Connexion reussie", "Nom d'utilisateur": user['username'], "role": self.user_model.get_role()} 
         return {"error": "Nom d'utilisateur ou mot de passe incorrect"}
 
     def logout(self):
         session.clear()
-        print(session)
         return {"success": "Deconnexion reussie"}
 
     def register(self,first_name,last_name,password,role,mail,matiere):
@@ -58,5 +56,11 @@ class AuthenticationController:
         pass
 
     def change_mail(self):
+        pass
+
+    def get_info_student(self,id):
+        pass
+
+    def get_info_teacher(self,id):
         pass
 

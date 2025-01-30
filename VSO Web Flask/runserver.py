@@ -3,7 +3,9 @@ This script runs the VSO_Web_Flask application using a development server.
 """
 
 from os import environ
-from VSO_Web_Flask import app
+from VSO_Web_Flask import create_app
+
+app = create_app()
 
 if __name__ == '__main__':
     HOST = environ.get('SERVER_HOST', 'localhost')
@@ -11,4 +13,4 @@ if __name__ == '__main__':
         PORT = int(environ.get('SERVER_PORT', '5555'))
     except ValueError:
         PORT = 5555
-    app.run(HOST, PORT)
+    app.run(HOST, PORT,debug=True)
