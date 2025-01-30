@@ -56,5 +56,16 @@ h1:after{
     }
 
     @keyframes anim{
-        95%
+        95%{
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+            left: 88%;
+        }
+    }
+
+    .cards{
+        display: grid;
+        grid-template-columns
     }
