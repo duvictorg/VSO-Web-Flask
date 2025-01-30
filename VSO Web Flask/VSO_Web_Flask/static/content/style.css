@@ -218,6 +218,7 @@ input[type="radio"] {
 .form-container .form-inner {
     display: flex;
     width: 200%;
+    transition: transform 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
 
     .form-container .form-inner form {
@@ -313,3 +314,7 @@ form .btn {
         font-weight: 500;
         cursor: pointer;
     }
+
+.sign-up-mode .form-inner {
+    transform: translateX(-50%);
+}
