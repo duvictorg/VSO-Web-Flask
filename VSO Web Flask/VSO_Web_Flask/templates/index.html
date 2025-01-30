@@ -41,8 +41,18 @@
                     </div>
                 </form>
                 <form action="/signup" class="signup">
+                    <div class="slide-controls">
+                        <input type="radio" name="slide" id="Prof" checked>
+                        <input type="radio" name="slide" id="eleve">
+                        <label for="Prof" class="slide login" id="Prof-btn">Professeur</label>
+                        <label for="eleve" class="slide signup" id="eleve-btn">Eleve</label>
+                        <div class="slider-tab"></div>
+                    </div>
                     <div class="field">
-                        <input type="text" placeholder="">
+                        <input type="text" placeholder="Nom">
+                    </div>
+                    <div class="field">
+                        <input type="text" placeholder="Prenom">
                     </div>
                     <div class="field">
                         <input type="text" placeholder="Email Address">
