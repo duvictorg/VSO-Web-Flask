@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template, request, session, redirect, url_for
 
 from VSO_Web_Flask.controller import AuthenticationController
 
@@ -14,7 +14,7 @@ class TeacherViews:
             teacher_id = session.get("user_id")
             teacher = self.controller.get_info_teacher(teacher_id)
             if "error" in teacher:
-                return render_template("index.html")
+                return redirect(url_for("auth_bp.login"))
             return render_template("main.html")
         
         @self.teacher_bp.route("/list")

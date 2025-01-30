@@ -11,7 +11,8 @@ class AuthenticationController:
         if user and self.user_model.check_password(password):
             session['user_id'] = user['id']
             session['username'] = user['username']
-            return {"success": "Connexion reussie", "Nom d'utilisateur": user['username'], "role": self.user_model.get_role()} 
+            session['role'] = self.user_model.get_role()
+            return {"success": "Connexion reussie", "Nom d'utilisateur": user['username'], "role": session['role']} 
         return {"error": "Nom d'utilisateur ou mot de passe incorrect"}
 
     def logout(self):
@@ -59,8 +60,40 @@ class AuthenticationController:
         pass
 
     def get_info_student(self,id):
-        pass
+        if session['role'] != 0:
+            return {"error": "Utilisateur non autorise pour le role"}
+        if "username" not in session:
+            return {"error": "Utilisateur non connecte"}
+
+        self.user_model.username = session["username"]
+        
+        f_l_name = self.user_model.get_name()
+    
+        if not f_l_name:
+            return {"error": "Utilisateur non existant"}
+
+        return {
+            "username": self.user_model.username,
+            "first_name": f_l_name[0],
+            "last_name": f_l_name[1]
+        }
 
     def get_info_teacher(self,id):
-        pass
+        if session['role'] != 1:
+            return {"error": "Utilisateur non autorise pour le role"}
+        if "username" not in session:
+            return {"error": "Utilisateur non connecte"}
+
+        self.user_model.username = session["username"]
+        
+        f_l_name = self.user_model.get_name()
+    
+        if not f_l_name:
+            return {"error": "Utilisateur non existant"}
+
+        return {
+            "username": self.user_model.username,
+            "first_name": f_l_name[0],
+            "last_name": f_l_name[1]
+        }
 
