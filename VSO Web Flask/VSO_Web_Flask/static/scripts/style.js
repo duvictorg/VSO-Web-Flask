@@ -1,5 +1,7 @@
 const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
+const Prof_btn = document.querySelector("#Prof-btn");
+const eleve_btn = document.querySelector("#eleve-btn");
 const container = document.querySelector(".form-container");
 
 sign_up_btn.addEventListener('click', () => {
@@ -8,4 +10,13 @@ sign_up_btn.addEventListener('click', () => {
 
 sign_in_btn.addEventListener('click', () => {
     container.classList.remove("sign-up-mode");
+});
+
+
+Prof_btn.addEventListener('click', () => {
+    container.classList.remove("");
+});
+
+eleve_btn.addEventListener('click', () => {
+    container.classList.remove("");
 });
