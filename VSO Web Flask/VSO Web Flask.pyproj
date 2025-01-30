@@ -68,6 +68,7 @@
     <Content Include="VSO_Web_Flask\static\scripts\jquery.validate.min.js" />
     <Content Include="VSO_Web_Flask\static\scripts\jquery.validate.unobtrusive.js" />
     <Content Include="VSO_Web_Flask\static\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="VSO_Web_Flask\static\scripts\main.js" />
     <Content Include="VSO_Web_Flask\static\scripts\modernizr-2.6.2.js" />
     <Content Include="VSO_Web_Flask\static\scripts\respond.js" />
     <Content Include="VSO_Web_Flask\static\scripts\respond.min.js" />
