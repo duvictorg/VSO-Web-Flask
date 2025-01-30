@@ -7,6 +7,7 @@ import requests
 from markupsafe import escape
 from VSO_Web_Flask import app
 from .Tp.Exercice1.placeholder import *
+from .user import UserModel
 
 
 
@@ -14,6 +15,7 @@ from .Tp.Exercice1.placeholder import *
 @app.route('/home')
 def home():
     """Renders the home page."""
+    user1 = UserModel()
     return render_template(
         'index.html',
         title='Home Page',
