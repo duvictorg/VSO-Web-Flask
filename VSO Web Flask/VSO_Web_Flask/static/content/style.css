@@ -279,38 +279,6 @@ form .field input:focus::placeholder {
     color: #b3b3b3;
 }
 
-.form-inner form .field-spe {
-    height: 50px;
-    width: 100%;
-    margin-top: 20px;
-}
-
-    .form-inner form .field-spe input {
-        display: none;
-        height: 100%;
-        width: 100%;
-        outline: none;
-        padding-left: 15px;
-        border-radius: 5px;
-        border: 1px solid lightgrey;
-        border-bottom-width: 2px;
-        font-size: 17px;
-        transition: all 0.3s ease;
-    }
-
-        .form-inner form .field-spe input:focus {
-            border-color: #2112f0;
-        }
-
-        .form-inner form .field-spe input::placeholder {
-            color: #999;
-            transition: all 0.3s ease;
-        }
-
-form .field-spe input:focus::placeholder {
-    color: #b3b3b3;
-}
-
 .form-inner form .pass-link {
     margin-top: 5px;
 }
