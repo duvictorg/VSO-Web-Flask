@@ -24,3 +24,39 @@ class AuthenticationController:
         r = self.user_model.create_user(first_name,last_name,password,role,matiere)
         return {"success": "Inscription reussie", "Nom d'utilisateur" : self.user_model.username} if r != False else {"error": "Personne deja existante"}
 
+    def delete_account(self):
+        pass
+
+    def change_password(self):
+        pass
+
+    def list_grades(self):
+        pass
+
+    def list_students(self):
+        pass
+
+    def search_student(self):
+        pass
+
+    def add_grade(self):
+        pass
+
+    def delete_grade(self):
+        pass
+
+    def change_grade(self):
+        pass
+
+    def change_maximum_grade(self):
+        pass
+
+    def change_info_grade(self):
+        pass
+
+    def change_class(self):
+        pass
+
+    def change_mail(self):
+        pass
+
