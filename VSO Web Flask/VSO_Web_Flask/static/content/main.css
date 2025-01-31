@@ -67,5 +67,85 @@ h1:after{
 
     .cards{
         display: grid;
-        grid-template-columns
+        grid-template-columns: repeat(3,1fr);
+        gap: 30px;
+        margin-top: 80px;
+    }
+
+    .card{
+        height: 330px;
+        width: 370px;
+        background-color: #ffeda6;
+        padding: 3% 8%;
+        border: 0.2px solid #aca58c;
+        border-radius: 8px;
+        transition: .6s;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card:after{
+        content: "";
+        position: absolute;
+        top: 150%;
+        left: -200px;
+        width: 120%;
+        transform: rotate(50deg);
+        background-color: #fff;
+        height: 18px;
+        filter: blur(30px);
+        opacity: 0.5;
+        transition: 1s;
+    }
+
+    .card:hover:after{
+        width: 225%;
+        top: -100%;
+    }
+
+    .card i {
+        color: #f3d421;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        font-size: 4.8rem;
+    }
+
+    .card h2{
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .card p{
+        text-align: center;
+        width: 100%;
+        margin: 12px 0;
+        color: rgba(255, 255, 255, 0.6)
+    }
+
+    .card:hover{
+        background-color: transparent;
+        transform: translateY(-8px);
+        border-color: #0026ff;
+    }
+
+    .card:hover i {
+        color: #0026ff
+    }
+
+    @media screen and (max-width:1200px) {
+        .cards{
+            grid-template-columns: repeat(2,1fr);
+        }
+    }@media screen and (max-width:900px) {
+         .cards{
+             grid-template-columns: repeat(1,fr);
+         }
+         h1{
+             font-size; 3.5rem;
+         }
     }
