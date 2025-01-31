@@ -27,7 +27,6 @@ class AuthenticationViews:
                 username = request.form.get("username")
                 password = request.form.get("password")
                 result = self.controller.login(username, password)
-                print(result)
 
                 if "error" in result:
                     return render_template(
