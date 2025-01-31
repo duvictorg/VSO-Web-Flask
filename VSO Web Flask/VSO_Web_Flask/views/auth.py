@@ -47,11 +47,14 @@ class AuthenticationViews:
             if request.method == "POST":
                 password = request.form.get("password")
                 role = request.form.get("role")
+                if role == None:
+                    role = 0
                 first_name = request.form.get("first_name")
                 last_name = request.form.get("last_name")
                 mail = request.form.get("mail")
                 matiere = request.form.get("matiere")
 
+                print(first_name,last_name,mail,role,matiere)
                 result = self.controller.register(first_name,last_name,password,role,mail,matiere)
 
                 if "error" in result:

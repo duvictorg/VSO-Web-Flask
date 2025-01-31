@@ -1,3 +1,4 @@
+from flask import session
 from .db import Database
 from hashlib import sha256
 
@@ -54,7 +55,7 @@ class UserModel:
         id_role = str(self.get_teacher_or_student_id())
         role = self.get_role()
         if id_role:
-            result = self.db.query("SELECT first_name,last_name FROM students WHERE student_id = " + id_role + ";") if role == 0 else self.db.execute("SELECT first_name,last_name FROM teachers WHERE teacher_id = " + id_role + ";")
+            result = self.db.query("SELECT first_name,last_name FROM students WHERE student_id = " + id_role + ";") if role == 0 else self.db.query("SELECT first_name,last_name FROM teachers WHERE teacher_id = " + id_role + ";")
         return (result[0]['first_name'], result[0]['last_name']) if result else None
 
     def check_password(self, password):
@@ -90,8 +91,12 @@ class UserModel:
             return True
         return False
 
-    def add_grade():
-        pass
+    def add_grade(self,student_id,grade,max_grade,classe,informations,coef):
+        sql = "INSERT INTO grades (student_id,teacher_id,grade,max_grade,class,informations,coef) "
+        sql += ("VALUES (" + str(student_id) + "," + str(self.get_teacher_or_student_id()) + "," + str(grade) + "," + str(max_grade) + ",")
+        sql += ("'" + classe + "','" + informations + "'," + str(coef) + ");")
+        print(sql)
+        self.db.execute(sql)
 
     def delete_grade():
         pass
@@ -117,4 +122,12 @@ class UserModel:
 
     def alter_info_grade():
         pass
+
+    def get_student_id_by_name(self,first_name,last_name):
+        result = self.db.query("SELECT student_id FROM students WHERE first_name = '" + first_name + "' AND last_name = '" + last_name +"';")
+        return result[0]['student_id'] if result else False
+
+    def get_class(self,id):
+        result = self.db.query("SELECT class FROM teachers WHERE id = " + str(id))
+        return result[0]['class'] if result else False
     
