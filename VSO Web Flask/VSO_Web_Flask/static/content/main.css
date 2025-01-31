@@ -73,6 +73,11 @@ h1 {
     margin-top: 80px;
 }
 
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .card {
     height: auto; /* Ajustez la hauteur pour qu'elle soit automatique */
     width: 350px;

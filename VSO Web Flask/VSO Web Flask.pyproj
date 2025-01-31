@@ -80,6 +80,7 @@
     <Content Include="VSO_Web_Flask\static\content\style.css" />
     <Content Include="VSO_Web_Flask\static\scripts\style.js" />
     <Content Include="VSO_Web_Flask\templates\student.html" />
+    <Content Include="VSO_Web_Flask\templates\student_grades.html" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.12" />
