@@ -1,48 +1,48 @@
-*{
+* {
     margin: 0;
-    padding:0;
+    padding: 0;
     box-sizing: border-box;
     font-family: 'poppins';
 }
 
-.container{
+.container {
     min-height: 100vh;
     width: 100%;
-    background-color: #fffac8;
+    background: -webkit-linear-gradient(right, #000000,#0805b3);
 }
 
-.service-wrapper{
+.service-wrapper {
     padding: 5% 8%;
 }
 
-.service{
+.service {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 h1 {
-    color: #fff;
+    color: #f3d421;
     font-size: 5rem;
     -webkit-text-stroke-color: transparent;
     letter-spacing: 4px;
-    background-color: #fffac8;
-    background: linear-gradient(8deg,0%,41%,100%)
+    background-color: #000326;
+    background: linear-gradient(8deg, #f3d421 0%, #e5be02 41%, #4f3800 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    position: relative; 
+    position: relative;
 }
 
-h1:after{
-    content:"";
-    position: absolute;
-    top: 100%;
-    left: 10%;
-    height: 8px;
-    width: 80%;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.05);
-}
+    h1:after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 10%;
+        height: 8px;
+        width: 80%;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.05);
+    }
 
     h1 span {
         position: absolute;
@@ -51,43 +51,44 @@ h1:after{
         height: 8px;
         width: 8px;
         border-radius: 50%;
-        background-color: #f3d421;
+        background-color: #e5be02;
         animation: anim 5s linear infinite;
     }
 
-    @keyframes anim{
-        95%{
-            opacity: 1;
-        }
-        100%{
-            opacity: 0;
-            left: 88%;
-        }
+@keyframes anim {
+    95% {
+        opacity: 1;
     }
 
-    .cards{
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        gap: 30px;
-        margin-top: 80px;
+    100% {
+        opacity: 0;
+        left: 88%;
     }
+}
 
-    .card{
-        height: 330px;
-        width: 370px;
-        background-color: #ffeda6;
-        padding: 3% 8%;
-        border: 0.2px solid #aca58c;
-        border-radius: 8px;
-        transition: .6s;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        position: relative;
-        overflow: hidden;
-    }
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 80px;
+}
 
-    .card:after{
+.card {
+    height: auto; /* Ajustez la hauteur pour qu'elle soit automatique */
+    width: 350px;
+    background: -webkit-linear-gradient(left, #e4c70c, #0805b3);
+    padding: 3% 8%;
+    border: 0.2px solid #aca58c;
+    border-radius: 8px;
+    transition: .6s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+    .card:after {
         content: "";
         position: absolute;
         top: 150%;
@@ -101,7 +102,7 @@ h1:after{
         transition: 1s;
     }
 
-    .card:hover:after{
+    .card:hover:after {
         width: 225%;
         top: -100%;
     }
@@ -113,39 +114,119 @@ h1:after{
         font-size: 4.8rem;
     }
 
-    .card h2{
-        color: #fff;
+    .card h2 {
+        color: #000000;
         font-size: 20px;
         font-weight: 600;
         letter-spacing: 1px;
     }
 
-    .card p{
+    .card p {
         text-align: center;
         width: 100%;
         margin: 12px 0;
-        color: rgba(255, 255, 255, 0.6)
+        color: #000000
     }
 
-    .card:hover{
-        background-color: transparent;
+    .card:hover {
         transform: translateY(-8px);
         border-color: #0026ff;
     }
 
-    .card:hover i {
-        color: #0026ff
+        .card:hover i {
+            color: #0026ff
+        }
+
+@media screen and (max-width:1200px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width:900px) {
+    .cards {
+        grid-template-columns: repeat(1, fr);
     }
 
-    @media screen and (max-width:1200px) {
-        .cards{
-            grid-template-columns: repeat(2,1fr);
-        }
-    }@media screen and (max-width:900px) {
-         .cards{
-             grid-template-columns: repeat(1,fr);
-         }
-         h1{
-             font-size; 3.5rem;
-         }
+    h1 {
+        font-size: 3.5rem;
     }
+}
+
+.note-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+    .field-row .field {
+        width: 48%;
+    }
+
+.field {
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+    .field input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding-left: 15px;
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+        border-bottom-width: 2px;
+        font-size: 17px;
+        transition: all 0.3s ease;
+    }
+
+        .field input:focus {
+            border-color: #2112f0;
+        }
+
+        .field input::placeholder {
+            color: #999;
+            transition: all 0.3s ease;
+        }
+
+        .field input:focus::placeholder {
+            color: #b3b3b3;
+        }
+
+    .field.btn {
+        height: 50px;
+        width: 100%;
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+        .field.btn input[type="submit"] {
+            height: 100%;
+            width: 100%;
+            z-index: 2;
+            position: relative;
+            background: none;
+            border: none;
+            color: #fff;
+            padding-left: 0;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            background-color: #0805b3;
+            transition: background-color 0.3s ease;
+        }
+
+            .field.btn input[type="submit"]:hover {
+                background-color: #001a99;
+            }
