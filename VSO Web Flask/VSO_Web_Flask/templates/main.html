@@ -1,48 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content/style.css') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <div class="wrapper">
-        <div class="title-text">
-            <div class="title login">
-                Cyber school
-            </div>
-            <div class="title signup">
-                Cyber school
+    <head>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='content/main.css') }}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="service-wrapper">
+                <div class="service">
+                    <h1>Cyber School <span></span></h1>
+                    <div class="cards">
+                        <div class="card">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <h2>Notes</h2>
+                            <p>blabla</p>
+                        </div>
+                        <div class="card">
+                            <i class="fa-solid fa-marker"></i>
+                            <h2>Mettre une note</h2>
+                            <div class="note-form">
+                                <div class="field-row">
+                                    <div class="field">
+                                        <input type="text" placeholder="Nom eleve">
+                                    </div>
+                                    <div class="field">
+                                        <input type="text" placeholder="Prenom eleve">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <input type="text" placeholder="Note">
+                                </div>
+                                <div class="field">
+                                    <input type="text" placeholder="Note maximum possible">
+                                </div>
+                                <div class="field">
+                                    <input type="text" placeholder="Description">
+                                </div>
+                                <div class="field">
+                                    <input type="text" placeholder="Coef">
+                                </div>
+                                <div class="field btn">
+                                    <input type="submit" value="Donner la note">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
-        <div class="form-container">
-            <div class="form-inner">
-                <form action="/login" class="login" method="post">
-                    <div class="field">
-                        <input type="text" name="Nom" placeholder="Nom" required>
-                    </div>
-                    <div class="field">
-                        <input type="text" name="prenom" placeholder="Pr&#233nom" required>
-                    </div>
-                    <div class="field">
-                        <input type="number" name="Note" placeholder="Note" required>
-                    </div>
-                    <div class="field">
-                        <input type="number" name="nMaximum" placeholder="Note maximum" required>
-                    </div>
-                    <div class="field">
-                        <input type="number" name="coef" placeholder="Coefficient" required>
-                    </div>
-                    <div class="field">
-                        <input type="text" name="blabla" placeholder="Commentaire note" required>
-                    </div>
-                    <div class="field btn">
-                        <a class="btn-layer" href="main.html"></a>
-                        <input type="submit" value="Connexion">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
-</body>
-</html>
+    </body>
