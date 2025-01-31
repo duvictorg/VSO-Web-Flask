@@ -1,29 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="" {{ url_for('static', filename='scripts/main.js') }} "></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='content/main.css') }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
-    <div class="container">
-        <div class="service-wrapper">
-            <div class="service">
-                <h1>Cyber School <span></span></h1>
-                <div class="cards">
-                    <div class="card">
-                        <i class="fa-solid fa-marker"></i>
-                        <h2>Notes</h2>
-                        <p>blabla</p>
+    <div class="wrapper">
+        <div class="title-text">
+            <div class="title login">
+                Cyber school
+            </div>
+            <div class="title signup">
+                Cyber school
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="form-inner">
+                <form action="/login" class="login" method="post">
+                    <div class="field">
+                        <input type="text" name="Nom" placeholder="Nom" required>
                     </div>
-                    <div class="card">
-                        <i class="fa-solid fa-marker"></i>
-                        <h2>Mettre une note</h2>
-                        <p>blabla</p>
+                    <div class="field">
+                        <input type="text" name="prenom" placeholder="Pr&#233nom" required>
                     </div>
-                </div>
+                    <div class="field">
+                        <input type="number" name="Note" placeholder="Note" required>
+                    </div>
+                    <div class="field">
+                        <input type="number" name="nMaximum" placeholder="Note maximum" required>
+                    </div>
+                    <div class="field">
+                        <input type="number" name="coef" placeholder="Coefficient" required>
+                    </div>
+                    <div class="field">
+                        <input type="text" name="blabla" placeholder="Commentaire note" required>
+                    </div>
+                    <div class="field btn">
+                        <a class="btn-layer" href="main.html"></a>
+                        <input type="submit" value="Connexion">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
 </body>
+</html>
