@@ -47,6 +47,8 @@ class AuthenticationViews:
             if request.method == "POST":
                 password = request.form.get("password")
                 role = request.form.get("role")
+                if role == None:
+                    role = 0
                 first_name = request.form.get("first_name")
                 last_name = request.form.get("last_name")
                 mail = request.form.get("mail")
