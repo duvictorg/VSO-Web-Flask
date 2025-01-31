@@ -52,6 +52,7 @@ class AuthenticationViews:
                 mail = request.form.get("mail")
                 matiere = request.form.get("matiere")
 
+                print(first_name,last_name,mail,role,matiere)
                 result = self.controller.register(first_name,last_name,password,role,mail,matiere)
 
                 if "error" in result:
