@@ -14,9 +14,9 @@ class StudentViews:
             student = self.controller.get_info_student(student_id)
             if "error" in student:
                 return redirect(url_for("auth_bp.login"))
-            return render_template("main.html", student=student)
+            return render_template("student.html", student=student)
 
         @self.student_bp.route("/list")
         def list_grades():
             students = self.controller.list_grades()
-            return render_template("main.html")
+            return render_template("student.html")
