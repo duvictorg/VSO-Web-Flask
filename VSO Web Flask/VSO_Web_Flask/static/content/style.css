@@ -344,3 +344,12 @@ form .btn {
 .matiere-field {
     display: none;
 }
+
+.field-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .field-row .field {
+        width: 48%;
+    }
