@@ -131,3 +131,6 @@ class UserModel:
         result = self.db.query("SELECT class FROM teachers WHERE id = " + str(id))
         return result[0]['class'] if result else False
     
+    def get_grades(self,role_id):
+        result = self.db.query("SELECT grade,max_grade,class,informations,coef FROM grades WHERE student_id = " + str(role_id) + ";")
+        return result[0] if result else False

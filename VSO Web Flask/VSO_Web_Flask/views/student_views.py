@@ -18,5 +18,6 @@ class StudentViews:
 
         @self.student_bp.route("/list")
         def list_grades():
-            students = self.controller.list_grades()
-            return render_template("student.html")
+            grades = self.controller.list_grades()
+            print(grades)
+            return render_template("student.html", grades=grades)
