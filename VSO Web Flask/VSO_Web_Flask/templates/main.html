@@ -1,54 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
+<head>
     <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="{{ url_for('static', filename='content/main.css') }}" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="service-wrapper">
-                <div class="service">
-                    <h1>Cyber School <span></span></h1>
-                    <div class="cards">
-                        <div class="card">
-                            <i class="fa-solid fa-chart-simple"></i>
-                            <h2>Notes</h2>
-                            <p>blabla</p>
-                        </div>
-                        <div class="card">
-                            <i class="fa-solid fa-marker"></i>
-                            <h2>Mettre une note</h2>
-                            <div class="note-form">
-                                <div class="field-row">
-                                    <div class="field">
-                                        <input type="text" placeholder="Nom eleve">
-                                    </div>
-                                    <div class="field">
-                                        <input type="text" placeholder="Prenom eleve">
-                                    </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/main.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <title>Cyber School</title>
+</head>
+<body>
+    <div class="container">
+        <div class="service-wrapper">
+            <div class="service">
+                <h1>Cyber School <span></span></h1>
+                <div class="cards">
+                    <div class="card">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <h2>Notes</h2>
+                        <p>blabla</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-marker"></i>
+                        <h2>Mettre une note</h2>
+                        <div class="note-form">
+                            <div class="field-row">
+                                <div class="field">
+                                    <input type="text" placeholder="Nom eleve">
                                 </div>
                                 <div class="field">
-                                    <input type="text" placeholder="Note">
+                                    <input type="text" placeholder="Prenom eleve">
                                 </div>
-                                <div class="field">
-                                    <input type="text" placeholder="Note maximum possible">
-                                </div>
-                                <div class="field">
-                                    <input type="text" placeholder="Description">
-                                </div>
-                                <div class="field">
-                                    <input type="text" placeholder="Coef">
-                                </div>
-                                <div class="field btn">
-                                    <input type="submit" value="Donner la note">
-                                </div>
+                            </div>
+                            <div class="field">
+                                <input type="text" placeholder="Note">
+                            </div>
+                            <div class="field">
+                                <input type="text" placeholder="Note maximum possible">
+                            </div>
+                            <div class="field">
+                                <input type="text" placeholder="Description">
+                            </div>
+                            <div class="field">
+                                <input type="text" placeholder="Coef">
+                            </div>
+                            <div class="field btn">
+                                <input type="submit" value="Donner la note">
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
-    </body>
+        <div class="logout-button">
+            <a href="/logout" class="btn-logout">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
