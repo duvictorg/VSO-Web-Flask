@@ -22,7 +22,8 @@ class TeacherViews:
             teachers = self.controller.list_teachers()
             return render_template("main.html")
 
-        @self.teacher_bp.route("/grades/add")
+        @self.teacher_bp.route("/grades/add" ,methods=['POST'])
         def add_grades():
-            self.controller.add_grade('Martin','Pedro',10,20,'a echoue',14)
-            return render_template("main.html")
+            if request.method == 'POST':
+                result = self.controller.add_grade(request.form['first_name'],request.form['last_name'],request.form['grade'],request.form['max_grade'],request.form['informations'],request.form['coef'])
+                return render_template("main.html")

@@ -22,33 +22,35 @@
                         <div class="card">
                             <i class="fa-solid fa-marker"></i>
                             <h2>Mettre une note</h2>
-                            <div class="note-form">
+                            <form action="/teachers/grades/add" class="note-form" method="post">
                                 <div class="field-row">
                                     <div class="field">
-                                        <input type="text" placeholder="Nom eleve">
+                                        <input type="text" name="last_name" placeholder="Nom eleve">
                                     </div>
                                     <div class="field">
-                                        <input type="text" placeholder="Prenom eleve">
+                                        <input type="text" name="first_name" placeholder="Prenom eleve">
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <input type="text" placeholder="Note">
+                                    <input type="text" name="grade" placeholder="Note">
                                 </div>
                                 <div class="field">
-                                    <input type="text" placeholder="Note maximum possible">
+                                    <input type="text" name="max_grade" placeholder="Note maximum possible">
                                 </div>
                                 <div class="field">
-                                    <input type="text" placeholder="Description">
+                                    <input type="text" name="informations" placeholder="Description">
                                 </div>
                                 <div class="field">
-                                    <input type="text" placeholder="Coef">
+                                    <input type="text" name="coef" placeholder="Coef">
                                 </div>
                                 <div class="field btn">
                                     <input type="submit" value="Donner la note">
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </body>
+</html>
