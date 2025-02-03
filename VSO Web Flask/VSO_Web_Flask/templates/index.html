@@ -17,13 +17,6 @@
             </div>
         </div>
         <div class="form-container">
-            <div class="slide-controls">
-                <input type="radio" name="slide" id="login" checked>
-                <input type="radio" name="slide" id="signup">
-                <label for="login" class="slide login" id="sign-in-btn">Connexion</label>
-                <label for="signup" class="slide signup" id="sign-up-btn">Inscription</label>
-                <div class="slider-tab"></div>
-            </div>
             <div class="form-inner">
                 <form action="/login" class="login" method="post">
                     <div class="field">
@@ -38,36 +31,6 @@
                     <div class="field btn">
                         <a class="btn-layer" href="main.html"></a>
                         <input type="submit" value="Connexion">
-                    </div>
-                </form>
-                <form action="/register" class="signup" method="post">
-                    <div class="slide-controls">
-                        <input type="radio" name="role" value=1 id="Prof">
-                        <input type="radio" name="role" value=0 id="eleve" checked>
-                        <label for="Prof" class="slide Prof" name="role" value=1 id="Prof-btn">Professeur</label>
-                        <label for="eleve" class="slide eleve" name="role" value=0 id="eleve-btn">Eleve</label>
-                        <div class="slider-tab"></div>
-                    </div>
-                    <div class="field-row">
-                        <div class="field">
-                            <input type="text" name="last_name" placeholder="Nom">
-                        </div>
-                        <div class="field">
-                            <input type="text" name="first_name" placeholder="Prénom">
-                        </div>
-                    </div>
-                    <div class="field matiere-field">
-                        <input type="text" name="matiere" placeholder="Matière">
-                    </div>
-                    <div class="field">
-                        <input type="text" name="mail" placeholder="Email Address">
-                    </div>
-                    <div class="field">
-                        <input type="password" name="password" placeholder="Password">
-                    </div>
-                    <div class="field btn">
-                        <div class="btn-layer" href="main.html"></div>
-                        <input type="submit" value="SignUp">
                     </div>
                 </form>
             </div>
