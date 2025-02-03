@@ -33,7 +33,9 @@ class AuthenticationController:
         pass
 
     def list_grades(self):
-        pass
+        role_id = self.user_model.get_teacher_or_student_id()
+        result = self.user_model.get_grades(role_id)
+        return result if result != False else None
 
     def list_students(self):
         pass
