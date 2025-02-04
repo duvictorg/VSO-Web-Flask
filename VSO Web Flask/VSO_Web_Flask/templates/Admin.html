@@ -13,35 +13,41 @@
                 Adminastration
             </div>
         </div>
-        <div class="slide-controls">
-            <input type="radio" name="role" value=1 id="Prof">
-            <input type="radio" name="role" value=0 id="eleve" checked>
-            <label for="Prof" class="slide Prof" name="role" value=1 id="Prof-btn">Professeur</label>
-            <label for="eleve" class="slide eleve" name="role" value=0 id="eleve-btn">Eleve</label>
-            <div class="slider-tab"></div>
-        </div>
-        <div class="field-row">
-            <div class="field">
-                <input type="text" name="last_name" placeholder="Nom">
+        <div class="form-container">
+            <div class="form-inner">
+                <form action="/login" class="login" method="post">
+                    <div class="slide-controls">
+                        <input type="radio" name="role" value=1 id="Prof">
+                        <input type="radio" name="role" value=0 id="eleve" checked>
+                        <label for="Prof" class="slide Prof" name="role" value=1 id="Prof-btn">Professeur</label>
+                        <label for="eleve" class="slide eleve" name="role" value=0 id="eleve-btn">Eleve</label>
+                        <div class="slider-tab"></div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field">
+                            <input type="text" name="last_name" placeholder="Nom">
+                        </div>
+                        <div class="field">
+                            <input type="text" name="first_name" placeholder="Prenom">
+                        </div>
+                    </div>
+                    <div class="field matiere-field">
+                        <input type="text" name="matiere" placeholder="Matiere">
+                    </div>
+                    <div class="field">
+                        <input type="text" name="mail" placeholder="Email Address">
+                    </div>
+                    <div class="field">
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="field btn">
+                        <div class="btn-layer" href="main.html"></div>
+                        <input type="submit" value="SignUp">
+                    </div>
+                </form>
             </div>
-            <div class="field">
-                <input type="text" name="first_name" placeholder="Prenom">
-            </div>
-        </div>
-        <div class="field matiere-field">
-            <input type="text" name="matiere" placeholder="Matiere">
-        </div>
-        <div class="field">
-            <input type="text" name="mail" placeholder="Email Address">
-        </div>
-        <div class="field">
-            <input type="password" name="password" placeholder="Password">
-        </div>
-        <div class="field btn">
-            <div class="btn-layer" href="main.html"></div>
-            <input type="submit" value="SignUp">
+            <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
         </div>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
 </body>
 </html>
