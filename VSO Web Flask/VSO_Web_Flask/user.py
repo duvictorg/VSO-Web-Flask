@@ -36,13 +36,13 @@ class UserModel:
         self.username = str(first_name+'.'+last_name[0])
         hashed_password = self.hash_password(password)
         if self.get_user_by_username() == None:
-            self.insert_user(first_name, last_name, role, matiere, hashed_password)
+            self.insert_user(first_name, last_name, role, matiere, 1, hashed_password)
         elif self.get_name() == None:
             index = 2
             while self.get_user_by_username() != None:
                 self.username = str(first_name+'.'+last_name[0] + str(index))
                 index+=1
-            self.insert_user(first_name, last_name, role, matiere, hashed_password)
+            self.insert_user(first_name, last_name, role, matiere, 1, hashed_password)
         else:
             return False
         return self.db.cursor.lastrowid

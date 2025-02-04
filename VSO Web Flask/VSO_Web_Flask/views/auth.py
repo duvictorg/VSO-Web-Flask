@@ -54,7 +54,6 @@ class AuthenticationViews:
 
                 print(first_name,last_name,mail,role,matiere)
                 result = self.controller.register(first_name,last_name,password,role,mail,matiere)
-
                 if "error" in result:
                     return render_template(
                         "admin.html", message=result["error"]

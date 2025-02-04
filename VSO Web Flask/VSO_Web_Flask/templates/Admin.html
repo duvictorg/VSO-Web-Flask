@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='content/style.css') }}">
@@ -15,7 +15,7 @@
         </div>
         <div class="form-container">
             <div class="form-inner">
-                <form action="/login" class="login" method="post">
+                <form action="/admin" class="signup" method="post">
                     <div class="slide-controls">
                         <input type="radio" name="role" value=1 id="Prof">
                         <input type="radio" name="role" value=0 id="eleve" checked>
