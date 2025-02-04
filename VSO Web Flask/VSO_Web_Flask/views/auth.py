@@ -41,7 +41,7 @@ class AuthenticationViews:
             return render_template("index.html")
 
         @self.auth_bp.route("/", methods=["GET", "POST"])
-        @self.auth_bp.route("/register", methods=["GET", "POST"])
+        @self.auth_bp.route("/admin", methods=["GET", "POST"])
         def register():
             if request.method == "POST":
                 password = request.form.get("password")
@@ -58,12 +58,12 @@ class AuthenticationViews:
 
                 if "error" in result:
                     return render_template(
-                        "index.html", message=result["error"]
+                        "admin.html", message=result["error"]
                     )
 
                 return redirect(url_for("auth_bp.login"))
 
-            return render_template("index.html")
+            return render_template("admin.html")
 
         @self.auth_bp.route("/logout")
         def logout():
