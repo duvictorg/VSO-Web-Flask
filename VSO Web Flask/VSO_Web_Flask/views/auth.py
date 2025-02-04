@@ -40,7 +40,6 @@ class AuthenticationViews:
                 return redirect("/profile")
             return render_template("index.html")
 
-        @self.auth_bp.route("/", methods=["GET", "POST"])
         @self.auth_bp.route("/admin", methods=["GET", "POST"])
         def register():
             if request.method == "POST":
