@@ -315,7 +315,6 @@ form .btn {
         background: -webkit-linear-gradient(right, #e4c70c, #0805b3, #e4c70c, #0805b3);
         border-radius: 5px;
         transition: all 0.4s ease;
-        ;
     }
 
     form .btn:hover .btn-layer {
