@@ -4,7 +4,7 @@ import bcrypt
 
 class UserModel:
     def __init__(self, username=""):
-        self.db = Database(['localhost', 'pronote', 'pronote', 'ecole'])
+        self.db = Database(['localhost', 'root', 'Jyfkf596f!BYFZEHf58f65zf!', 'ecole'])
         self.username = username
 
     def hash_password(self, password):
