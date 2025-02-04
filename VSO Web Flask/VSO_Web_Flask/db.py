@@ -7,8 +7,7 @@ class Database:
             host='localhost',
             user='root',
             password='Jyfkf596f!BYFZEHf58f65zf!',
-            database='users'
-                                                                                                                      
+            database='ecole'
         )
         self.cursor = self.connection.cursor(dictionary=True)
 
