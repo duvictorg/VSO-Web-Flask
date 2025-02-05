@@ -34,6 +34,7 @@
     <Compile Include="VSO_Web_Flask\controller.py" />
     <Compile Include="VSO_Web_Flask\db.py" />
     <Compile Include="VSO_Web_Flask\user.py" />
+    <Compile Include="VSO_Web_Flask\views\admin_views.py" />
     <Compile Include="VSO_Web_Flask\views\student_views.py" />
     <Compile Include="VSO_Web_Flask\views\teacher_views.py" />
     <Compile Include="VSO_Web_Flask\__init__.py" />

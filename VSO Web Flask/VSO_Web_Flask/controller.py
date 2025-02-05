@@ -107,3 +107,21 @@ class AuthenticationController:
             "last_name": f_l_name[1]
         }
 
+    def get_info_admin(self,id):
+        if "role" not in session:
+            return {"error": "Utilisateur non autorise pour le role"}
+        if session['role'] !=2:
+            return {"error": "Utilisateur non autorise pour le role"}
+        if "username" not in session:
+            return {"error": "Utilisateur non connecte"}
+
+        self.user_model.username = session["username"]
+        
+        f_l_name = self.user_model.get_name()
+    
+        if not f_l_name:
+            return {"error": "Utilisateur non existant"}
+
+        return {
+            "username": self.user_model.username}
+
