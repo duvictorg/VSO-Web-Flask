@@ -23,35 +23,44 @@
                         <label for="eleve" class="slide eleve" id="eleve-btn">Élève</label>
                         <div class="slider-tab"></div>
                     </div>
-                    <div class="field-row">
-                        <div class="field">
-                            <input type="text" name="last_name" placeholder="Nom">
-                        </div>
-                        <div class="field">
-                            <input type="text" name="first_name" placeholder="Prénom">
-                        </div>
+                    <div class="slide-controls action-buttons">
+                        <input type="radio" name="action" value="add" id="add">
+                        <input type="radio" name="action" value="delete" id="delete">
+                        <label for="add" class="slide add" id="add-btn">Ajouter</label>
+                        <label for="delete" class="slide delete" id="delete-btn">Supprimer</label>
+                        <div class="slider-tab action-slider-tab"></div>
                     </div>
-                    <div class="field matiere-field">
-                        <select name="matiere" placeholder="Matière">
-                            <option value="" disabled selected>Matiere</option>
-                            {% for Matiere in matieres %}
-                                <option value="{{ Matiere }}">{{ Matiere }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="field classe-field">
-                        <select name="classe" placeholder="Classe">
-                            <option value="" disabled selected>Classe</option>
-                            {% for classename in classe %}
+                    <div id="add-form" class="dynamic-form" style="display:none;">
+                        <div class="field-row">
+                            <div class="field">
+                                <input type="text" name="last_name" placeholder="Nom">
+                            </div>
+                            <div class="field">
+                                <input type="text" name="first_name" placeholder="Prénom">
+                            </div>
+                        </div>
+                        <div class="field classe-field">
+                            <select name="classe" placeholder="Classe">
+                                <option value="" disabled selected>Classe</option>
+                                {% for classename in classe %}
                                 <option value="{{ classename }}">{{ classename }}</option>
-                            {% endfor %}
-                        </select>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="mail" placeholder="Email Address">
+                        </div>
+                        <div class="field">
+                            <input type="password" name="password" placeholder="Password">
+                        </div>
                     </div>
-                    <div class="field">
-                        <input type="text" name="mail" placeholder="Email Address">
-                    </div>
-                    <div class="field">
-                        <input type="password" name="password" placeholder="Password">
+                    <div id="delete-form" class="dynamic-form" style="display:none;">
+                        <div class="field">
+                            <select name="username" placeholder="Username">
+                                <option value="" disabled selected>Username</option>
+                                <!-- Ajoutez ici les options pour les usernames -->
+                            </select>
+                        </div>
                     </div>
                     <div class="field btn">
                         <div class="btn-layer"></div>
