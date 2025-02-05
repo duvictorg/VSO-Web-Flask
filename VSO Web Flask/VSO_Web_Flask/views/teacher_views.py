@@ -15,15 +15,15 @@ class TeacherViews:
             teacher = self.controller.get_info_teacher(teacher_id)
             if "error" in teacher:
                 return redirect(url_for("auth_bp.login"))
-            return render_template("main.html", teacher=teacher)
+            return render_template("teachers.html", teacher=teacher)
         
         @self.teacher_bp.route("/list")
         def list_teachers():
             teachers = self.controller.list_teachers()
-            return render_template("main.html")
+            return render_template("teachers.html")
 
         @self.teacher_bp.route("/grades/add" ,methods=['POST'])
         def add_grades():
             if request.method == 'POST':
-                result = self.controller.add_grade()
-                return render_template("main.html")
+                result = self.controller.add_grade(request.form['first_name'],request.form['last_name'],request.form['grade'],request.form['max_grade'],request.form['informations'],request.form['coef'])
+                return render_template("teachers.html")
