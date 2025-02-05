@@ -18,7 +18,7 @@ class AdminViews:
             return render_template("admin.html", admin=admin)
 
         @self.admin_bp.route("/list/students")
-        def list_grades():
+        def list_students():
             students = self.controller.list_student()
             Noms = [D["Nom"] for D in students]
             Prenoms = [D["Prenom"] for D in students]
