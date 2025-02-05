@@ -10,14 +10,36 @@ class UserModel:
     def hash_password(self, password):
         return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
-    def check_hashed_password(self, password, hashed_password):
-        return bcrypt.checkpw(password.encode(), hashed_password.encode())
+    def check_hashed_password(self, password, username):
+        self.username = username
+        user_data = self.get_user_by_username()
+        print(user_data)
+        if not user_data:
+            return False
+
+        hashed_password = user_data['password']
+        if not hashed_password:
+            return False
+
+        
+
+        # Vérifier si le mot de passe est au format bytes ou string
+        if isinstance(hashed_password, str):
+            hashed_password = hashed_password.encode()  # S'assurer que c'est en bytes pour bcrypt
+
+        print(f" Mot de passe entre: {password.encode()}")
+        print(f" Hash stocke: {hashed_password}")
+
+        result = bcrypt.checkpw(password.encode(), hashed_password)
+
+        print(f" Correspondance : {result}")
+        return result
+
 
     def insert_user(self, first_name, last_name, role, classe_id, matieres, password, Mail):
-        hashed_password = self.hash_password(password)
         
         query = "INSERT INTO Users (username, password) VALUES (%s, %s)"
-        self.db.execute(query, (self.username, hashed_password))
+        self.db.execute(query, (self.username, password))
         user_id = self.db.cursor.lastrowid
         if role == 0:
             query = "INSERT INTO Students (id, Nom, Prenom, Classe, Mail) VALUES (%s, %s, %s, %s, %s)"
@@ -111,7 +133,7 @@ class UserModel:
             else:
                 query = "SELECT id FROM teachers WHERE id = %(user_id)s"
         
-                params = {'user_id': user_id}
-                result = self.db.query(query, params)
+            params = {'user_id': user_id}
+            result = self.db.query(query, params)
             return result[0][next(iter(result[0]))] if result else False
 

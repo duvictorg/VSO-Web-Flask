@@ -8,11 +8,11 @@ class AuthenticationController:
     def login(self,username,password):
         self.user_model.username = username
         user = self.user_model.get_user_by_username()
-        if user and self.user_model.check_password(password):
+        checkpass = self.user_model.check_hashed_password(password,username)
+        if user and checkpass:
             session['user_id'] = user['id']
             session['username'] = user['username']
             session['role'] = self.user_model.get_role()
-            session['matiere'] = self.user_model.get_class(session['user_id'])
             return {"success": "Connexion reussie", "Nom d'utilisateur": user['username'], "role": session['role']} 
         return {"error": "Nom d'utilisateur ou mot de passe incorrect"}
 

@@ -27,11 +27,11 @@ class AuthenticationViews:
                 username = request.form.get("username")
                 password = request.form.get("password")
                 result = self.controller.login(username, password)
-
                 if "error" in result:
                     return render_template(
                         "index.html", message=result["error"]
                     )
+                
                 if result["role"] == 0:
                     return redirect(url_for("student_bp.student_details"))
                 if result["role"] == 1:
