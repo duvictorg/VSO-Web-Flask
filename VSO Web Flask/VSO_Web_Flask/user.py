@@ -46,19 +46,37 @@ class UserModel:
         
         return user_id
 
-    def create_user(self, first_name, last_name, password, role, matiere, Mail):
-        self.username = str(first_name+'.'+last_name[0])
+    def create_user(self, first_name, last_name, password, role, matiere, Mail, classe_id):
+        if len(first_name) >= 63:
+            first_name = first_name[:63]
+            self.username = str(first_name[:29]+'.'+last_name[0])
+        else:
+            self.username = str(first_name+'.'+last_name[0])
+
+        if len(last_name) >= 63:
+            last_name = last_name[:63]
+
+        if len(matiere) >= 63:
+            matiere = matiere[:63]
+
+        if len(Mail) >= 254:
+            Mail = Mail[:254]
+
+        if role not in [0,1] or not isinstance(role, int):
+            return False
+
+        if not isinstance(classe_id, int):
+            return False
+        
         hashed_password = self.hash_password(password)
         if self.get_user_by_username() == None:
-            self.insert_user(first_name, last_name, role, 1, matiere, hashed_password, Mail)
-        elif self.get_name() == None:
+            self.insert_user(first_name, last_name, role, classe_id, matiere, hashed_password, Mail)
+        else:
             index = 2
             while self.get_user_by_username() != None:
                 self.username = str(first_name+'.'+last_name[0] + str(index))
                 index+=1
-            self.insert_user(first_name, last_name, role, 1, matiere, hashed_password, Mail)
-        else:
-            return False
+            self.insert_user(first_name, last_name, role, classe_id, matiere, hashed_password, Mail)
         return self.db.cursor.lastrowid
 
     def delete_user(self):
@@ -102,6 +120,33 @@ class UserModel:
     def get_grades(self,student_id):
         query = "SELECT Grade FROM Grades WHERE id_student = (%s);"
         result = self.db.query(query, (student_id,))
+        return result if result else False
+
+    def get_list_students_classe(self,classe_id):
+        query = "SELECT Nom,Prenom FROM Students WHERE Classe = (%s):"
+        result = self.db.query(query, (classe_id,))
+        return result if result else False
+
+    def get_teacher_classes(self,teacher_id):
+        query = "SELECT id_classe FROM teachers_classes WHERE id_teacher = (%s);"
+        result = self.db.query(query, (teacher_id,))
+        return result if result else False
+
+    def get_teacher_matieres(self,teacher_id):
+        query = "SELECT id_matiere FROM teachers_matieres WHERE id_teacher = (%s);"
+        result_temp = self.db.query(query, (teacher_id,))
+        query = "SELECT Matiere FROM matieres WHERE id = (%s);"
+        result = self.db.query(query, (result_temp,)) #possiblement à corriger
+        return result if result else False
+
+    def list_teachers(self):
+        query = "SELECT * FROM teachers;"
+        result = self.db.query(query)
+        return result if result else False
+
+    def list_students(self):
+        query = "SELECT * FROM students;"
+        result = self.db.query(query)
         return result if result else False
 
     def get_role(self):

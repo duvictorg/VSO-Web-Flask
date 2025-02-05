@@ -73,3 +73,12 @@
     <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
 </body>
 </html>
+
+<div class="field classe-field">
+    <select name="classe" placeholder="Classe">
+        <option value="" disabled selected>Classe</option>
+        {% for classe in classename %}
+        <option value="{{ classe.classename }}">{{ classe.classename }}</option>
+        {% endfor %}
+    </select>
+</div>
