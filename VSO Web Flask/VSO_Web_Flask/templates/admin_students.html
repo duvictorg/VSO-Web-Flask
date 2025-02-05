@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/style.css') }}">
+</head>
+<body>
+    {% for id in student_ids %}
+    <p>{{id}}</p>
+    {% endfor %}
+    {% for Nom in Noms %}
+    <p>{{Nom}}</p>
+    {% endfor %}
+    {% for Prenom in Prenoms %}
+    <p>{{Prenom}}</p>
+    {% endfor %}
+    {% for Mail in Mails %}
+    <p>{{Mail}}</p>
+    {% endfor %}
+</body>
+</html>
