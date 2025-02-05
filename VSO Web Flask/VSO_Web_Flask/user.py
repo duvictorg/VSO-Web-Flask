@@ -13,7 +13,7 @@ class UserModel:
     def check_hashed_password(self, password, username):
         self.username = username
         user_data = self.get_user_by_username()
-        print(user_data)
+
         if not user_data:
             return False
 
@@ -21,19 +21,10 @@ class UserModel:
         if not hashed_password:
             return False
 
-        
-
         # Vérifier si le mot de passe est au format bytes ou string
         if isinstance(hashed_password, str):
             hashed_password = hashed_password.encode()  # S'assurer que c'est en bytes pour bcrypt
-
-        print(f" Mot de passe entre: {password.encode()}")
-        print(f" Hash stocke: {hashed_password}")
-
-        result = bcrypt.checkpw(password.encode(), hashed_password)
-
-        print(f" Correspondance : {result}")
-        return result
+        return bcrypt.checkpw(password.encode(), hashed_password)
 
 
     def insert_user(self, first_name, last_name, role, classe_id, matieres, password, Mail):
