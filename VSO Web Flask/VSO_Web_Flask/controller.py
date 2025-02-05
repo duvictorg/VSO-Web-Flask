@@ -39,11 +39,33 @@ class AuthenticationController:
 
     def list_grades_matiere(self,id_matiere):
         role_id = self.user_model.get_teacher_or_student_id()
+        result = self.user_model.get_grades(role_id,id_matiere)
+        return result if result != False else None
+
+    def list_grades_matiere(self,id_matiere):
+        role_id = self.user_model.get_teacher_or_student_id()
         result = self.user_model.get_grades_matiere(role_id,id_matiere)
         return result if result != False else None
 
     def list_students_classe(self,id_classe):
-        pass
+        result = self.user_model.get_list_students_classe(id_classe)
+        return result if result != False else None
+
+    def list_student(self):
+        result = self.user_model.list_students()
+        return result if result != False else None
+
+    def list_teachers_classes(self,id_classe):
+        result = self.user_model.get_teacher_classes(id_classe)
+        return result if result != False else None
+
+    def list_teachers_maieres(self,id_matiere):
+        result = self.user_model.get_teacher_classes(id_matiere)
+        return result if result != False else None
+
+    def list_teachers(self):
+        result = self.user_model.list_teachers()
+        return result if result != False else None
 
     def search_student(self):
         pass
