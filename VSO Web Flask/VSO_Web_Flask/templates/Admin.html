@@ -32,39 +32,93 @@
                         <label for="Supprimer" class="slide Sup" id="Sup-btn">Supprimer</label>
                         <div class="slider-tab"></div>
                     </div>
-                    <div class="field-row">
-                        <div class="field">
-                            <input type="text" name="last_name" placeholder="Nom">
+                    <div class=" = Prof-field">
+                        <div class="Add-field">
+                            <div class="field-row">
+                                <div class="field">
+                                    <input type="text" name="last_name" placeholder="Nom">
+                                </div>
+                                <div class="field">
+                                    <input type="text" name="first_name" placeholder="Prénom">
+                                </div>
+                            </div>
+                            <div class="field matiere-field">
+                                <select name="matiere" placeholder="Matière">
+                                    <option value="" disabled selected>Matiere</option>
+                                    {% for Matiere in matieres %}
+                                    <option value="{{ matieres.Matiere }}">{{ matieres.Matiere }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="field">
+                                <input type="text" name="mail" placeholder="Email Address">
+                            </div>
+                            <div class="field">
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                            <div class="field btn">
+                                <div class="btn-layer"></div>
+                                <input type="submit" value="Submit">
+                            </div>
                         </div>
-                        <div class="field">
-                            <input type="text" name="first_name" placeholder="Prénom">
+                        <div class="Modif-field">
+                            <div class="field-row">
+                                <div class="field">
+                                    <input type="text" name="last_name" placeholder="Nom">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Sup-field">
+                            <div class="field-row">
+                                <div class="field">
+                                    <input type="text" name="last_name" placeholder="Prenom">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="field matiere-field">
-                        <select name="matiere" placeholder="Matière">
-                            <option value="" disabled selected>Matiere</option>
-                            {% for Matiere in matieres %}
-                            <option value="{{ matieres.Matiere }}">{{ matieres.Matiere }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="field classe-field">
-                        <select name="classe" placeholder="Classe">
-                            <option value="" disabled selected>Classe</option>
-                            {% for classe in classename %}
-                            <option value="{{ classe.classename }}">{{ classe.classename }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="field">
-                        <input type="text" name="mail" placeholder="Email Address">
-                    </div>
-                    <div class="field">
-                        <input type="password" name="password" placeholder="Password">
-                    </div>
-                    <div class="field btn">
-                        <div class="btn-layer"></div>
-                        <input type="submit" value="Submit">
+                    <div class=" = eleve-field">
+                        <div class="Add-field">
+                            <div class="field-row">
+                                <div class="field">
+                                    <input type="text" name="last_name" placeholder="Nom">
+                                </div>
+                                <div class="field">
+                                    <input type="text" name="first_name" placeholder="Prénom">
+                                </div>
+                            </div>
+                            <div class="field matiere-field">
+                                <select name="matiere" placeholder="Matière">
+                                    <option value="" disabled selected>Matiere</option>
+                                    {% for Matiere in matieres %}
+                                    <option value="{{ matieres.Matiere }}">{{ matieres.Matiere }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="field">
+                                <input type="text" name="mail" placeholder="Email Address">
+                            </div>
+                            <div class="field">
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                            <div class="field btn">
+                                <div class="btn-layer"></div>
+                                <input type="submit" value="Submit">
+                            </div>
+                        </div>
+                        <div class="Modif-field">
+                            <div class="field-row">
+                                <div class="field">
+                                    <input type="text" name="last_name" placeholder="Nom">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Sup-field">
+                            <div class="field-row">
+                                <div class="field">
+                                    <input type="text" name="last_name" placeholder="Prenom">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -73,3 +127,12 @@
     <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
 </body>
 </html>
+
+<div class="field classe-field">
+    <select name="classe" placeholder="Classe">
+        <option value="" disabled selected>Classe</option>
+        {% for classe in classename %}
+        <option value="{{ classe.classename }}">{{ classe.classename }}</option>
+        {% endfor %}
+    </select>
+</div>
