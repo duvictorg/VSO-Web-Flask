@@ -107,8 +107,16 @@ class UserModel:
     def get_role(self):
         user = self.get_user_by_username()
         if user:
-            result = self.db.query("SELECT id FROM Students WHERE id = %s", (user['id'],))
-            return 0 if result else 1
+            result_student = self.db.query("SELECT id FROM Students WHERE id = %s", (user['id'],))
+            result_teacher = self.db.query("SELECT id FROM Teachers WHERE id = %s", (user['id'],))
+            if result_student:
+                return 0
+            elif result_teacher:
+                return 1
+            else:
+                result_admin = self.db.query("SELECT id FROM Admins WHERE id = %s", (user['id'],))
+                return 2 if result_admin else None
+
         return None
 
     def get_name(self):

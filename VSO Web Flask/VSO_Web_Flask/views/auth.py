@@ -31,37 +31,16 @@ class AuthenticationViews:
                     return render_template(
                         "index.html", message=result["error"]
                     )
-                
+                print(result["role"])
                 if result["role"] == 0:
                     return redirect(url_for("student_bp.student_details"))
                 if result["role"] == 1:
                     return redirect(url_for("teacher_bp.teacher_details"))
+                if result["role"] == 2:
+                    return redirect(url_for("admin_bp.register"))
             
                 return redirect("/profile")
             return render_template("index.html")
-
-        @self.auth_bp.route("/admin", methods=["GET", "POST"])
-        def register():
-            if request.method == "POST":
-                password = request.form.get("password")
-                role = request.form.get("role")
-                if role == None:
-                    role = 0
-                else:
-                    role = int(role) 
-                first_name = request.form.get("first_name")
-                last_name = request.form.get("last_name")
-                mail = request.form.get("mail")
-                matiere = request.form.get("matiere")
-                result = self.controller.register(first_name,last_name,password,role,mail,matiere)
-                if "error" in result:
-                    return render_template(
-                        "admin.html", message=result["error"]
-                    )
-
-                return redirect(url_for("auth_bp.login"))
-
-            return render_template("admin.html")
 
         @self.auth_bp.route("/logout")
         def logout():
