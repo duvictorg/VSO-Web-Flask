@@ -40,7 +40,6 @@ class AuthenticationViews:
                 return redirect("/profile")
             return render_template("index.html")
 
-        @self.auth_bp.route("/", methods=["GET", "POST"])
         @self.auth_bp.route("/admin", methods=["GET", "POST"])
         def register():
             if request.method == "POST":
@@ -48,14 +47,13 @@ class AuthenticationViews:
                 role = request.form.get("role")
                 if role == None:
                     role = 0
+                else:
+                    role = int(role) 
                 first_name = request.form.get("first_name")
                 last_name = request.form.get("last_name")
                 mail = request.form.get("mail")
                 matiere = request.form.get("matiere")
-
-                print(first_name,last_name,mail,role,matiere)
                 result = self.controller.register(first_name,last_name,password,role,mail,matiere)
-
                 if "error" in result:
                     return render_template(
                         "admin.html", message=result["error"]
