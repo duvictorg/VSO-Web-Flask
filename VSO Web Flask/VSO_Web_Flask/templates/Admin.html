@@ -10,17 +10,17 @@
     <div class="wrapper">
         <div class="title-text">
             <div class="title login">
-                Adminastration
+                Administration
             </div>
         </div>
         <div class="form-container">
             <div class="form-inner">
                 <form action="/login" class="login" method="post">
                     <div class="slide-controls">
-                        <input type="radio" name="role" value=1 id="Prof">
-                        <input type="radio" name="role" value=0 id="eleve" checked>
-                        <label for="Prof" class="slide Prof" name="role" value=1 id="Prof-btn">Professeur</label>
-                        <label for="eleve" class="slide eleve" name="role" value=0 id="eleve-btn">Eleve</label>
+                        <input type="radio" name="role" value="1" id="Prof">
+                        <input type="radio" name="role" value="0" id="eleve" checked>
+                        <label for="Prof" class="slide Prof" id="Prof-btn">Professeur</label>
+                        <label for="eleve" class="slide eleve" id="eleve-btn">Élève</label>
                         <div class="slider-tab"></div>
                     </div>
                     <div class="field-row">
@@ -28,11 +28,26 @@
                             <input type="text" name="last_name" placeholder="Nom">
                         </div>
                         <div class="field">
-                            <input type="text" name="first_name" placeholder="Prenom">
+                            <input type="text" name="first_name" placeholder="Prénom">
                         </div>
                     </div>
                     <div class="field matiere-field">
-                        <input type="text" name="matiere" placeholder="Matiere">
+                        <select name="matiere" placeholder="Matière">
+                            <option value="" disabled selected>Matière</option>
+                            <option value="math">Mathématiques</option>
+                            <option value="physics">Physique</option>
+                            <option value="chemistry">Chimie</option>
+                            <!-- Ajoutez d'autres options selon vos besoins -->
+                        </select>
+                    </div>
+                    <div class="field classe-field">
+                        <select name="classe" placeholder="Classe">
+                            <option value="" disabled selected>Classe</option>
+                            <option value="6eme">6ème</option>
+                            <option value="5eme">5ème</option>
+                            <option value="4eme">4ème</option>
+                            <!-- Ajoutez d'autres options selon vos besoins -->
+                        </select>
                     </div>
                     <div class="field">
                         <input type="text" name="mail" placeholder="Email Address">
@@ -41,13 +56,13 @@
                         <input type="password" name="password" placeholder="Password">
                     </div>
                     <div class="field btn">
-                        <div class="btn-layer" href="main.html"></div>
-                        <input type="submit" value="SignUp">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Submit">
                     </div>
                 </form>
             </div>
-            <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
         </div>
     </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
 </body>
 </html>
