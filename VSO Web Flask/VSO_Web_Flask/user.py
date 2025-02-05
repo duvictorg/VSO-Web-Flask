@@ -91,8 +91,18 @@ class UserModel:
         return False
 
     def add_grade(self, student_id, matiere_id, grade):
-        query = "INSERT INTO Grades (id_student, id_matiere, Grade) VALUES (%s, %s, %s)"
+        query = "INSERT INTO Grades (id_student, id_matiere, Grade) VALUES (%s, %s, %s);"
         self.db.execute(query, (student_id, matiere_id, grade))
+
+    def get_grades_matiere(self,student_id,matiere_id):
+        query = "SELECT Grade FROM Grades WHERE id_student = (%s) AND id_matiere = (%s);"
+        result = self.db.query(query, (student_id, matiere_id,))
+        return result if result else False
+    
+    def get_grades(self,student_id):
+        query = "SELECT Grade FROM Grades WHERE id_student = (%s);"
+        result = self.db.query(query, (student_id,))
+        return result if result else False
 
     def get_role(self):
         user = self.get_user_by_username()
