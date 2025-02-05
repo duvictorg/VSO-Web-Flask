@@ -22,6 +22,7 @@ class AdminViews:
             return render_template("admin.html", grades=grades)
 
         @self.admin_bp.route("/", methods=["GET", "POST"])
+        @self.admin_bp.route("/register", methods=["GET", "POST"])
         def register():
             if request.method == "POST":
                 password = request.form.get("password")

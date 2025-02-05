@@ -25,8 +25,8 @@
                             <div class="field">
                                 <select name="username" required>
                                     <option value="" disabled selected>Username</option>
-                                    {% for user in users %}
-                                    <option value="{{ user.username }}">{{ user.username }}</option>
+                                    {% for Mail in students %}
+                                    <option value="{{ Mail }}">{{ Mail }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
