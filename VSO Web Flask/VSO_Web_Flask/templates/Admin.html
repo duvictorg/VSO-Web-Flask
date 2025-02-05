@@ -35,15 +35,15 @@
                         <select name="matiere" placeholder="Matière">
                             <option value="" disabled selected>Matiere</option>
                             {% for Matiere in matieres %}
-                            <option value="{{ matieres.Matiere }}">{{ matieres.Matiere }}</option>
+                                <option value="{{ Matiere }}">{{ Matiere }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="field classe-field">
                         <select name="classe" placeholder="Classe">
                             <option value="" disabled selected>Classe</option>
-                            {% for classe in classename %}
-                            <option value="{{ classe.classename }}">{{ classe.classename }}</option>
+                            {% for classename in classe %}
+                                <option value="{{ classename }}">{{ classename }}</option>
                             {% endfor %}
                         </select>
                     </div>
