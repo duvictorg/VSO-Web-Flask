@@ -13,7 +13,6 @@ const eleveField = document.querySelector(".eleve-field");
 
 
 Prof_btn.addEventListener('click', () => {
-    ProfField.style.display = "block";
     Add_btn.addEventListener('click', () => {
         matiereField.style.display = "none";
         classeField.style.display = "none";
@@ -37,8 +36,7 @@ Prof_btn.addEventListener('click', () => {
     });
 });
 
-eleve_btn.addEventListener('click', () => {
-    eleveField.style.display = "block";
+eleve_btn.addEventListener('click', () => {-
     Add_btn.addEventListener('click', () => {
         matiereField.style.display = "none";
         classeField.style.display = "none";
