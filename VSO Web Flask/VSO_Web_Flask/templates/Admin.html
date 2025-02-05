@@ -33,20 +33,18 @@
                     </div>
                     <div class="field matiere-field">
                         <select name="matiere" placeholder="Matière">
-                            <option value="" disabled selected>Matière</option>
-                            <option value="math">Mathématiques</option>
-                            <option value="physics">Physique</option>
-                            <option value="chemistry">Chimie</option>
-                            <!-- Ajoutez d'autres options selon vos besoins -->
+                            <option value="" disabled selected>Matiere</option>
+                            {% for Matiere in matieres %}
+                            <option value="{{ matieres.Matiere }}">{{ matieres.Matiere }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="field classe-field">
                         <select name="classe" placeholder="Classe">
                             <option value="" disabled selected>Classe</option>
-                            <option value="6eme">6ème</option>
-                            <option value="5eme">5ème</option>
-                            <option value="4eme">4ème</option>
-                            <!-- Ajoutez d'autres options selon vos besoins -->
+                            {% for classe in classename %}
+                            <option value="{{ classe.classename }}">{{ classe.classename }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="field">
