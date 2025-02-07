@@ -9,9 +9,11 @@ from VSO_Web_Flask.views.student_views import StudentViews
 from VSO_Web_Flask.views.teacher_views import TeacherViews
 from VSO_Web_Flask.views.admin_views import AdminViews
 
+
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = ("DevSecOps")
+    
 
     student_views = StudentViews()
     teacher_views = TeacherViews()

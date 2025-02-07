@@ -1,5 +1,13 @@
 import mysql.connector
+from cryptography.fernet import Fernet
 
+fernet = Fernet('wOqAcmjUsZmRBCqMuC-SasMhBGxmnGhpk9yYTh9n9DA=')
+
+def encrypt_data(data):
+    return fernet.encrypt(data.encode()).decode() if type(data) != bytes else fernet.encrypt(data).decode()
+
+def decrypt_data(data):
+    return fernet.decrypt(data.encode()).decode() if type(data) != bytes else fernet.decrypt(data).decode()
 
 class Database:
     def __init__(self):
