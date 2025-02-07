@@ -114,16 +114,19 @@ html, body {
 }
 
 .title-text {
-    color: #fff
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .signup-link {
-    color: #fff
+    color: #fff;
 }
 
 .wrapper {
+    width: 30%;
+    max-width: 100%;
     overflow: hidden;
-    max-width: 390px;
     background: #000000;
     padding: 30px;
     border-radius: 5px;
@@ -132,11 +135,12 @@ html, body {
 
     .wrapper .title-text {
         display: flex;
-        width: 200%;
+        justify-content: center;
+        width: 100%;
     }
 
     .wrapper .title {
-        width: 50%;
+        width: auto;
         font-size: 35px;
         font-weight: 600;
         text-align: center;
@@ -353,8 +357,6 @@ form .btn {
         width: 48%;
     }
 
-/* Ajoutez ces styles à votre fichier CSS */
-
 .form-inner form .field select {
     height: 100%;
     width: 100%;
@@ -365,15 +367,13 @@ form .btn {
     border-bottom-width: 2px;
     font-size: 17px;
     transition: all 0.3s ease;
-    background-color: #fff; /* Ajoutez un fond blanc pour une meilleure lisibilité */
-    appearance: none; /* Supprime le style par défaut des sélecteurs */
-    -webkit-appearance: none; /* Pour les navigateurs WebKit */
-    -moz-appearance: none; /* Pour Firefox */
+    background-color: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
-/* Styles pour slide-controls-update */
-
-.wrapper .slide-controls-update {
+.action-buttons {
     position: relative;
     display: flex;
     height: 50px;
@@ -385,79 +385,58 @@ form .btn {
     border-radius: 5px;
 }
 
-.slide-controls-update .slide {
-    height: 100%;
-    width: 100%;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    line-height: 48px;
-    cursor: pointer;
-    z-index: 1;
-    transition: all 0.6s ease;
+    .action-buttons .slide {
+        height: 100%;
+        width: 100%;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        text-align: center;
+        line-height: 48px;
+        cursor: pointer;
+        z-index: 1;
+        transition: all 0.6s ease;
+    }
+
+    .action-buttons .slider-tab {
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        left: 0;
+        z-index: 0;
+        border-radius: 5px;
+        background: -webkit-linear-gradient(left, #e4c70c, #0805b3);
+        transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+    }
+
+#add:checked ~ .slider-tab {
+    left: 0%;
 }
 
-.slide-controls-update label.signup {
-    color: #ffffff;
-}
-
-.slide-controls-update label.eleve {
-    color: #ffffff;
-}
-
-.slide-controls-update .slider-tab {
-    position: absolute;
-    height: 100%;
-    width: 50%;
-    left: 0;
-    z-index: 0;
-    border-radius: 5px;
-    background: -webkit-linear-gradient(left, #e4c70c, #0805b3);
-    transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
-}
-
-input[type="radio"] {
-    display: none;
-}
-
-#signup-update:checked ~ .slider-tab {
+#delete:checked ~ .slider-tab {
     left: 50%;
 }
 
-#eleve-update:checked ~ .slider-tab {
-    left: 50%;
-}
-
-#signup-update:checked ~ label.signup {
+#add:checked ~ label.add {
     color: #fff;
     cursor: default;
     user-select: none;
 }
 
-#eleve-update:checked ~ label.eleve {
+#delete:checked ~ label.delete {
     color: #fff;
     cursor: default;
     user-select: none;
 }
 
-#signup-update:checked ~ label.login {
+#add:checked ~ label.delete {
     color: #ffffff;
 }
 
-#eleve-update:checked ~ label.Prof {
+#delete:checked ~ label.add {
     color: #ffffff;
 }
 
-#login-update:checked ~ label.signup {
-    color: #ffffff;
-}
-
-#login-update:checked ~ label.signup {
-    color: #ffffff;
-}
-
-#Prof-update:checked ~ label.Prof {
-    cursor: default;
-    user-select: none;
+.dynamic-form {
+    margin-top: 20px;
 }
