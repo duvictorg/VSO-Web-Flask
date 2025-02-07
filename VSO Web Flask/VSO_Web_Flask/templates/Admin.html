@@ -7,22 +7,37 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='content/style.css') }}">
 </head>
 <body>
+    <h1>Administration</h1>
     <div class="actions">
-        <a class="logout" href="game/game.html">
+        <a class="add" href="templates/admin-add.html">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Déconnexion
+            Ajouter
         </a>
-        <a class="edit" href="game/game.html">
+        <a class="teacher" href="/admin/list/students">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Menu
+            Proffesseur
+        </a>
+        <a class="student" href="templates/admin-teachers.html">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Elève
         </a>
     </div>
+    <a class="logout" href="game/game.html">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Déconnexion
+    </a>
     <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
 </body>
 </html>
