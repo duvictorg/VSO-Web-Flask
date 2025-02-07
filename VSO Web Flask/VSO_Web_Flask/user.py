@@ -149,6 +149,11 @@ class UserModel:
         result = self.db.query(query)
         return result if result else False
 
+    def list_student_matieres(self,id_student):
+        query = "SELECT id_matiere FROM student_matieres WHERE id_student = (%s);"
+        result_temps = self.db.query(query, (id_student,))
+        return result_temps if result_temps else False
+
     def get_role(self):
         user = self.get_user_by_username()
         if user:

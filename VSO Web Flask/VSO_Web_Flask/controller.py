@@ -67,6 +67,11 @@ class AuthenticationController:
         result = self.user_model.list_teachers()
         return result if result != False else None
 
+    def list_student_matieres(self,id_student):
+        result_temp = self.user_model.list_student_matieres(id_student)
+        result = [D['id_matiere'] for D in result_temp]
+        return result if result != False else None
+
     def search_student(self):
         pass
 
@@ -151,4 +156,8 @@ class AuthenticationController:
 
         return {
             "username": self.user_model.username}
+
+    def get_role(self,user_id):
+        result = self.user_model.get_role(user_id)
+        return result if result else None
 
