@@ -1,5 +1,5 @@
 from flask import session
-from .db import Database
+from .db import Database,encrypt_data,decrypt_data
 import bcrypt
 
 class UserModel:
@@ -35,11 +35,11 @@ class UserModel:
         if role == 0:
             query = "INSERT INTO Students (id, Nom, Prenom, Classe, Mail) VALUES (%s, %s, %s, %s, %s)"
             print("je fais role 0")
-            self.db.execute(query, (user_id, last_name, first_name, classe_id, Mail))
+            self.db.execute(query, (user_id, encrypt_data(last_name), encrypt_data(first_name), classe_id, encrypt_data(Mail)))
         else:
             print("je fais role 1")
             query = "INSERT INTO Teachers (id, Nom, Prenom, Mail) VALUES (%s, %s, %s, %s)"
-            self.db.execute(query, (user_id, last_name, first_name, Mail))
+            self.db.execute(query, (user_id, encrypt_data(last_name), encrypt_data(first_name), encrypt_data(Mail)))
             """
             query = "INSERT INTO Teachers_Matieres (id_teacher, id_matiere) VALUES (%s, %s)"
             self.db.execute(query, (user_id, matiere_id))"""
@@ -125,7 +125,13 @@ class UserModel:
     def get_list_students_classe(self,classe_id):
         query = "SELECT Nom,Prenom FROM Students WHERE Classe = (%s):"
         result = self.db.query(query, (classe_id,))
-        return result if result else False
+        if result:
+            for d in result:
+                d['Nom'] = decrypt_data(d['Nom'])
+                d['Prenom'] = decrypt_data(d['Prenom'])
+            return result
+        else:
+            return False
 
     def get_teacher_classes(self,teacher_id):
         query = "SELECT id_classe FROM teachers_classes WHERE id_teacher = (%s);"
@@ -142,12 +148,31 @@ class UserModel:
     def list_teachers(self):
         query = "SELECT * FROM teachers;"
         result = self.db.query(query)
-        return result if result else False
+        if result:
+            for d in result:
+                d['Nom'] = decrypt_data(d['Nom'])
+                d['Prenom'] = decrypt_data(d['Prenom'])
+                d['Mail'] = decrypt_data(d['Mail'])
+            return result
+        else:
+            return False
 
     def list_students(self):
         query = "SELECT * FROM students;"
         result = self.db.query(query)
-        return result if result else False
+        if result:
+            for d in result:
+                d['Nom'] = decrypt_data(d['Nom'])
+                d['Prenom'] = decrypt_data(d['Prenom'])
+                d['Mail'] = decrypt_data(d['Mail'])
+            return result
+        else:
+            return False
+
+    def list_student_matieres(self,id_student):
+        query = "SELECT id_matiere FROM student_matieres WHERE id_student = (%s);"
+        result_temps = self.db.query(query, (id_student,))
+        return result_temps if result_temps else False
 
     def get_role(self):
         user = self.get_user_by_username()
@@ -175,7 +200,7 @@ class UserModel:
     
             params = {'id_role': id_role}
             result = self.db.query(query, params)
-        return (result[0]['Prenom'], result[0]['Nom']) if result else None
+        return (decrypt_data(result[0]['Prenom']), decrypt_data(result[0]['Nom'])) if result else None
 
     def get_teacher_or_student_id(self):
         user_id = self.get_user_by_username()
