@@ -1,17 +1,20 @@
+from VSO_Web_Flask.db import decrypt_username, encrypt_username
 from .user import UserModel
 from flask import session
 
 class AuthenticationController:
     def __init__(self):
         self.user_model = UserModel()
+        self.user_model.username
 
     def login(self,username,password):
         self.user_model.username = username
-        user = self.user_model.get_user_by_username()
         checkpass = self.user_model.check_hashed_password(password,username)
+        self.user_model.username = encrypt_username(username)
+        user = self.user_model.get_user_by_username()
         if user and checkpass:
             session['user_id'] = user['id']
-            session['username'] = user['username']
+            session['username'] = decrypt_username(user['username'])
             session['role'] = self.user_model.get_role()
             return {"success": "Connexion reussie", "Nom d'utilisateur": user['username'], "role": session['role']} 
         return {"error": "Nom d'utilisateur ou mot de passe incorrect"}
@@ -33,18 +36,15 @@ class AuthenticationController:
         pass
 
     def list_grades(self):
-        role_id = self.user_model.get_teacher_or_student_id()
-        result = self.user_model.get_grades(role_id)
+        result = self.user_model.get_grades(session['user_id'])
         return result if result != False else None
 
     def list_grades_matiere(self,id_matiere):
-        role_id = self.user_model.get_teacher_or_student_id()
-        result = self.user_model.get_grades(role_id,id_matiere)
+        result = self.user_model.get_grades(session['user_id'],id_matiere)
         return result if result != False else None
 
     def list_grades_matiere(self,id_matiere):
-        role_id = self.user_model.get_teacher_or_student_id()
-        result = self.user_model.get_grades_matiere(role_id,id_matiere)
+        result = self.user_model.get_grades_matiere(session['user_id'],id_matiere)
         return result if result != False else None
 
     def list_students_classe(self,id_classe):
@@ -69,8 +69,7 @@ class AuthenticationController:
 
     def list_student_matieres(self,id_student):
         result_temp = self.user_model.list_student_matieres(id_student)
-        result = [D['id_matiere'] for D in result_temp]
-        return result if result != False else None
+        return [D['id_matiere'] for D in result_temp] if result_temp else []
 
     def search_student(self):
         pass
@@ -100,23 +99,20 @@ class AuthenticationController:
     def get_info_student(self,id):
         if "role" not in session:
             return {"error": "Utilisateur non autorise pour le role"}
-        if session['role'] !=0:
-            return {"error": "Utilisateur non autorise pour le role"}
         if "username" not in session:
             return {"error": "Utilisateur non connecte"}
-
-        self.user_model.username = session["username"]
+        if session['role'] == 0:
+            self.user_model.username = session["username"]
         
-        f_l_name = self.user_model.get_name()
-    
-        if not f_l_name:
-            return {"error": "Utilisateur non existant"}
+            f_l_name = self.user_model.get_name()
+            if not f_l_name:
+                return {"error": "Utilisateur non existant"}
 
-        return {
-            "username": self.user_model.username,
-            "first_name": f_l_name[0],
-            "last_name": f_l_name[1]
-        }
+            return {
+                "username": self.user_model.username,
+                "first_name": f_l_name[0],
+                "last_name": f_l_name[1]
+            }
 
     def get_info_teacher(self,id):
         if "role" not in session:
@@ -147,17 +143,12 @@ class AuthenticationController:
         if "username" not in session:
             return {"error": "Utilisateur non connecte"}
 
-        self.user_model.username = session["username"]
-        
-        f_l_name = self.user_model.get_name()
-    
-        if not f_l_name:
-            return {"error": "Utilisateur non existant"}
+        self.user_model.username = session['username']
 
         return {
             "username": self.user_model.username}
 
-    def get_role(self,user_id):
-        result = self.user_model.get_role(user_id)
+    def get_role(self):
+        result = self.user_model.get_role()
         return result if result else None
 

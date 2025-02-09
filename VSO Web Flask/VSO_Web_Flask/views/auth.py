@@ -31,7 +31,6 @@ class AuthenticationViews:
                     return render_template(
                         "index.html", message=result["error"]
                     )
-                print(result["role"])
                 if result["role"] == 0:
                     return redirect(url_for("student_bp.student_details"))
                 if result["role"] == 1:

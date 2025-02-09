@@ -20,7 +20,7 @@
                         <input type="radio" name="role" value="1" id="Prof">
                         <input type="radio" name="role" value="0" id="eleve" checked>
                         <label for="Prof" class="slide Prof" id="Prof-btn">Professeur</label>
-                        <label for="eleve" class="slide eleve" id="eleve-btn">Élève</label>
+                        <label for="eleve" class="slide eleve" id="eleve-btn">eleve</label>
                         <div class="slider-tab"></div>
                     </div>
                     <div class="slide-controls action-buttons">
@@ -36,12 +36,12 @@
                                 <input type="text" name="last_name" placeholder="Nom">
                             </div>
                             <div class="field">
-                                <input type="text" name="first_name" placeholder="Prénom">
+                                <input type="text" name="first_name" placeholder="Prenom">
                             </div>
                         </div>
                         <div class="field matiere-field">
-                            <select name="matiere" placeholder="Matière">
-                                <option value="" disabled selected>Matière</option>
+                            <select name="matiere" placeholder="Matiere">
+                                <option value="" disabled selected>Matiere</option>
                                 {% for matiere in matieres %}
                                 <option value="{{ matiere }}">{{ matiere }}</option>
                                 {% endfor %}
@@ -49,16 +49,16 @@
                         </div>
                         <div class="field-row classe-fields">
                             <div class="field">
-                                <select name="annee" placeholder="Année">
-                                    <option value="" disabled selected>Année</option>
+                                <select name="annee" placeholder="Annee">
+                                    <option value="" disabled selected>Annee</option>
                                     {% for annee in annees %}
                                     <option value="{{ annee }}">{{ annee }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="field">
-                                <select name="numero_classe" placeholder="Numéro de classe">
-                                    <option value="" disabled selected>Numéro de classe</option>
+                                <select name="numero_classe" placeholder="Numero de classe">
+                                    <option value="" disabled selected>Numero de classe</option>
                                     {% for numero in numeros %}
                                     <option value="{{ numero }}">{{ numero }}</option>
                                     {% endfor %}
@@ -89,14 +89,14 @@
         </div>
     </div>
     <div class="logout">
-        <a class="add" href="game/game.html">
+        <a class="add" href="/logout">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Déconnexion
+            Deconnexion
         </a>
-        <a class="teacher" href="game/game.html">
+        <a class="teacher" href="/admin">
             <span></span>
             <span></span>
             <span></span>

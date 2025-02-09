@@ -1,5 +1,5 @@
 from flask import session
-from .db import Database,encrypt_data,decrypt_data
+from .db import Database,encrypt_data,decrypt_data,encrypt_username,decrypt_username
 import bcrypt
 
 class UserModel:
@@ -11,7 +11,7 @@ class UserModel:
         return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
     def check_hashed_password(self, password, username):
-        self.username = username
+        self.username = encrypt_username(username).decode()
         user_data = self.get_user_by_username()
 
         if not user_data:
@@ -34,15 +34,10 @@ class UserModel:
         user_id = self.db.cursor.lastrowid
         if role == 0:
             query = "INSERT INTO Students (id, Nom, Prenom, Classe, Mail) VALUES (%s, %s, %s, %s, %s)"
-            print("je fais role 0")
             self.db.execute(query, (user_id, encrypt_data(last_name), encrypt_data(first_name), classe_id, encrypt_data(Mail)))
         else:
-            print("je fais role 1")
             query = "INSERT INTO Teachers (id, Nom, Prenom, Mail) VALUES (%s, %s, %s, %s)"
             self.db.execute(query, (user_id, encrypt_data(last_name), encrypt_data(first_name), encrypt_data(Mail)))
-            """
-            query = "INSERT INTO Teachers_Matieres (id_teacher, id_matiere) VALUES (%s, %s)"
-            self.db.execute(query, (user_id, matiere_id))"""
         
         return user_id
 
@@ -170,7 +165,7 @@ class UserModel:
             return False
 
     def list_student_matieres(self,id_student):
-        query = "SELECT id_matiere FROM student_matieres WHERE id_student = (%s);"
+        query = "SELECT id_matiere FROM students_matieres WHERE id_student = (%s);"
         result_temps = self.db.query(query, (id_student,))
         return result_temps if result_temps else False
 
@@ -190,29 +185,17 @@ class UserModel:
         return None
 
     def get_name(self):
-        id_role = str(self.get_teacher_or_student_id())
-        role = self.get_role()
+        id_role = str(session['user_id'])
+        role = session['role']
         if id_role:
             if role == 0:
-                query = "SELECT Nom, Prenom FROM students WHERE id = %(id_role)s"
+                query = "SELECT Nom, Prenom FROM students WHERE id = %(id_role)s;"
             else:
-                query = "SELECT Nom, Prenom FROM teachers WHERE id = %(id_role)s"
+                query = "SELECT Nom, Prenom FROM teachers WHERE id = %(id_role)s;"
     
             params = {'id_role': id_role}
+            print(query)
+            print(params)
             result = self.db.query(query, params)
+            print(result)
         return (decrypt_data(result[0]['Prenom']), decrypt_data(result[0]['Nom'])) if result else None
-
-    def get_teacher_or_student_id(self):
-        user_id = self.get_user_by_username()
-        if user_id:
-            user_id = str(user_id['id'])
-            role = self.get_role()
-            if role == 0:
-                query = "SELECT id FROM students WHERE id = %(user_id)s"
-            else:
-                query = "SELECT id FROM teachers WHERE id = %(user_id)s"
-        
-            params = {'user_id': user_id}
-            result = self.db.query(query, params)
-            return result[0][next(iter(result[0]))] if result else False
-
