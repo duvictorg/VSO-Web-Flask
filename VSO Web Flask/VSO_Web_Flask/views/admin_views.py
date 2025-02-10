@@ -1,4 +1,5 @@
 from re import M
+from tkinter import SEL
 from flask import Blueprint, render_template, request, session, redirect, url_for
 from VSO_Web_Flask.controller import AuthenticationController
 
@@ -47,7 +48,6 @@ class AdminViews:
         def register():
             admin_id = session.get("user_id")
             admin = self.controller.get_info_admin(admin_id)
-            print(admin)
             if "error" in admin:
                 return redirect(url_for("auth_bp.login"))
             if request.method == "POST":
@@ -69,4 +69,11 @@ class AdminViews:
 
                 return redirect(url_for("auth_bp.login"))
 
-            return render_template("admin-add.html")
+            teachers = self.controller.list_teachers()
+            teachers = self.controller.list_users_by_id([d['id'] for d in teachers])
+            eleves = self.controller.list_students()
+            eleves = self.controller.list_users_by_id([d['id'] for d in eleves])
+            matieres = self.controller.list_matieres()
+            annees = list(set(self.controller.list_annees()))
+            numeros = list(set(self.controller.list_numeros_classes()))
+            return render_template("admin-add.html", teachers=teachers, eleves=eleves, matieres=matieres, annees=annees, numeros=numeros)

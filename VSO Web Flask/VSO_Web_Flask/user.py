@@ -1,3 +1,4 @@
+from unittest import result
 from flask import session
 from .db import Database,encrypt_data,decrypt_data,encrypt_username,decrypt_username
 import bcrypt
@@ -164,6 +165,25 @@ class UserModel:
         else:
             return False
 
+    def list_users_by_id(self,liste_id):
+        query = "SELECT username FROM users WHERE id IN ({})".format(", ".join(map(str, liste_id)))
+        result = self.db.query(query)
+        return [decrypt_username(d['username']) for d in result] if result else []
+
+    def list_matieres(self):
+        return self.db.query("SELECT Matiere FROM matieres;")
+
+    def list_matieres_by_id(self,liste_id):
+        query = "SELECT Matiere FROM matieres WHERE id IN ({})".format(", ".join(map(str, liste_id)))
+        result = self.db.query(query)
+        return result if result else []
+
+    def list_annees(self):
+        return self.db.query("SELECT Annee FROM classes;")
+
+    def list_numeros_classes(self):
+        return self.db.query("SELECT Numero_Classe FROM classes;")
+
     def list_student_matieres(self,id_student):
         query = "SELECT id_matiere FROM students_matieres WHERE id_student = (%s);"
         result_temps = self.db.query(query, (id_student,))
@@ -194,8 +214,5 @@ class UserModel:
                 query = "SELECT Nom, Prenom FROM teachers WHERE id = %(id_role)s;"
     
             params = {'id_role': id_role}
-            print(query)
-            print(params)
             result = self.db.query(query, params)
-            print(result)
         return (decrypt_data(result[0]['Prenom']), decrypt_data(result[0]['Nom'])) if result else None

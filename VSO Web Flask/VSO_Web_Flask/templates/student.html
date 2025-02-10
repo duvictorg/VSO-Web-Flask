@@ -13,23 +13,17 @@
             <div class="service">
                 <h1>Cyber School <span></span></h1>
                 <div class="cards">
-                    <a href="/students/list" class="card-link">
-                        <div class="card">
-                            <i class="fa-solid fa-chart-simple"></i>
-                            <h2>Notes</h2>
-                        </div>
-                    </a>
+                    <div class="card" href="/students/list">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <h2>Notes Général</h2>
+                    </div>
+                    {% for matiere in matieres %}
+                    <div class="card" href="/students/list">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <h2>{{matiere}}</h2>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% for matiere in Matieres %}
-                <div class="cards">
-                    <a href="/students/list" class="card-link">
-                        <div class="card">
-                            <i class="fa-solid fa-chart-simple"></i>
-                            <h2>{{matiere}}</h2>
-                        </div>
-                    </a>
-                </div>
-                {% endfor %}
             </div>
         </div>
         <div class="logout-button">

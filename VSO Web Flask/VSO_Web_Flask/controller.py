@@ -37,39 +37,56 @@ class AuthenticationController:
 
     def list_grades(self):
         result = self.user_model.get_grades(session['user_id'])
-        return result if result != False else None
+        return result if result != False else []
 
     def list_grades_matiere(self,id_matiere):
         result = self.user_model.get_grades(session['user_id'],id_matiere)
-        return result if result != False else None
+        return result if result != False else []
 
     def list_grades_matiere(self,id_matiere):
         result = self.user_model.get_grades_matiere(session['user_id'],id_matiere)
-        return result if result != False else None
+        return result if result != False else []
 
     def list_students_classe(self,id_classe):
         result = self.user_model.get_list_students_classe(id_classe)
-        return result if result != False else None
+        return result if result != False else []
 
-    def list_student(self):
+    def list_students(self):
         result = self.user_model.list_students()
-        return result if result != False else None
+        return result if result != False else []
 
     def list_teachers_classes(self,id_classe):
         result = self.user_model.get_teacher_classes(id_classe)
-        return result if result != False else None
+        return result if result != False else []
 
     def list_teachers_maieres(self,id_matiere):
         result = self.user_model.get_teacher_classes(id_matiere)
-        return result if result != False else None
+        return result if result != False else []
 
     def list_teachers(self):
         result = self.user_model.list_teachers()
-        return result if result != False else None
+        return result if result != False else []
 
     def list_student_matieres(self,id_student):
         result_temp = self.user_model.list_student_matieres(id_student)
-        return [D['id_matiere'] for D in result_temp] if result_temp else []
+        result = self.user_model.list_matieres_by_id([D['id_matiere'] for D in result_temp])
+        return [D['Matiere'] for D in result] if result else []
+
+    def list_users_by_id(self,liste_id):
+        result = self.user_model.list_users_by_id(liste_id)
+        return result if result else []
+
+    def list_matieres(self):
+        result = self.user_model.list_matieres()
+        return [d['Matiere'] for d in result] if result else []
+
+    def list_annees(self):
+        result = self.user_model.list_annees()
+        return [d['Annee'] for d in result] if result else []
+
+    def list_numeros_classes(self):
+        result = self.user_model.list_numeros_classes()
+        return [d['Numero_Classe'] for d in result] if result else []
 
     def search_student(self):
         pass
