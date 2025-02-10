@@ -463,7 +463,7 @@ form .btn {
     margin-bottom: 10px;
 }
 
-.add, .teacher, .student, .logout {
+.add-delete, .teacher, .student, .logout {
     margin: 0 25px;
     position: relative;
     display: inline-block;
@@ -477,19 +477,19 @@ form .btn {
     transition: 0.2s;
 }
 
-    .add:hover, .teacher:hover, .student:hover, .logout:hover {
+    .add-delete:hover, .teacher:hover, .student:hover, .logout:hover {
         color: #0805b3;
         background: #f3d421;
         box-shadow: 0 0 10px #f3d421, 0 0 40px #f3d421, 0 0 80px #f3d421;
         transition-delay: 1s;
     }
 
-    .add span, .teacher span, .student span, .logout span {
+    .add-delete span, .teacher span, .student span, .logout span {
         position: absolute;
         display: block;
     }
 
-        .add span:nth-child(1), .teacher span:nth-child(1), .student span:nth-child(1), .logout span:nth-child(1) {
+        .add-delete span:nth-child(1), .teacher span:nth-child(1), .student span:nth-child(1), .logout span:nth-child(1) {
             top: 0;
             left: -100%;
             width: 100%;
@@ -497,12 +497,12 @@ form .btn {
             background: linear-gradient(90deg,transparent,#f3d421);
         }
 
-    .add:hover span:nth-child(1), .teacher:hover span:nth-child(1), .student:hover span:nth-child(1), .logout:hover span:nth-child(1) {
+    .add-delete:hover span:nth-child(1), .teacher:hover span:nth-child(1), .student:hover span:nth-child(1), .logout:hover span:nth-child(1) {
         left: 100%;
         transition: 1s;
     }
 
-    .add span:nth-child(3), .teacher span:nth-child(3), .student span:nth-child(3), .logout span:nth-child(3) {
+    .add-delete span:nth-child(3), .teacher span:nth-child(3), .student span:nth-child(3), .logout span:nth-child(3) {
         bottom: 0;
         right: -100%;
         width: 100%;
@@ -510,13 +510,13 @@ form .btn {
         background: linear-gradient(270deg,transparent,#f3d421);
     }
 
-    .add:hover span:nth-child(3), .teacher:hover span:nth-child(3), .student:hover span:nth-child(3), .logout:hover span:nth-child(3) {
+    .add-delete:hover span:nth-child(3), .teacher:hover span:nth-child(3), .student:hover span:nth-child(3), .logout:hover span:nth-child(3) {
         right: 100%;
         transition: 1s;
         transition-delay: 0.5s;
     }
 
-    .add span:nth-child(2), .teacher span:nth-child(2), .student span:nth-child(2), .logout span:nth-child(2) {
+    .add-delete span:nth-child(2), .teacher span:nth-child(2), .student span:nth-child(2), .logout span:nth-child(2) {
         top: -100%;
         right: 0;
         width: 2px;
@@ -524,13 +524,13 @@ form .btn {
         background: linear-gradient(180deg,transparent,#f3d421);
     }
 
-    .add:hover span:nth-child(2), .teacher:hover span:nth-child(2), .student:hover span:nth-child(2), .logout:hover span:nth-child(2) {
+    .add-delete:hover span:nth-child(2), .teacher:hover span:nth-child(2), .student:hover span:nth-child(2), .logout:hover span:nth-child(2) {
         top: 100%;
         transition: 1s;
         transition-delay: 0.25s;
     }
 
-    .add span:nth-child(4), .teacher span:nth-child(4), .student span:nth-child(4), .logout span:nth-child(4) {
+    .add-delete span:nth-child(4), .teacher span:nth-child(4), .student span:nth-child(4), .logout span:nth-child(4) {
         bottom: -100%;
         left: 0;
         width: 2px;
@@ -538,7 +538,7 @@ form .btn {
         background: linear-gradient(360deg,transparent,#f3d421);
     }
 
-    .add:hover span:nth-child(4), .teacher:hover span:nth-child(4), .student:hover span:nth-child(4), .logout:hover span:nth-child(4) {
+    .add-delete:hover span:nth-child(4), .teacher:hover span:nth-child(4), .student:hover span:nth-child(4), .logout:hover span:nth-child(4) {
         bottom: 100%;
         transition: 1s;
         transition-delay: 0.75s;

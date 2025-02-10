@@ -36,7 +36,7 @@ class AuthenticationViews:
                 if result["role"] == 1:
                     return redirect(url_for("teacher_bp.teacher_details"))
                 if result["role"] == 2:
-                    return redirect(url_for("admin_bp.register"))
+                    return redirect(url_for("admin_bp.admin_details"))
             
                 return redirect("/profile")
             return render_template("index.html")
