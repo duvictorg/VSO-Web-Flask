@@ -3,16 +3,17 @@ The flask application package.
 """
 
 from flask import Flask, url_for
-
+import os
+from dotenv import load_dotenv
 from VSO_Web_Flask.views.auth import AuthenticationViews
 from VSO_Web_Flask.views.student_views import StudentViews
 from VSO_Web_Flask.views.teacher_views import TeacherViews
 from VSO_Web_Flask.views.admin_views import AdminViews
-
+load_dotenv()
 
 def create_app():
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = ("DevSecOps")
+    app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
     
 
     student_views = StudentViews()
