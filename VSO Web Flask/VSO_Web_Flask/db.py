@@ -1,13 +1,17 @@
 import mysql.connector
+import os
 from cryptography.fernet import Fernet
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 import base64
+from dotenv import load_dotenv
 
-fernet = Fernet('wOqAcmjUsZmRBCqMuC-SasMhBGxmnGhpk9yYTh9n9DA=')
+load_dotenv()
+fernet_key = os.getenv('fernet_key',default = '')
+fernet = Fernet(fernet_key)
 # Fixed key and IV
-FIXED_KEY = b'c0156eb3b5294d0b320aab84'  # 256-bit key (32 bytes)
-FIXED_IV = b'0b12a385c74ca5ca'  # 128-bit IV (16 bytes)
+FIXED_KEY = os.getenv('fixed_key_aes',default = '').encode()  # 256-bit key (32 bytes)
+FIXED_IV = os.getenv('fixed_iv_aes',default = '').encode()  # 128-bit IV (16 bytes)
 
 def encrypt_username(plaintext):
     cipher = AES.new(FIXED_KEY, AES.MODE_CBC, FIXED_IV)
@@ -31,7 +35,7 @@ class Database:
         self.connection = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='Jyfkf596f!BYFZEHf58f65zf!',
+            password=os.getenv('mysql_password_ecole',default = ''),
             database='ecole'
                                                                                                                       
         )
