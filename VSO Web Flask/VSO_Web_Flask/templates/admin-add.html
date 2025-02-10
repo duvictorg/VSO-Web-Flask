@@ -76,7 +76,9 @@
                         <div class="field">
                             <select name="username" placeholder="Username">
                                 <option value="" disabled selected>Username</option>
-                                <!-- Ajoutez ici les options pour les usernames -->
+                                {% for teacher in teachers %}
+                                <option value="{{ teacher }}">{{ teacher }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
