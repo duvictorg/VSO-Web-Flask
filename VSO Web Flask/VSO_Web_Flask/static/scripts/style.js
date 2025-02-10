@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const Prof_btn = document.querySelector("#Prof-btn");
-    const eleve_btn = document.querySelector("#eleve-btn");
+    const eleve_btn = document.querySelector("#Eleve-btn"); 
     const matiereField = document.querySelector(".matiere-field");
     const classeFields = document.querySelector(".classe-fields");
     const addBtn = document.querySelector('#add');

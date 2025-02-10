@@ -188,7 +188,7 @@ h1 {
     color: #ffffff;
 }
 
-.slide-controls label.eleve {
+.slide-controls label.Eleve {
     color: #ffffff;
 }
 
@@ -207,45 +207,32 @@ input[type="radio"] {
     display: none;
 }
 
-#signup:checked ~ .slider-tab {
+#Prof:checked ~ .slider-tab {
+    left: 0%;
+}
+
+#Eleve:checked ~ .slider-tab {
     left: 50%;
-}
-
-#eleve:checked ~ .slider-tab {
-    left: 50%;
-}
-
-#signup:checked ~ label.signup {
-    color: #fff;
-    cursor: default;
-    user-select: none;
-}
-
-#eleve:checked ~ label.eleve {
-    color: #fff;
-    cursor: default;
-    user-select: none;
-}
-
-#signup:checked ~ label.login {
-    color: #ffffff;
-}
-
-#eleve:checked ~ label.Prof {
-    color: #ffffff;
-}
-
-#login:checked ~ label.signup {
-    color: #ffffff;
-}
-
-#login:checked ~ label.signup {
-    color: #ffffff;
 }
 
 #Prof:checked ~ label.Prof {
+    color: #fff;
     cursor: default;
     user-select: none;
+}
+
+#Eleve:checked ~ label.Eleve {
+    color: #fff;
+    cursor: default;
+    user-select: none;
+}
+
+#Prof:checked ~ label.Eleve {
+    color: #ffffff;
+}
+
+#Eleve:checked ~ label.Prof {
+    color: #ffffff;
 }
 
 .wrapper .form-container {
@@ -543,4 +530,3 @@ form .btn {
         transition: 1s;
         transition-delay: 0.75s;
     }
-
