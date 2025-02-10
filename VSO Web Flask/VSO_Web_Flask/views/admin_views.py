@@ -48,7 +48,6 @@ class AdminViews:
         def register():
             admin_id = session.get("user_id")
             admin = self.controller.get_info_admin(admin_id)
-            print(admin)
             if "error" in admin:
                 return redirect(url_for("auth_bp.login"))
             if request.method == "POST":

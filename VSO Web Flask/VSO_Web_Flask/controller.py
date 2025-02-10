@@ -69,7 +69,8 @@ class AuthenticationController:
 
     def list_student_matieres(self,id_student):
         result_temp = self.user_model.list_student_matieres(id_student)
-        return [D['id_matiere'] for D in result_temp] if result_temp else []
+        result = self.user_model.list_matieres_by_id([D['id_matiere'] for D in result_temp])
+        return [D['Matiere'] for D in result] if result else []
 
     def list_users_by_id(self,liste_id):
         result = self.user_model.list_users_by_id(liste_id)

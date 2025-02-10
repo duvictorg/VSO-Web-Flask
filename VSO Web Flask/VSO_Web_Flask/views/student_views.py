@@ -12,7 +12,6 @@ class StudentViews:
         def student_details():
             student_id = session.get("user_id")
             student = self.controller.get_info_student(student_id)
-            print(student)
             role_id = self.controller.get_role()
             matieres = self.controller.list_student_matieres(student_id)
             if "error" in student:
