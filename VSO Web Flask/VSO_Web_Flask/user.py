@@ -1,3 +1,4 @@
+from unittest import result
 from flask import session
 from .db import Database,encrypt_data,decrypt_data,encrypt_username,decrypt_username
 import bcrypt
@@ -163,6 +164,12 @@ class UserModel:
             return result
         else:
             return False
+
+    def list_users_by_id(self,liste_id):
+        query = "SELECT username FROM users WHERE id IN ({})".format(", ".join(map(str, liste_id)))
+        result = self.db.query(query)
+        print(result)
+        return [decrypt_username(d['username']) for d in result] if result else []
 
     def list_student_matieres(self,id_student):
         query = "SELECT id_matiere FROM students_matieres WHERE id_student = (%s);"

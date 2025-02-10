@@ -69,4 +69,6 @@ class AdminViews:
 
                 return redirect(url_for("auth_bp.login"))
 
-            return render_template("admin-add.html")
+            teachers = self.controller.list_teachers()
+            teachers = self.controller.list_users_by_id([d['id'] for d in teachers])
+            return render_template("admin-add.html", teachers=teachers)
