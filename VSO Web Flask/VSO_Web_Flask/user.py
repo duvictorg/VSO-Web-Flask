@@ -171,6 +171,15 @@ class UserModel:
         print(result)
         return [decrypt_username(d['username']) for d in result] if result else []
 
+    def list_matieres(self):
+        return self.db.query("SELECT Matiere FROM matieres;")
+
+    def list_annees(self):
+        return self.db.query("SELECT Annee FROM classes;")
+
+    def list_numeros_classes(self):
+        return self.db.query("SELECT Numero_Classe FROM classes;")
+
     def list_student_matieres(self,id_student):
         query = "SELECT id_matiere FROM students_matieres WHERE id_student = (%s);"
         result_temps = self.db.query(query, (id_student,))

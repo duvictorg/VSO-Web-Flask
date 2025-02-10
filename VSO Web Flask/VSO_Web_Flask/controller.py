@@ -51,7 +51,7 @@ class AuthenticationController:
         result = self.user_model.get_list_students_classe(id_classe)
         return result if result != False else []
 
-    def list_student(self):
+    def list_students(self):
         result = self.user_model.list_students()
         return result if result != False else []
 
@@ -74,6 +74,18 @@ class AuthenticationController:
     def list_users_by_id(self,liste_id):
         result = self.user_model.list_users_by_id(liste_id)
         return result if result else []
+
+    def list_matieres(self):
+        result = self.user_model.list_matieres()
+        return [d['Matiere'] for d in result] if result else []
+
+    def list_annees(self):
+        result = self.user_model.list_annees()
+        return [d['Annee'] for d in result] if result else []
+
+    def list_numeros_classes(self):
+        result = self.user_model.list_numeros_classes()
+        return [d['Numero_Classe'] for d in result] if result else []
 
     def search_student(self):
         pass
