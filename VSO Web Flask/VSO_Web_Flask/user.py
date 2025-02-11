@@ -23,7 +23,7 @@ class UserModel:
             return False
 
         # Vérifier si le mot de passe est au format bytes ou string
-        if isinstance(hashed_password, str):
+        if type(hashed_password) == str:
             hashed_password = hashed_password.encode()  # S'assurer que c'est en bytes pour bcrypt
         return bcrypt.checkpw(password.encode(), hashed_password)
 
@@ -42,7 +42,7 @@ class UserModel:
         
         return user_id
 
-    def create_user(self, first_name, last_name, password, role, Mail, classe_id):
+    def create_user(self,first_name,last_name,password,role,Mail,classe_id):
         if len(first_name) >= 63:
             first_name = first_name[:63]
             self.username = str(first_name[:29]+'.'+last_name[0])
@@ -54,21 +54,26 @@ class UserModel:
 
         if len(Mail) >= 254:
             Mail = Mail[:254]
-
-        if role not in [0,1] or not isinstance(role, int):
+        
+        if type(role) != int and role in ('0','1'):
+            role = int(role)
+        if role not in (0,1):
             return False
 
-        if not isinstance(classe_id, int):
+        print(type(classe_id))
+        if type(classe_id) != int:
             return False
         
         hashed_password = self.hash_password(password)
         if self.get_user_by_username() == None:
+            self.username = encrypt_username(self.username)
             self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail)
         else:
             index = 2
             while self.get_user_by_username() != None:
                 self.username = str(first_name+'.'+last_name[0] + str(index))
                 index+=1
+            self.username = encrypt_username(self.username)
             self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail)
         return self.db.cursor.lastrowid
 

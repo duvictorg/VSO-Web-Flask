@@ -23,8 +23,9 @@ class AuthenticationController:
         session.clear()
         return {"success": "Deconnexion reussie"}
 
-    def register(self,first_name,last_name,password,role,mail):
-        r = self.user_model.create_user(first_name,last_name,password,role, mail)
+    def register(self,first_name,last_name,password,role,mail,annee,numero_classe):
+        classe_id = self.get_id_classe(annee,numero_classe)
+        r = self.user_model.create_user(first_name,last_name,password,role, mail, classe_id)
         return {"success": "Inscription reussie", "Nom d'utilisateur" : self.user_model.username} if r != False else {"error": "Personne deja existante"}
 
     def delete_account(self,username):
@@ -89,7 +90,7 @@ class AuthenticationController:
 
     def get_id_classe(self,annee,numero_classe):
         result = self.user_model.get_id_classe(annee,numero_classe)
-        return result[0]['id'] if result else []
+        return result[0]['id'] if result != None else []
 
     def get_id_matiere(self,matiere):
         result = self.user_model.get_id_matiere(matiere)
