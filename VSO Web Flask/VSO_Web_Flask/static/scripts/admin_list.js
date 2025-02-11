@@ -13,14 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     Prof_btn.addEventListener('click', () => {
         matiereField.style.display = "none";
-        classeFields.style.display = "block";
-        teacherselect.style.display = "block";
+        classeFields.style.display = "block";;
     });
 
     eleve_btn.addEventListener('click', () => {
-        matiereField.style.display = "flex";
+        matiereField.style.display = "block";
         classeFields.style.display = "none";
-        teacherselect.style.display = "none";
     });
 
     addBtn.addEventListener('click', function () {

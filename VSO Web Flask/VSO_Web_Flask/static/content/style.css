@@ -402,7 +402,7 @@ form .btn {
     .action-buttons .slider-tab {
         position: absolute;
         height: 100%;
-        width: 50%;
+        width: 33.33%;
         left: 0;
         z-index: 0;
         border-radius: 5px;
@@ -415,7 +415,7 @@ form .btn {
 }
 
 #delete:checked ~ .slider-tab {
-    left: 50%;
+    left: 66.67%;
 }
 
 #add:checked ~ label.add {
@@ -530,3 +530,18 @@ form .btn {
         transition: 1s;
         transition-delay: 0.75s;
     }
+
+#edit:checked ~ .slider-tab {
+    left: 33.33%;
+}
+
+#edit:checked ~ label.edit {
+    color: #fff;
+    cursor: default;
+    user-select: none;
+}
+
+#edit:checked ~ label.add,
+#edit:checked ~ label.delete {
+    color: #ffffff;
+}
