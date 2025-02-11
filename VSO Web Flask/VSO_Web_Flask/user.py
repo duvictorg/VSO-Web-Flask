@@ -70,7 +70,6 @@ class UserModel:
         hashed_password = self.hash_password(password)
         
         if self.get_user_by_username() == None:
-            self.username = encrypt_username(self.username)
             self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail,matiere)
         else:
             index = 2
