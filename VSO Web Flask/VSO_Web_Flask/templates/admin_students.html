@@ -11,36 +11,21 @@
     <table class="content-table">
         <thead>
             <tr>
-                <th>Username</th>
-                <th>CLasses</th>
-                <th>Matières</th>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Mail</th>
             </tr>
         </thead>
         <tbody>
+            {% for id in students_id %}
             <tr>
-                {% for id in student_ids %}
                 <td>{{id}}</td>
-                {% endfor %}
-                {% for Nom in Noms %}
                 <td>{{Nom}}</td>
-                {% endfor %}
-                {% for Prenom in Prenoms %}
                 <td>{{Prenom}}</td>
-                {% endfor %}
-                {% for Mail in Mails %}
                 <td>{{Mail}}</td>
-                {% endfor %}
             </tr>
-            <tr class="active-row">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
     <div class="actions">
@@ -66,5 +51,6 @@
             Elève
         </a>
     </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/admin_list.js') }}"></script>
 </body>
 </html>
