@@ -1,6 +1,5 @@
-from re import M
-from tkinter import SEL
-from flask import Blueprint, render_template, request, session, redirect, url_for
+﻿from flask import Blueprint, render_template, request, session, redirect, url_for
+from flask_wtf.csrf import generate_csrf
 from VSO_Web_Flask.controller import AuthenticationController
 
 class AdminViews:
@@ -16,7 +15,7 @@ class AdminViews:
             admin = self.controller.get_info_admin(admin_id)
             if "error" in admin:
                 return redirect(url_for("auth_bp.login"))
-            return render_template("admin.html", admin=admin)
+            return render_template("admin.html", admin=admin, csrf_token=session["_csrf_token"])
 
         @self.admin_bp.route("/list/students")
         def list_students():
@@ -28,7 +27,7 @@ class AdminViews:
             Noms = [D["Nom"] for D in students]
             Prenoms = [D["Prenom"] for D in students]
             student_ids = [D["id"] for D in students]
-            return render_template("admin_students.html",Noms=Noms,Prenoms=Prenoms,student_ids=student_ids)
+            return render_template("admin_students.html", Noms=Noms, Prenoms=Prenoms, student_ids=student_ids)
 
         @self.admin_bp.route("/list/teachers")
         def list_teachers():
@@ -41,7 +40,7 @@ class AdminViews:
             Prenoms = [D["Prenom"] for D in teachers]
             student_ids = [D["id"] for D in teachers]
             Mails = [D["Mail"] for D in teachers]
-            return render_template("admin_teachers.html",Noms=Noms,Prenoms=Prenoms,student_ids=student_ids,Mails=Mails)
+            return render_template("admin_teachers.html", Noms=Noms, Prenoms=Prenoms, student_ids=student_ids, Mails=Mails)
 
         @self.admin_bp.route("/register", methods=["GET", "POST"])
         def register():
@@ -49,16 +48,27 @@ class AdminViews:
             admin = self.controller.get_info_admin(admin_id)
             if "error" in admin:
                 return redirect(url_for("auth_bp.login"))
+
             if request.method == "POST":
+                csrf_token_form = request.form.get("csrf_token")
+                csrf_token_session = session.get("_csrf_token")
+
+                # 🔍 Debugging pour voir les valeurs des jetons CSRF
+                print(f"CSRF Token Form: {csrf_token_form}")
+                print(f"CSRF Token Session: {csrf_token_session}")
+
+                if not csrf_token_form or csrf_token_form != csrf_token_session:
+                    return "Erreur CSRF détectée", 400  # Bloque les attaques CSRF
+
                 action = request.form.get("action")
 
                 if action == 'add':
                     password = request.form.get("password")
                     role = request.form.get("role")
-                    if role == None:
+                    if role is None:
                         role = 0
-                    elif role in (0,1):
-                        role = int(role) 
+                    elif role in (0, 1):
+                        role = int(role)
                     first_name = request.form.get("first_name")
                     last_name = request.form.get("last_name")
                     mail = request.form.get("mail")
@@ -66,11 +76,9 @@ class AdminViews:
                     numero_classe = request.form.get("numero_classe")
                     matiere = request.form.get("matiere")
 
-                    result = self.controller.register(first_name,last_name,password,role,mail,annee,numero_classe,matiere)
+                    result = self.controller.register(first_name, last_name, password, role, mail, annee, numero_classe, matiere)
                     if "error" in result:
-                        return render_template(
-                            "admin.html", message=result["error"]
-                        )
+                        return render_template("admin.html", message=result["error"], csrf_token=session["_csrf_token"])
 
                     return redirect(url_for("admin_bp.register"))
 
@@ -87,4 +95,5 @@ class AdminViews:
             matieres = self.controller.list_matieres()
             annees = list(set(self.controller.list_annees()))
             numeros = list(set(self.controller.list_numeros_classes()))
-            return render_template("admin-add.html", teachers=teachers, eleves=eleves, matieres=matieres, annees=annees, numeros=numeros)
+
+            return render_template("admin-add.html", teachers=teachers, eleves=eleves, matieres=matieres, annees=annees, numeros=numeros, csrf_token=session["_csrf_token"])

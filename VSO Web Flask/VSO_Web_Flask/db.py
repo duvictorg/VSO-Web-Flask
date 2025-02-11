@@ -34,7 +34,7 @@ class Database:
     def __init__(self):
         self.connection = mysql.connector.connect(
             host='localhost',
-            user='root',
+            user='pronote',
             password=os.getenv('mysql_password_ecole',default = ''),
             database='ecole'
                                                                                                                       
