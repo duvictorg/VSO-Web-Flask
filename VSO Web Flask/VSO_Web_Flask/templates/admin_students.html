@@ -18,9 +18,18 @@
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                {% for id in student_ids %}
+                <td>{{id}}</td>
+                {% endfor %}
+                {% for Nom in Noms %}
+                <td>{{Nom}}</td>
+                {% endfor %}
+                {% for Prenom in Prenoms %}
+                <td>{{Prenom}}</td>
+                {% endfor %}
+                {% for Mail in Mails %}
+                <td>{{Mail}}</td>
+                {% endfor %}
             </tr>
             <tr class="active-row">
                 <td></td>
@@ -46,5 +55,28 @@
     {% for Mail in Mails %}
     <p>{{Mail}}</p>
     {% endfor %}
+    <div class="actions">
+        <a class="add-delete" href="/admin/register">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Ajouter
+        </a>
+        <a class="teacher" href="/admin/list/teachers">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Professeur
+        </a>
+        <a class="student" href="/admin/list/students">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Elève
+        </a>
+    </div>
 </body>
 </html>

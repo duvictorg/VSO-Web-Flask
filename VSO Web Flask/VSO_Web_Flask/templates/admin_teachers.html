@@ -20,17 +20,44 @@
             </tr>
         </thead>
         <tbody>
-            {% for id in liste_id %}
             <tr>
+                {% for id in student_ids %}
                 <td>{{id}}</td>
+                {% endfor %}
+                {% for Nom in Noms %}
                 <td>{{Nom}}</td>
+                {% endfor %}
+                {% for Prenom in Prenoms %}
                 <td>{{Prenom}}</td>
+                {% endfor %}
+                {% for Mail in Mails %}
                 <td>{{Mail}}</td>
-                <td>{{Classe}}</td>
-                <td>{{Matières}}</td>
+                {% endfor %}
             </tr>
-            {% endfor %}
         </tbody>
     </table>
+    <div class="actions">
+        <a class="add-delete" href="/admin/">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Menu
+        </a>
+        <a class="teacher" href="/logout/">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Déconnexion
+        </a>
+        <a class="student" href="/admin/list/teachers">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Modifier
+        </a>
+    </div>
 </body>
 </html>
