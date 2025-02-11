@@ -51,10 +51,18 @@
                         <div class="field">
                             <select id="select-prof" class="role-selection" name="username" style="display: none;">
                                 <option value="" disabled selected>Classe</option>
-                                {% for teacher in teachers %}
-                                <option value="{{ teacher }}">{{ teacher }}</option>
+                                {% for annee in annees %}
+                                <option value="{{ annee }}">{{ annee }}</option>
                                 {% endfor %}
                             </select>
+                            <select id="select-prof" class="role-selection" name="username" style="display: none;">
+                                <option value="" disabled selected>Classe</option>
+                                {% for numero in numeros %}
+                                <option value="{{ numero }}">{{ numero }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="field">
                             <select id="select-eleve" class="role-selection" name="username">
                                 <option value="" disabled selected>Matière</option>
                                 {% for matiere in matieres %}
