@@ -7,44 +7,50 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='content/admin_list.css') }}">
 </head>
 <body>
-    <h1>Modifier</h1>
-    <table class="content-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Classe</th>
-                <th>Matières</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for student in student_data %}
-            <tr>
-                <td><a href="/admin/modifier/student/{{ student.id }}">{{ student.id }}</a></td>
-                <td>{{ student.Nom }}</td>
-                <td>{{ student.Prenom }}</td>
-                <td>{{ student.Classe }}</td>
-                <td>{{ student.Matieres }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div class="actions">
-        <a class="add-delete" href="/admin/">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Menu
-        </a>
-        <a class="teacher" href="/logout/">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Déconnexion
-        </a>
+    <div class="container">
+        <div class="service-wrapper">
+            <div class="service">
+                <h1>Cyber School <span></span></h1>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Classe</th>
+                            <th>Matières</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in student_data %}
+                        <tr>
+                            <td><a href="/admin/modifier/student/{{ student.id }}">{{ student.id }}</a></td>
+                            <td>{{ student.Nom }}</td>
+                            <td>{{ student.Prenom }}</td>
+                            <td>{{ student.Classe }}</td>
+                            <td>{{ student.Matieres }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="actions">
+                    <a class="add-delete" href="/admin/">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Menu
+                    </a>
+                    <a class="teacher" href="/logout/">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Déconnexion
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
     <script type="text/javascript" src="{{ url_for('static', filename='scripts/admin_list.js') }}"></script>
 </body>
