@@ -57,14 +57,16 @@ class AdminViews:
                     role = request.form.get("role")
                     if role == None:
                         role = 0
-                    else:
+                    elif role in (0,1):
                         role = int(role) 
                     first_name = request.form.get("first_name")
                     last_name = request.form.get("last_name")
                     mail = request.form.get("mail")
+                    annee = request.form.get("annee")
+                    numero_classe = request.form.get("numero_classe")
                     matiere = request.form.get("matiere")
 
-                    result = None
+                    result = self.controller.register(first_name,last_name,password,role,mail,annee,numero_classe,matiere)
                     if "error" in result:
                         return render_template(
                             "admin.html", message=result["error"]

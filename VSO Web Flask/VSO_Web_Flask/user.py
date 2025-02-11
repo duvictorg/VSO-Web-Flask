@@ -23,12 +23,12 @@ class UserModel:
             return False
 
         # Vérifier si le mot de passe est au format bytes ou string
-        if isinstance(hashed_password, str):
+        if type(hashed_password) == str:
             hashed_password = hashed_password.encode()  # S'assurer que c'est en bytes pour bcrypt
         return bcrypt.checkpw(password.encode(), hashed_password)
 
 
-    def insert_user(self, first_name, last_name, role, classe_id, password, Mail):
+    def insert_user(self, first_name, last_name, role, classe_id, password, Mail, matiere):
         
         query = "INSERT INTO Users (username, password) VALUES (%s, %s)"
         self.db.execute(query, (self.username, password))
@@ -39,37 +39,46 @@ class UserModel:
         else:
             query = "INSERT INTO Teachers (id, Nom, Prenom, Mail) VALUES (%s, %s, %s, %s)"
             self.db.execute(query, (user_id, encrypt_data(last_name), encrypt_data(first_name), encrypt_data(Mail)))
+            query = "INSERT INTO teachers_matieres (id_teacher,id_matiere) VALUES (%s, %s)"
+            self.db.execute(query,(user_id,self.get_id_matiere(matiere),))
         
         return user_id
 
-    def create_user(self, first_name, last_name, password, role, Mail, classe_id):
+    def create_user(self,first_name,last_name,password,role,Mail,classe_id,matiere):
         if len(first_name) >= 63:
             first_name = first_name[:63]
             self.username = str(first_name[:29]+'.'+last_name[0])
+
         else:
             self.username = str(first_name+'.'+last_name[0])
+        self.username = encrypt_username(self.username)
 
         if len(last_name) >= 63:
             last_name = last_name[:63]
 
         if len(Mail) >= 254:
             Mail = Mail[:254]
-
-        if role not in [0,1] or not isinstance(role, int):
+        
+        if type(role) != int and role in ('0','1'):
+            role = int(role)
+        if role not in (0,1):
             return False
 
-        if not isinstance(classe_id, int):
+        if type(classe_id) != int:
             return False
         
         hashed_password = self.hash_password(password)
+        
         if self.get_user_by_username() == None:
-            self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail)
+            self.username = encrypt_username(self.username)
+            self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail,matiere)
         else:
             index = 2
             while self.get_user_by_username() != None:
                 self.username = str(first_name+'.'+last_name[0] + str(index))
                 index+=1
-            self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail)
+            self.username = encrypt_username(self.username)
+            self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail,matiere)
         return self.db.cursor.lastrowid
 
     def delete_user(self,username):
