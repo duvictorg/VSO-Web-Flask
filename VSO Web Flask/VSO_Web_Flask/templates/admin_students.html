@@ -22,7 +22,7 @@
         <tbody>
             {% for student in student_data %}
             <tr>
-                <td><a href="/">{{ student.id }}</a></td>
+                <td><a href="/admin/modifier/student/{{ student.id }}">{{ student.id }}</a></td>
                 <td>{{ student.Nom }}</td>
                 <td>{{ student.Prenom }}</td>
                 <td>{{ student.Mail }}</td>

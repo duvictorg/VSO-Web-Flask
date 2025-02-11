@@ -101,3 +101,21 @@ class AdminViews:
             numeros = list(set(self.controller.list_numeros_classes()))
 
             return render_template("admin-add.html", teachers=teachers, eleves=eleves, matieres=matieres, annees=annees, numeros=numeros, csrf_token=session["_csrf_token"])
+
+        @self.admin_bp.route("/modifier/student/<int:id>")
+        def modifier_student(id):
+            admin_id = session.get("user_id")
+            admin = self.controller.get_info_admin(admin_id)
+            if "error" in admin:
+                return redirect(url_for("auth_bp.login"))
+
+            return render_template("admin_students_modif.html")
+
+        @self.admin_bp.route("/modifier/teacher/<int:id>")
+        def modifier_teacher(id):
+            admin_id = session.get("user_id")
+            admin = self.controller.get_info_admin(admin_id)
+            if "error" in admin:
+                return redirect(url_for("auth_bp.login"))
+
+            return render_template("admin_teachers_modif.html")
