@@ -35,6 +35,11 @@
             font-weight: bold;
             color: #009879;
         }
+
+tr[data-href] {
+    cursor:pointer;
+}
+
 .actions {
     display: flex;
     justify-content: space-between;
