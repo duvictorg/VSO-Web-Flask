@@ -15,15 +15,36 @@ class TeacherViews:
             teacher = self.controller.get_info_teacher(teacher_id)
             if "error" in teacher:
                 return redirect(url_for("auth_bp.login"))
-            return render_template("teachers.html", teacher=teacher)
+            classes = self.controller.list_teachers_classes(teacher_id)
+            return render_template("teachers.html", classes=classes)
         
         @self.teacher_bp.route("/list")
         def list_teachers():
             teachers = self.controller.list_teachers()
-            return render_template("teachers.html")
+            return render_template("teachers_add.html")
 
-        @self.teacher_bp.route("/grades/add" ,methods=['POST'])
-        def add_grades():
-            if request.method == 'POST':
-                result = self.controller.add_grade(request.form['first_name'],request.form['last_name'],request.form['grade'],request.form['max_grade'],request.form['informations'],request.form['coef'])
-                return render_template("teachers.html", )
+        @self.teacher_bp.route("/grades/<int:id>")
+        def add_grades(id):
+            teacher_id = session.get("user_id")
+            teacher = self.controller.get_info_teacher(teacher_id)
+            if "error" in teacher:
+                return redirect(url_for("auth_bp.login"))
+            return render_template("teachers_add.html")
+
+        @self.teacher_bp.route("/classe/<int:id>")
+        def teacher_students_classe(id):
+            teacher_id = session.get("user_id")
+            teacher = self.controller.get_info_teacher(teacher_id)
+            if "error" in teacher:
+                return redirect(url_for("auth_bp.login"))
+            students = self.controller.list_students_classe(id)
+            students_id = [D["id"] for D in students]
+            Noms = [D["Nom"] for D in students]
+            Prenoms = [D["Prenom"] for D in students]
+            students_classes = [D["Classe"] for D in students]
+            student_data = [
+                {"id": id_, "Nom": nom, "Prenom": prenom, "Classe": classe}
+                for id_, nom, prenom, classe in zip(students_id,Noms, Prenoms, students_classes)
+            ]
+            classes = self.controller.list_teachers_classes(teacher_id)
+            return render_template("teachers_students_classe.html", student_data=student_data)

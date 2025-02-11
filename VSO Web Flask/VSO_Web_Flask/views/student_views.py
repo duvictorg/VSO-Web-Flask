@@ -14,6 +14,7 @@ class StudentViews:
             student = self.controller.get_info_student(student_id)
             role_id = self.controller.get_role()
             matieres = self.controller.list_student_matieres(student_id)
+            matieres = [D['Matiere'] for D in matieres]
             id_matieres = [self.controller.get_id_matiere(matiere) for matiere in matieres]
             dic_matieres =[
                 {"id": id_, "Matiere": matiere}

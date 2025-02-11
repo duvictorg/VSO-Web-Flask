@@ -23,7 +23,7 @@ class UserModel:
         if not hashed_password:
             return False
 
-        # Vérifier si le mot de passe est au format bytes ou string
+        # Vï¿½rifier si le mot de passe est au format bytes ou string
         if type(hashed_password) == str:
             hashed_password = hashed_password.encode()  # S'assurer que c'est en bytes pour bcrypt
         return bcrypt.checkpw(password.encode(), hashed_password)
@@ -133,7 +133,7 @@ class UserModel:
         return result if result else False
 
     def get_list_students_classe(self,classe_id):
-        query = "SELECT Nom,Prenom FROM Students WHERE Classe = (%s):"
+        query = "SELECT id,Nom,Prenom,Classe FROM Students WHERE Classe = (%s);"
         result = self.db.query(query, (classe_id,))
         if result:
             for d in result:
