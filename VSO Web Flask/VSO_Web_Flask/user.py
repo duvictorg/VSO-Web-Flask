@@ -28,7 +28,7 @@ class UserModel:
         return bcrypt.checkpw(password.encode(), hashed_password)
 
 
-    def insert_user(self, first_name, last_name, role, classe_id, matieres, password, Mail):
+    def insert_user(self, first_name, last_name, role, classe_id, password, Mail):
         
         query = "INSERT INTO Users (username, password) VALUES (%s, %s)"
         self.db.execute(query, (self.username, password))
@@ -42,7 +42,7 @@ class UserModel:
         
         return user_id
 
-    def create_user(self, first_name, last_name, password, role, matiere, Mail, classe_id):
+    def create_user(self, first_name, last_name, password, role, Mail, classe_id):
         if len(first_name) >= 63:
             first_name = first_name[:63]
             self.username = str(first_name[:29]+'.'+last_name[0])
@@ -51,9 +51,6 @@ class UserModel:
 
         if len(last_name) >= 63:
             last_name = last_name[:63]
-
-        if len(matiere) >= 63:
-            matiere = matiere[:63]
 
         if len(Mail) >= 254:
             Mail = Mail[:254]
@@ -66,22 +63,27 @@ class UserModel:
         
         hashed_password = self.hash_password(password)
         if self.get_user_by_username() == None:
-            self.insert_user(first_name, last_name, role, classe_id, matiere, hashed_password, Mail)
+            self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail)
         else:
             index = 2
             while self.get_user_by_username() != None:
                 self.username = str(first_name+'.'+last_name[0] + str(index))
                 index+=1
-            self.insert_user(first_name, last_name, role, classe_id, matiere, hashed_password, Mail)
+            self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail)
         return self.db.cursor.lastrowid
 
-    def delete_user(self):
+    def delete_user(self,username):
+        self.username = encrypt_username(username)
+        print(self.username)
         user = self.get_user_by_username()
         if user:
             user_id = user['id']
             role = self.get_role()
+            print(role)
             
             if role == 0:
+                self.db.execute("DELETE FROM grades WHERE id_student = %s", (user_id,))
+                self.db.execute("DELETE FROM students_matieres WHERE id_student = %s", (user_id,))
                 self.db.execute("DELETE FROM Students WHERE id = %s", (user_id,))
             else:
                 self.db.execute("DELETE FROM Teachers_Matieres WHERE id_teacher = %s", (user_id,))
@@ -188,6 +190,16 @@ class UserModel:
         query = "SELECT id_matiere FROM students_matieres WHERE id_student = (%s);"
         result_temps = self.db.query(query, (id_student,))
         return result_temps if result_temps else False
+
+    def get_id_classe(self,annee,numero_classe):
+        query = "SELECT id FROM classes WHERE Annee = (%s) AND Numero_Classe = (%s);"
+        result = self.db.query(query, (annee, numero_classe,))
+        return result if result else None
+
+    def get_id_matiere(self,matiere):
+        query = "SELECT id FROM matieres WHERE Matiere = (%s);"
+        result = self.db.query(query, (matiere,))
+        return result if result else None
 
     def get_role(self):
         user = self.get_user_by_username()

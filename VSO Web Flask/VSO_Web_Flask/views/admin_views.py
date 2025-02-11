@@ -24,12 +24,11 @@ class AdminViews:
             admin = self.controller.get_info_admin(admin_id)
             if "error" in admin:
                 return redirect(url_for("auth_bp.login"))
-            students = self.controller.list_student()
+            students = self.controller.list_students()
             Noms = [D["Nom"] for D in students]
             Prenoms = [D["Prenom"] for D in students]
             student_ids = [D["id"] for D in students]
-            Mails = [D["Mail"] for D in students]
-            return render_template("admin_students.html",Noms=Noms,Prenoms=Prenoms,student_ids=student_ids,Mails=Mails)
+            return render_template("admin_students.html",Noms=Noms,Prenoms=Prenoms,student_ids=student_ids)
 
         @self.admin_bp.route("/list/teachers")
         def list_teachers():
@@ -51,23 +50,33 @@ class AdminViews:
             if "error" in admin:
                 return redirect(url_for("auth_bp.login"))
             if request.method == "POST":
-                password = request.form.get("password")
-                role = request.form.get("role")
-                if role == None:
-                    role = 0
-                else:
-                    role = int(role) 
-                first_name = request.form.get("first_name")
-                last_name = request.form.get("last_name")
-                mail = request.form.get("mail")
-                matiere = request.form.get("matiere")
-                result = self.controller.register(first_name,last_name,password,role,mail,matiere)
-                if "error" in result:
-                    return render_template(
-                        "admin.html", message=result["error"]
-                    )
+                action = request.form.get("action")
 
-                return redirect(url_for("auth_bp.login"))
+                if action == 'add':
+                    password = request.form.get("password")
+                    role = request.form.get("role")
+                    if role == None:
+                        role = 0
+                    else:
+                        role = int(role) 
+                    first_name = request.form.get("first_name")
+                    last_name = request.form.get("last_name")
+                    mail = request.form.get("mail")
+                    matiere = request.form.get("matiere")
+
+                    result = None
+                    if "error" in result:
+                        return render_template(
+                            "admin.html", message=result["error"]
+                        )
+
+                    return redirect(url_for("admin_bp.register"))
+
+                elif action == 'delete':
+                    username = request.form.get('username')
+                    print(username)
+                    self.controller.delete_account(username)
+                    return redirect(url_for("admin_bp.register"))
 
             teachers = self.controller.list_teachers()
             teachers = self.controller.list_users_by_id([d['id'] for d in teachers])

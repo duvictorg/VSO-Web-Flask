@@ -53,6 +53,7 @@
   <ItemGroup>
     <Content Include="requirements.txt" />
     <Content Include="VSO_Web_Flask\.env" />
+    <Content Include="VSO_Web_Flask\static\content\admin_list.css" />
     <Content Include="VSO_Web_Flask\static\content\bootstrap.css" />
     <Content Include="VSO_Web_Flask\static\content\bootstrap.min.css" />
     <Content Include="VSO_Web_Flask\static\content\site.css" />
@@ -80,7 +81,9 @@
     <Content Include="VSO_Web_Flask\templates\admin-add.html" />
     <Content Include="VSO_Web_Flask\templates\admin.html" />
     <Content Include="VSO_Web_Flask\templates\admin_students.html" />
+    <Content Include="VSO_Web_Flask\templates\admin_students_modif.html" />
     <Content Include="VSO_Web_Flask\templates\admin_teachers.html" />
+    <Content Include="VSO_Web_Flask\templates\admin_teachers_modif.html" />
     <Content Include="VSO_Web_Flask\templates\index.html" />
     <Content Include="VSO_Web_Flask\templates\teachers.html" />
     <Content Include="VSO_Web_Flask\static\content\main.css" />

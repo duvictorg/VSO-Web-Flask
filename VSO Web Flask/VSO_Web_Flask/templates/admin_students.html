@@ -4,9 +4,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='content/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/admin_list.css') }}">
 </head>
 <body>
+    <h1>Modifier</h1>
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>CLasses</th>
+                <th>Matières</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for id in student_ids %}
+                <td>{{id}}</td>
+                {% endfor %}
+                {% for Nom in Noms %}
+                <td>{{Nom}}</td>
+                {% endfor %}
+                {% for Prenom in Prenoms %}
+                <td>{{Prenom}}</td>
+                {% endfor %}
+                {% for Mail in Mails %}
+                <td>{{Mail}}</td>
+                {% endfor %}
+            </tr>
+            <tr class="active-row">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
     {% for id in student_ids %}
     <p>{{id}}</p>
     {% endfor %}
@@ -19,5 +55,28 @@
     {% for Mail in Mails %}
     <p>{{Mail}}</p>
     {% endfor %}
+    <div class="actions">
+        <a class="add-delete" href="/admin/register">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Ajouter
+        </a>
+        <a class="teacher" href="/admin/list/teachers">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Professeur
+        </a>
+        <a class="student" href="/admin/list/students">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Elève
+        </a>
+    </div>
 </body>
 </html>
