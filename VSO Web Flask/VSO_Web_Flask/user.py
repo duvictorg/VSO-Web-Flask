@@ -1,3 +1,4 @@
+from pydoc import classify_class_attrs
 from unittest import result
 from flask import session
 from .db import Database,encrypt_data,decrypt_data,encrypt_username,decrypt_username
@@ -63,6 +64,9 @@ class UserModel:
             role = int(role)
         if role not in (0,1):
             return False
+
+        if role == 1:
+            classe_id = 0
 
         if type(classe_id) != int:
             return False
@@ -210,7 +214,7 @@ class UserModel:
     def get_id_matiere(self,matiere):
         query = "SELECT id FROM matieres WHERE Matiere = (%s);"
         result = self.db.query(query, (matiere,))
-        return result if result else None
+        return result[0]['id'] if result else None
 
     def get_role(self):
         user = self.get_user_by_username()

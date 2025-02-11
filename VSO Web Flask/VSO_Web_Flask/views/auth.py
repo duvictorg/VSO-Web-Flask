@@ -25,10 +25,6 @@ class AuthenticationViews:
                 csrf_token_form = request.form.get("csrf_token")
                 csrf_token_session = session.get("_csrf_token")
 
-                # 🔍 Debugging : Vérifier les valeurs des jetons CSRF
-                print(f"CSRF Token Form: {csrf_token_form}")
-                print(f"CSRF Token Session: {csrf_token_session}")
-
                 if not csrf_token_form or csrf_token_form != csrf_token_session:
                     return "Erreur CSRF detectee", 400  # Bloque les attaques CSRF
 

@@ -94,7 +94,7 @@ class AuthenticationController:
 
     def get_id_matiere(self,matiere):
         result = self.user_model.get_id_matiere(matiere)
-        return result[0]['id'] if result else []
+        return result if result else []
 
     def search_student(self):
         pass
