@@ -16,7 +16,9 @@
         <div class="form-container">
             <div class="form-inner">
                 <form action="/admin/register" class="signup" method="post">
+
                     <div class="slide-controls">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
                         <input type="radio" name="role" value="1" id="Prof">
                         <input type="radio" name="role" value="0" id="Eleve" checked>
                         <label for="Prof" class="slide Prof" id="Prof-btn">Professeur</label>
@@ -74,15 +76,12 @@
                     </div>
                     <div id="delete-form" class="dynamic-form" style="display:none;">
                         <div class="field">
-                            <!-- Liste des professeurs (affichée uniquement si "Professeur" est sélectionné) -->
                             <select id="select-prof" class="role-selection" name="username" style="display: none;">
                                 <option value="" disabled selected>Professeur</option>
                                 {% for teacher in teachers %}
                                 <option value="{{ teacher }}">{{ teacher }}</option>
                                 {% endfor %}
                             </select>
-                    
-                            <!-- Liste des élèves (affichée uniquement si "Élève" est sélectionné) -->
                             <select id="select-eleve" class="role-selection" name="username">
                                 <option value="" disabled selected>Élève</option>
                                 {% for eleve in eleves %}
@@ -91,7 +90,6 @@
                             </select>
                         </div>
                     </div>
-                    
                     <div class="field btn">
                         <div class="btn-layer"></div>
                         <input type="submit" value="Submit">
