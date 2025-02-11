@@ -148,7 +148,7 @@ class UserModel:
         query = "SELECT id_matiere FROM teachers_matieres WHERE id_teacher = (%s);"
         result_temp = self.db.query(query, (teacher_id,))
         query = "SELECT Matiere FROM matieres WHERE id = (%s);"
-        result = self.db.query(query, (result_temp,)) #possiblement à corriger
+        result = self.db.query(query, (result_temp,))
         return result if result else False
 
     def list_teachers(self):
@@ -184,9 +184,12 @@ class UserModel:
         return self.db.query("SELECT Matiere FROM matieres;")
 
     def list_matieres_by_id(self,liste_id):
-        query = "SELECT Matiere FROM matieres WHERE id IN ({})".format(", ".join(map(str, liste_id)))
-        result = self.db.query(query)
-        return result if result else []
+        if liste_id:
+            query = "SELECT Matiere FROM matieres WHERE id IN ({})".format(", ".join(map(str, liste_id)))
+            result = self.db.query(query)
+            return result if result else []
+        else:
+            return []
 
     def list_annees(self):
         return self.db.query("SELECT Annee FROM classes;")
@@ -197,7 +200,7 @@ class UserModel:
     def list_student_matieres(self,id_student):
         query = "SELECT id_matiere FROM students_matieres WHERE id_student = (%s);"
         result_temps = self.db.query(query, (id_student,))
-        return result_temps if result_temps else False
+        return result_temps if result_temps else []
 
     def get_id_classe(self,annee,numero_classe):
         query = "SELECT id FROM classes WHERE Annee = (%s) AND Numero_Classe = (%s);"
