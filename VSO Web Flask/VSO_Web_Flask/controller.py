@@ -55,9 +55,9 @@ class AuthenticationController:
         result = self.user_model.list_students()
         return result if result != False else []
 
-    def list_teachers_classes(self,id_classe):
-        result = self.user_model.get_teacher_classes(id_classe)
-        return result if result != False else []
+    def list_teachers_classes(self,id_teacher):
+        result = self.user_model.get_teacher_classes(id_teacher)
+        return [D['id_classe'] for D in result] if result != False else []
 
     def list_teachers_matieres(self,id_matiere):
         result = self.user_model.get_teacher_matieres(id_matiere)

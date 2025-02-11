@@ -5,20 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{{ url_for('static', filename='content/main.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-
+    <title>Cyber School</title>
 </head>
-
 <body>
     <div class="container">
         <div class="service-wrapper">
             <div class="service">
                 <h1>Cyber School <span></span></h1>
                 <div class="cards">
-                    {% for classe in classes %}
-                    <div class="card">
-                        <a href="/teachers/classe/{{classe}}" style="text-decoration: none;">
-                            <i class="fa-solid fa-chart-simple"></i>
-                    </div>
                     <div class="card">
                         <i class="fa-solid fa-marker"></i>
                         <h2>Mettre une note</h2>
@@ -28,7 +22,7 @@
                                     <option value="" disabled selected>Username</option>
                                     {% for Mail in students %}
                                     <option value="{{ Mail }}">{{ Mail }}</option>
-                    {% endfor %}
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="field">
