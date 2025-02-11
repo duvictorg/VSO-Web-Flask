@@ -53,6 +53,7 @@
   <ItemGroup>
     <Content Include="requirements.txt" />
     <Content Include="VSO_Web_Flask\.env" />
+    <Content Include="VSO_Web_Flask\static\content\admin_list.css" />
     <Content Include="VSO_Web_Flask\static\content\bootstrap.css" />
     <Content Include="VSO_Web_Flask\static\content\bootstrap.min.css" />
     <Content Include="VSO_Web_Flask\static\content\site.css" />
