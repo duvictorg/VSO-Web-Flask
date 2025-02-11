@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/main.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <title>Cyber School</title>
+</head>
+<body>
+    <div class="container">
+        <div class="service-wrapper">
+            <div class="service">
+                <h1>Cyber School <span></span></h1>
+                <div class="cards">
+                    <div class="card">
+                        <a href="/students/grades/all" style="text-decoration: none;">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <h2>Notes Général</h2>
+                        </a>
+                    </div>
+                    {% for matiere in matieres %}
+                    <div class="card">
+                        <a href="/students/grades/{{matiere.id}}" style="text-decoration: none;">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <h2>{{matiere.Matiere}}</h2>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="logout-button">
+            <a href="/logout" class="btn-logout">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

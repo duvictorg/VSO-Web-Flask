@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/style.css') }}">
+</head>
+<body>
+    <h1>Administration</h1>
+    <div class="actions">
+        <a class="add-delete" href="/admin/register">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Ajouter
+        </a>
+        <a class="teacher" href="/admin/list/teachers">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Professeur
+        </a>
+        <a class="student" href="/admin/list/students">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Elève
+        </a>
+    </div>
+    <a class="logout" href="/logout">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Déconnexion
+    </a>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
+</body>
+</html>
