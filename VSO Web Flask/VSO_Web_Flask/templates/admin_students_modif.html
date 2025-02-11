@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='content/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/admin_modif.css') }}">
 </head>
 <body>
     <div class="wrapper">
@@ -17,65 +17,37 @@
             <div class="form-inner">
                 <form action="/admin/register" class="signup" method="post">
                     <div class="slide-controls">
-                        <input type="radio" name="role" value="1" id="Prof">
-                        <input type="radio" name="role" value="0" id="Eleve" checked>
-                        <label for="Prof" class="slide Prof" id="Prof-btn">Professeur</label>
-                        <label for="Eleve" class="slide Eleve" id="Eleve-btn">�l�ve</label>
+                        <input type="radio" name="role" value="1" id="Prof"checked>
+                        <input type="radio" name="role" value="0" id="Eleve">
+                        <label for="Prof" class="slide Prof" id="Prof-btn">Classe</label>
+                        <label for="Eleve" class="slide Eleve" id="Eleve-btn">Mati�re</label>
                         <div class="slider-tab"></div>
                     </div>
                     <div class="slide-controls action-buttons">
                         <input type="radio" name="action" value="add" id="add">
+                        <input type="radio" name="action" value="edit" id="edit">
                         <input type="radio" name="action" value="delete" id="delete">
                         <label for="add" class="slide add" id="add-btn">Ajouter</label>
+                        <label for="edit" class="slide edit" id="edit-btn">Modifier</label>
                         <label for="delete" class="slide delete" id="delete-btn">Supprimer</label>
                         <div class="slider-tab action-slider-tab"></div>
                     </div>
                     <div id="add-form" class="dynamic-form" style="display:none;">
-                        <div class="field-row">
-                            <div class="field">
-                                <input type="text" name="last_name" placeholder="Nom">
-                            </div>
-                            <div class="field">
-                                <input type="text" name="first_name" placeholder="Pr�nom">
-                            </div>
-                        </div>
                         <div class="field matiere-field">
-                            <select name="matiere" placeholder="Mati�re">
-                                <option value="" disabled selected>Mati�re</option>
-                                {% for matiere in matieres %}
-                                <option value="{{ matiere }}">{{ matiere }}</option>
-                                {% endfor %}
-                            </select>
+                            <input type="text" name="matiere" placeholder="Matière">
                         </div>
                         <div class="field-row classe-fields">
                             <div class="field">
-                                <select name="annee" placeholder="Ann�e">
-                                    <option value="" disabled selected>Ann�e</option>
-                                    {% for annee in annees %}
-                                    <option value="{{ annee }}">{{ annee }}</option>
-                                    {% endfor %}
-                                </select>
+                                <input type="text" name="annee" placeholder="Année">
                             </div>
                             <div class="field">
-                                <select name="numero_classe" placeholder="Num�ro de classe">
-                                    <option value="" disabled selected>Num�ro de classe</option>
-                                    {% for numero in numeros %}
-                                    <option value="{{ numero }}">{{ numero }}</option>
-                                    {% endfor %}
-                                </select>
+                                <input type="text" name="numero_classe" placeholder="Numéro de classe">
                             </div>
-                        </div>
-                        <div class="field">
-                            <input type="text" name="mail" placeholder="Email Address">
-                        </div>
-                        <div class="field">
-                            <input type="password" name="password" placeholder="Password">
                         </div>
                     </div>
                     <div id="delete-form" class="dynamic-form" style="display:none;">
                         <div class="field">
-                            <select name="username" placeholder="Username">
-                                <option value="" disabled selected>Username</option>
+                            <select name="username" placeholder="Classe">
                                 {% for teacher in teachers %}
                                 <option value="{{ teacher }}">{{ teacher }}</option>
                                 {% endfor %}
@@ -98,7 +70,7 @@
             <span></span>
             D�connexion
         </a>
-        <a class="teacher" href="/admin/">
+        <a class="teacher" href="/admin/list/teachers">
             <span></span>
             <span></span>
             <span></span>
@@ -106,6 +78,6 @@
             Menu
         </a>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/admin_list.js') }}"></script>
 </body>
 </html>
