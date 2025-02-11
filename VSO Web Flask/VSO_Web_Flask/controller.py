@@ -23,14 +23,13 @@ class AuthenticationController:
         session.clear()
         return {"success": "Deconnexion reussie"}
 
-    def register(self,first_name,last_name,password,role,mail,matiere):
-        r = self.user_model.create_user(first_name,last_name,password,role,matiere, mail)
+    def register(self,first_name,last_name,password,role,mail):
+        r = self.user_model.create_user(first_name,last_name,password,role, mail)
         return {"success": "Inscription reussie", "Nom d'utilisateur" : self.user_model.username} if r != False else {"error": "Personne deja existante"}
 
-    def delete_account(self):
-        self.user_model.delete_user()
-        session.clear()
-        return {"success": "Utilisateur efface"}
+    def delete_account(self,username):
+        result = self.user_model.delete_user(username)
+        return {"success": "Utilisateur efface"} if result else {"error": "Utilisateur non efface"}
 
     def change_password(self):
         pass
@@ -87,6 +86,14 @@ class AuthenticationController:
     def list_numeros_classes(self):
         result = self.user_model.list_numeros_classes()
         return [d['Numero_Classe'] for d in result] if result else []
+
+    def get_id_classe(self,annee,numero_classe):
+        result = self.user_model.get_id_classe(annee,numero_classe)
+        return result[0]['id'] if result else []
+
+    def get_id_matiere(self,matiere):
+        result = self.user_model.get_id_matiere(matiere)
+        return result[0]['id'] if result else []
 
     def search_student(self):
         pass
