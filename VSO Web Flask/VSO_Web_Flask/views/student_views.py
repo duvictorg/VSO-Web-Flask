@@ -14,11 +14,25 @@ class StudentViews:
             student = self.controller.get_info_student(student_id)
             role_id = self.controller.get_role()
             matieres = self.controller.list_student_matieres(student_id)
+            id_matieres = [self.controller.get_id_matiere(matiere) for matiere in matieres]
+            dic_matieres =[
+                {"id": id_, "Matiere": matiere}
+                for id_, matiere in zip(id_matieres,matieres)
+            ]
             if "error" in student:
                 return redirect(url_for("auth_bp.login"))
-            return render_template("student.html", student=student, matieres=matieres)
+            return render_template("student.html", student=student, matieres=dic_matieres)
 
-        @self.student_bp.route("/list")
+        @self.student_bp.route("/grades/all")
         def list_grades():
             grades = self.controller.list_grades()
             return render_template("student_grades.html", grades=grades)
+
+        @self.student_bp.route("/grades/<int:id>")
+        def modifier_student(id):
+            student_id = session.get("user_id")
+            student = self.controller.get_info_student(student_id)
+            grades = self.controller.list_grades_matiere(id)
+            if "error" in student:
+                return redirect(url_for("auth_bp.login"))
+            return render_template("student_grades.html",grades=grades)
