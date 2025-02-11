@@ -21,8 +21,8 @@
         </thead>
         <tbody>
             {% for teacher in teacher_data %}
-            <tr data-href="/">
-                <td>{{ teacher.id }}</td>
+            <tr>
+                <td><a href="/">{{ teacher.id }}</a></td>
                 <td>{{ teacher.Nom }}</td>
                 <td>{{ teacher.Prenom }}</td>
                 <td>{{ teacher.Mail }}</td>
