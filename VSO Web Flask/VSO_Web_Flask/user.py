@@ -46,8 +46,10 @@ class UserModel:
         if len(first_name) >= 63:
             first_name = first_name[:63]
             self.username = str(first_name[:29]+'.'+last_name[0])
+
         else:
             self.username = str(first_name+'.'+last_name[0])
+        self.username = encrypt_username(self.username)
 
         if len(last_name) >= 63:
             last_name = last_name[:63]
@@ -60,11 +62,11 @@ class UserModel:
         if role not in (0,1):
             return False
 
-        print(type(classe_id))
         if type(classe_id) != int:
             return False
         
         hashed_password = self.hash_password(password)
+        
         if self.get_user_by_username() == None:
             self.username = encrypt_username(self.username)
             self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail)
