@@ -20,14 +20,8 @@ def create_app():
 
     @app.before_request
     def set_csrf_token():
-        """ S'assurer que le jeton CSRF est bien dans la session et le regenerer si necessaire """
-        if "_csrf_token" not in session or session.get("_csrf_token") is None:
-            session["_csrf_token"] = generate_csrf()
-
-    @app.before_request
-    def set_csrf_token():
         """ S'assurer que le jeton CSRF est bien dans la session """
-        if "_csrf_token" not in session:
+        if "_csrf_token" not in session or session.get("_csrf_token") is None:
             session["_csrf_token"] = generate_csrf()
 
     student_views = StudentViews()
