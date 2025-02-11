@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr data-href="/">
                 {% for id in student_ids %}
                 <td>{{id}}</td>
                 {% endfor %}
@@ -51,13 +51,7 @@
             <span></span>
             Déconnexion
         </a>
-        <a class="student" href="/admin/list/teachers">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Modifier
-        </a>
     </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/admin_list.js') }}"></script>
 </body>
 </html>
