@@ -1,7 +1,3 @@
-"""
-The flask application package.
-"""
-
 from flask import Flask, session
 from flask_wtf.csrf import generate_csrf, CSRFProtect
 import os
@@ -18,12 +14,6 @@ def create_app():
     app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
     csrf = CSRFProtect()
     csrf.init_app(app)
-
-    @app.before_request
-    def set_csrf_token():
-        """ Assure que le jeton CSRF est present dans la session avant chaque requete uniquement s'il n'existe pas """
-        if "_csrf_token" not in session:
-            session["_csrf_token"] = generate_csrf()
 
     student_views = StudentViews()
     teacher_views = TeacherViews()
