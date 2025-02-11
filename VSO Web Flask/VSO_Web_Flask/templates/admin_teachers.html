@@ -20,20 +20,16 @@
             </tr>
         </thead>
         <tbody>
+            {% for teacher in teacher_data %}
             <tr data-href="/">
-                {% for id in student_ids %}
-                <td>{{id}}</td>
-                {% endfor %}
-                {% for Nom in Noms %}
-                <td>{{Nom}}</td>
-                {% endfor %}
-                {% for Prenom in Prenoms %}
-                <td>{{Prenom}}</td>
-                {% endfor %}
-                {% for Mail in Mails %}
-                <td>{{Mail}}</td>
-                {% endfor %}
+                <td>{{ teacher.id }}</td>
+                <td>{{ teacher.Nom }}</td>
+                <td>{{ teacher.Prenom }}</td>
+                <td>{{ teacher.Mail }}</td>
+                <td>{{ teacher.Classe }}</td>
+                <td>{{ ", ".join(teacher.Matieres) }}</td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
     <div class="actions">

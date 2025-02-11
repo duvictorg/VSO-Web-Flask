@@ -27,7 +27,11 @@ class AdminViews:
             Noms = [D["Nom"] for D in students]
             Prenoms = [D["Prenom"] for D in students]
             student_ids = [D["id"] for D in students]
-            return render_template("admin_students.html", Noms=Noms, Prenoms=Prenoms, student_ids=student_ids)
+            student_data = [
+                {"id": id_, "Nom": nom, "Prenom": prenom}
+                for id_, nom, prenom in zip(student_ids, Noms, Prenoms)
+            ]
+            return render_template("admin_students.html", student_data=student_data)
 
         @self.admin_bp.route("/list/teachers")
         def list_teachers():
@@ -38,9 +42,13 @@ class AdminViews:
             teachers = self.controller.list_teachers()
             Noms = [D["Nom"] for D in teachers]
             Prenoms = [D["Prenom"] for D in teachers]
-            student_ids = [D["id"] for D in teachers]
+            teacher_ids = [D["id"] for D in teachers]
             Mails = [D["Mail"] for D in teachers]
-            return render_template("admin_teachers.html", Noms=Noms, Prenoms=Prenoms, student_ids=student_ids, Mails=Mails)
+            teacher_data = [
+                {"id": id_, "Nom": nom, "Prenom": prenom, "Mail": Mails}
+                for id_, nom, prenom, mail in zip(teacher_ids, Noms, Prenoms, Mails)
+            ]
+            return render_template("admin_teachers.html", teacher_data=teacher_data)
 
         @self.admin_bp.route("/register", methods=["GET", "POST"])
         def register():

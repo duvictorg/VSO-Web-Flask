@@ -11,36 +11,25 @@
     <table class="content-table">
         <thead>
             <tr>
-                <th>Username</th>
-                <th>CLasses</th>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Mail</th>
+                <th>Classe</th>
                 <th>Matières</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                {% for id in student_ids %}
-                <td>{{id}}</td>
-                {% endfor %}
-                {% for Nom in Noms %}
-                <td>{{Nom}}</td>
-                {% endfor %}
-                {% for Prenom in Prenoms %}
-                <td>{{Prenom}}</td>
-                {% endfor %}
-                {% for Mail in Mails %}
-                <td>{{Mail}}</td>
-                {% endfor %}
+            {% for student in student_data %}
+            <tr data-href="/">
+                <td>{{ student.id }}</td>
+                <td>{{ student.Nom }}</td>
+                <td>{{ student.Prenom }}</td>
+                <td>{{ student.Mail }}</td>
+                <td>{{ student.Classe }}</td>
+                <td>{{ ", ".join(student.Matieres) }}</td>
             </tr>
-            <tr class="active-row">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
     <div class="actions">
