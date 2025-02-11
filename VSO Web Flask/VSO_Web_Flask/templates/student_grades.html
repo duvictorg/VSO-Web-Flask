@@ -14,18 +14,12 @@
             <div class="service">
                 <h1>Cyber School <span></span></h1>
                 <div class="cards">
-                    <div class="card" href="/students/list">
+                    {% for grade in grades %}
+                    <div class="card">
                         <i class="fa-solid fa-chart-simple"></i>
-                        <h2>Notes</h2>
-                        <thread>
-                            <tr>
-                                <th>Username</th>
-                                <th>Grade</th>
-                                <th>Max Grade</th>
-                                <th>Informations</th>
-                                <th>Coef</th>
-                            </tr>
+                        <h2>{{grade.Grade}}</h2>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

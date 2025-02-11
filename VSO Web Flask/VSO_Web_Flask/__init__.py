@@ -15,9 +15,9 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
     csrf = CSRFProtect()
     csrf.init_app(app)
-    app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
 
     @app.before_request
     def set_csrf_token():

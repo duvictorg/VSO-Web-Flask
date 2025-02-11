@@ -13,14 +13,18 @@
             <div class="service">
                 <h1>Cyber School <span></span></h1>
                 <div class="cards">
-                    <div class="card" href="/students/list">
-                        <i class="fa-solid fa-chart-simple"></i>
-                        <h2>Notes Général</h2>
+                    <div class="card">
+                        <a href="/students/grades/all" style="text-decoration: none;">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <h2>Notes Général</h2>
+                        </a>
                     </div>
                     {% for matiere in matieres %}
-                    <div class="card" href="/students/list">
-                        <i class="fa-solid fa-chart-simple"></i>
-                        <h2>{{matiere}}</h2>
+                    <div class="card">
+                        <a href="/students/grades/{{matiere.id}}" style="text-decoration: none;">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <h2>{{matiere.Matiere}}</h2>
+                        </a>
                     </div>
                     {% endfor %}
                 </div>
