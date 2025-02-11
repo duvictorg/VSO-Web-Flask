@@ -74,14 +74,24 @@
                     </div>
                     <div id="delete-form" class="dynamic-form" style="display:none;">
                         <div class="field">
-                            <select name="username" placeholder="Username">
-                                <option value="" disabled selected>Username</option>
+                            <!-- Liste des professeurs (affichée uniquement si "Professeur" est sélectionné) -->
+                            <select id="select-prof" class="role-selection" name="username" style="display: none;">
+                                <option value="" disabled selected>Professeur</option>
                                 {% for teacher in teachers %}
                                 <option value="{{ teacher }}">{{ teacher }}</option>
                                 {% endfor %}
                             </select>
+                    
+                            <!-- Liste des élèves (affichée uniquement si "Élève" est sélectionné) -->
+                            <select id="select-eleve" class="role-selection" name="username">
+                                <option value="" disabled selected>Élève</option>
+                                {% for eleve in eleves %}
+                                <option value="{{ eleve }}">{{ eleve }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
+                    
                     <div class="field btn">
                         <div class="btn-layer"></div>
                         <input type="submit" value="Submit">
