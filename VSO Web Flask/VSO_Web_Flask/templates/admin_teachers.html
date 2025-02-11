@@ -14,8 +14,7 @@
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Mail</th>
-                <th>Classe</th>
+                <th>Classes</th>
                 <th>Matières</th>
             </tr>
         </thead>
@@ -25,9 +24,8 @@
                 <td><a href="/admin/modifier/teacher/{{teacher.id}}">{{ teacher.id }}</a></td>
                 <td>{{ teacher.Nom }}</td>
                 <td>{{ teacher.Prenom }}</td>
-                <td>{{ teacher.Mail }}</td>
-                <td>{{ teacher.Classe }}</td>
-                <td>{{ ", ".join(teacher.Matieres) }}</td>
+                <td>{{ teacher.Classes }}</td>
+                <td>{{ teacher.Matieres }}</td>
             </tr>
             {% endfor %}
         </tbody>

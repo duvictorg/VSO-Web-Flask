@@ -59,18 +59,17 @@ class AuthenticationController:
         result = self.user_model.get_teacher_classes(id_classe)
         return result if result != False else []
 
-    def list_teachers_maieres(self,id_matiere):
-        result = self.user_model.get_teacher_classes(id_matiere)
-        return result if result != False else []
+    def list_teachers_matieres(self,id_matiere):
+        result = self.user_model.get_teacher_matieres(id_matiere)
+        return [D['Matiere'] for D in result] if result != False else []
 
     def list_teachers(self):
         result = self.user_model.list_teachers()
         return result if result != False else []
 
     def list_student_matieres(self,id_student):
-        result_temp = self.user_model.list_student_matieres(id_student)
-        result = self.user_model.list_matieres_by_id([D['id_matiere'] for D in result_temp])
-        return [D['Matiere'] for D in result] if result else []
+        result = self.user_model.list_student_matieres(id_student)
+        return result if result else []
 
     def list_users_by_id(self,liste_id):
         result = self.user_model.list_users_by_id(liste_id)

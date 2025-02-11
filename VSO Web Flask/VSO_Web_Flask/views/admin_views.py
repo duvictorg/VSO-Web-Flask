@@ -1,4 +1,5 @@
-﻿from flask import Blueprint, render_template, request, session, redirect, url_for
+﻿from re import M
+from flask import Blueprint, render_template, request, session, redirect, url_for
 from flask_wtf.csrf import generate_csrf
 from VSO_Web_Flask.controller import AuthenticationController
 
@@ -27,9 +28,11 @@ class AdminViews:
             Noms = [D["Nom"] for D in students]
             Prenoms = [D["Prenom"] for D in students]
             student_ids = [D["id"] for D in students]
+            students_classes = [D["Classe"] for D in students]
+            Matieres = [self.controller.list_student_matieres(student_id) for student_id in student_ids]
             student_data = [
-                {"id": id_, "Nom": nom, "Prenom": prenom}
-                for id_, nom, prenom in zip(student_ids, Noms, Prenoms)
+                {"id": id_, "Nom": nom, "Prenom": prenom, "Classe": classe, "Matieres": matieres}
+                for id_, nom, prenom, classe, matieres in zip(student_ids, Noms, Prenoms, students_classes, Matieres)
             ]
             return render_template("admin_students.html", student_data=student_data)
 
@@ -43,10 +46,11 @@ class AdminViews:
             Noms = [D["Nom"] for D in teachers]
             Prenoms = [D["Prenom"] for D in teachers]
             teacher_ids = [D["id"] for D in teachers]
-            Mails = [D["Mail"] for D in teachers]
+            Classes = [self.controller.list_teachers_classes(id_teacher) for id_teacher in teacher_ids]
+            Matieres = [self.controller.list_teachers_matieres(id_teacher) for id_teacher in teacher_ids]
             teacher_data = [
-                {"id": id_, "Nom": nom, "Prenom": prenom, "Mail": Mails}
-                for id_, nom, prenom, mail in zip(teacher_ids, Noms, Prenoms, Mails)
+                {"id": id_, "Nom": nom, "Prenom": prenom, "Classes": classes, "Matieres": matieres}
+                for id_, nom, prenom, classes, matieres in zip(teacher_ids, Noms, Prenoms, Classes, Matieres)
             ]
             return render_template("admin_teachers.html", teacher_data=teacher_data)
 

@@ -14,7 +14,6 @@
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Mail</th>
                 <th>Classe</th>
                 <th>Matières</th>
             </tr>
@@ -25,34 +24,26 @@
                 <td><a href="/admin/modifier/student/{{ student.id }}">{{ student.id }}</a></td>
                 <td>{{ student.Nom }}</td>
                 <td>{{ student.Prenom }}</td>
-                <td>{{ student.Mail }}</td>
                 <td>{{ student.Classe }}</td>
-                <td>{{ ", ".join(student.Matieres) }}</td>
+                <td>{{ student.Matieres }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <div class="actions">
-        <a class="add-delete" href="/admin/register">
+        <a class="add-delete" href="/admin/">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Ajouter
+            Menu
         </a>
-        <a class="teacher" href="/admin/list/teachers">
+        <a class="teacher" href="/logout/">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Professeur
-        </a>
-        <a class="student" href="/admin/list/students">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Elève
+            Déconnexion
         </a>
     </div>
     <script type="text/javascript" src="{{ url_for('static', filename='scripts/admin_list.js') }}"></script>
