@@ -9,16 +9,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const addForm = document.querySelector('#add-form');
     const deleteForm = document.querySelector('#delete-form');
     const eleveselect = document.querySelector('#select-eleve');
-    const teacherselect = document.querySelector('#select-prof');
+    const teacherselect = document.querySelectorAll('#select-prof');
+    const classeSelects = document.querySelector(".classe-selects");
 
     Prof_btn.addEventListener('click', () => {
-        matiereField.style.display = "none";
-        classeFields.style.display = "block";;
+        matiereField.style.display = "block";
+        classeFields.style.display = "none";
+        eleveselect.style.display = "none";
+        teacherselect.style.display = "block";
+        classeSelects.style.display = "blocks";
     });
 
     eleve_btn.addEventListener('click', () => {
-        matiereField.style.display = "block";
-        classeFields.style.display = "none";
+        matiereField.style.display = "none";
+        classeFields.style.display = "flex";
+        eleveselect.style.display = "block";
+        teacherselect.style.display = "none";
+        classeSelects.style.display = "blocks";
     });
 
     addBtn.addEventListener('click', function () {

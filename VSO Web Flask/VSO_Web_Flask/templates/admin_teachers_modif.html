@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='content/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='content/admin_modif.css') }}">
 </head>
 <body>
     <div class="wrapper">
@@ -48,15 +48,15 @@
                         </div>
                     </div>
                     <div id="delete-form" class="dynamic-form" style="display:none;">
-                        <div class="field">
+                        <div class="field classe-selects">
                             <select id="select-prof" class="role-selection" name="username" style="display: none;">
-                                <option value="" disabled selected>Classe</option>
+                                <option value="" disabled selected>Année</option>
                                 {% for annee in annees %}
                                 <option value="{{ annee }}">{{ annee }}</option>
                                 {% endfor %}
                             </select>
                             <select id="select-prof" class="role-selection" name="username" style="display: none;">
-                                <option value="" disabled selected>Classe</option>
+                                <option value="" disabled selected>Numéro de classe</option>
                                 {% for numero in numeros %}
                                 <option value="{{ numero }}">{{ numero }}</option>
                                 {% endfor %}
@@ -95,6 +95,6 @@
             Menu
         </a>
     </div>
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/style.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/admin_list.js') }}"></script>
 </body>
 </html>
