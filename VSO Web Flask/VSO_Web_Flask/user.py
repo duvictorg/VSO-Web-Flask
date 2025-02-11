@@ -73,7 +73,8 @@ class UserModel:
         return self.db.cursor.lastrowid
 
     def delete_user(self,username):
-        self.username = username
+        self.username = encrypt_username(username)
+        print(self.username)
         user = self.get_user_by_username()
         if user:
             user_id = user['id']
