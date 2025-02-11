@@ -28,19 +28,11 @@
                         <input type="radio" name="action" value="add" id="add">
                         <input type="radio" name="action" value="delete" id="delete">
                         <label for="add" class="slide add" id="add-btn">Ajouter</label>
-                        <label for="add" class="slide add" id="add-btn">Modification</label>
+                        <label for="modify" class="slide modify" id="modify-btn">Modification</label>
                         <label for="delete" class="slide delete" id="delete-btn">Supprimer</label>
                         <div class="slider-tab action-slider-tab"></div>
                     </div>
                     <div id="add-form" class="dynamic-form" style="display:none;">
-                        <div class="field-row">
-                            <div class="field">
-                                <input type="text" name="last_name" placeholder="Nom">
-                            </div>
-                            <div class="field">
-                                <input type="text" name="first_name" placeholder="Pr�nom">
-                            </div>
-                        </div>
                         <div class="field matiere-field">
                             <select name="matiere" placeholder="Mati�re">
                                 <option value="" disabled selected>Mati�re</option>
@@ -66,12 +58,6 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                        </div>
-                        <div class="field">
-                            <input type="text" name="mail" placeholder="Email Address">
-                        </div>
-                        <div class="field">
-                            <input type="password" name="password" placeholder="Password">
                         </div>
                     </div>
                     <div id="delete-form" class="dynamic-form" style="display:none;">
