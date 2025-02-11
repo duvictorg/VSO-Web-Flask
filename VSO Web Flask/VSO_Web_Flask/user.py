@@ -133,7 +133,7 @@ class UserModel:
         return result if result else False
 
     def get_list_students_classe(self,classe_id):
-        query = "SELECT Nom,Prenom FROM Students WHERE Classe = (%s):"
+        query = "SELECT id,Nom,Prenom,Classe FROM Students WHERE Classe = (%s);"
         result = self.db.query(query, (classe_id,))
         if result:
             for d in result:
