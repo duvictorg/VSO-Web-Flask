@@ -61,6 +61,7 @@
     <Content Include="VSO_Web_Flask\static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="VSO_Web_Flask\static\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="VSO_Web_Flask\static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="VSO_Web_Flask\static\scripts\admin_list.js" />
     <Content Include="VSO_Web_Flask\static\scripts\bootstrap.js" />
     <Content Include="VSO_Web_Flask\static\scripts\bootstrap.min.js" />
     <Content Include="VSO_Web_Flask\static\scripts\jquery-1.10.2.intellisense.js" />
