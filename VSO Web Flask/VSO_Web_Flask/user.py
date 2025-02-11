@@ -28,7 +28,7 @@ class UserModel:
         return bcrypt.checkpw(password.encode(), hashed_password)
 
 
-    def insert_user(self, first_name, last_name, role, classe_id, password, Mail):
+    def insert_user(self, first_name, last_name, role, classe_id, password, Mail, matiere):
         
         query = "INSERT INTO Users (username, password) VALUES (%s, %s)"
         self.db.execute(query, (self.username, password))
@@ -39,10 +39,12 @@ class UserModel:
         else:
             query = "INSERT INTO Teachers (id, Nom, Prenom, Mail) VALUES (%s, %s, %s, %s)"
             self.db.execute(query, (user_id, encrypt_data(last_name), encrypt_data(first_name), encrypt_data(Mail)))
+            query = "INSERT INTO teachers_matieres (id_teacher,id_matiere) VALUES (%s, %s)"
+            self.db.execute(query,(user_id,self.get_id_matiere(matiere),))
         
         return user_id
 
-    def create_user(self,first_name,last_name,password,role,Mail,classe_id):
+    def create_user(self,first_name,last_name,password,role,Mail,classe_id,matiere):
         if len(first_name) >= 63:
             first_name = first_name[:63]
             self.username = str(first_name[:29]+'.'+last_name[0])
@@ -69,14 +71,14 @@ class UserModel:
         
         if self.get_user_by_username() == None:
             self.username = encrypt_username(self.username)
-            self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail)
+            self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail,matiere)
         else:
             index = 2
             while self.get_user_by_username() != None:
                 self.username = str(first_name+'.'+last_name[0] + str(index))
                 index+=1
             self.username = encrypt_username(self.username)
-            self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail)
+            self.insert_user(first_name, last_name, role, classe_id, hashed_password, Mail,matiere)
         return self.db.cursor.lastrowid
 
     def delete_user(self,username):

@@ -23,9 +23,9 @@ class AuthenticationController:
         session.clear()
         return {"success": "Deconnexion reussie"}
 
-    def register(self,first_name,last_name,password,role,mail,annee,numero_classe):
+    def register(self,first_name,last_name,password,role,mail,annee,numero_classe,matiere):
         classe_id = self.get_id_classe(annee,numero_classe)
-        r = self.user_model.create_user(first_name,last_name,password,role, mail, classe_id)
+        r = self.user_model.create_user(first_name,last_name,password,role, mail, classe_id,matiere)
         return {"success": "Inscription reussie", "Nom d'utilisateur" : self.user_model.username} if r != False else {"error": "Personne deja existante"}
 
     def delete_account(self,username):

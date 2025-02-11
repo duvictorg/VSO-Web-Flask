@@ -66,7 +66,7 @@ class AdminViews:
                     numero_classe = request.form.get("numero_classe")
                     matiere = request.form.get("matiere")
 
-                    result = self.controller.register(first_name,last_name,password,role,mail,annee,numero_classe)
+                    result = self.controller.register(first_name,last_name,password,role,mail,annee,numero_classe,matiere)
                     if "error" in result:
                         return render_template(
                             "admin.html", message=result["error"]
