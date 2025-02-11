@@ -36,12 +36,7 @@
                     </div>
                     <div id="add-form" class="dynamic-form" style="display:none;">
                         <div class="field matiere-field">
-                            <select name="matiere" placeholder="Matière">
-                                <option value="" disabled selected>Matière</option>
-                                {% for matiere in matieres %}
-                                <option value="{{ matiere }}">{{ matiere }}</option>
-                                {% endfor %}
-                            </select>
+                            <input name="matiere" placeholder="Matière">
                         </div>
                         <div class="field-row classe-fields">
                             <div class="field">
@@ -62,8 +57,8 @@
                             </select>
                             <select id="select-eleve" class="role-selection" name="username">
                                 <option value="" disabled selected>Matière</option>
-                                {% for eleve in eleves %}
-                                <option value="{{ eleve }}">{{ eleve }}</option>
+                                {% for matiere in matieres %}
+                                <option value="{{ matiere }}">{{ matiere }}</option>
                                 {% endfor %}
                             </select>
                         </div>
