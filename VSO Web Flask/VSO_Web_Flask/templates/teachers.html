@@ -18,36 +18,10 @@
                     <div class="card">
                         <a href="/teachers/classe/{{classe}}" style="text-decoration: none;">
                             <i class="fa-solid fa-chart-simple"></i>
+                            <h2>{{classe}}</h2>
+                        </a>
                     </div>
-                    <div class="card">
-                        <i class="fa-solid fa-marker"></i>
-                        <h2>Mettre une note</h2>
-                        <form action="/teachers/grades/add" class="note-form" method="post">
-                            <div class="field">
-                                <select name="username" required>
-                                    <option value="" disabled selected>Username</option>
-                                    {% for Mail in students %}
-                                    <option value="{{ Mail }}">{{ Mail }}</option>
                     {% endfor %}
-                                </select>
-                            </div>
-                            <div class="field">
-                                <input type="text" name="grade" placeholder="Note">
-                            </div>
-                            <div class="field">
-                                <input type="text" name="max_grade" placeholder="Note maximum possible">
-                            </div>
-                            <div class="field">
-                                <input type="text" name="informations" placeholder="Description">
-                            </div>
-                            <div class="field">
-                                <input type="text" name="coef" placeholder="Coef">
-                            </div>
-                            <div class="field btn">
-                                <input type="submit" value="Donner la note">
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
