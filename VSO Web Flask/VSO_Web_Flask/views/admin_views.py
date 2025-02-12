@@ -1,4 +1,5 @@
 ﻿from re import M
+from types import NoneType
 from flask import Blueprint, render_template, request, session, redirect, url_for
 from flask_wtf.csrf import generate_csrf
 from VSO_Web_Flask.controller import AuthenticationController
@@ -14,6 +15,8 @@ class AdminViews:
         def admin_details():
             admin_id = session.get("user_id")
             admin = self.controller.get_info_admin(admin_id)
+            if type(admin) == NoneType:
+                return redirect(url_for("auth_bp.login"))
             if "error" in admin:
                 return redirect(url_for("auth_bp.login"))
             return render_template("admin.html", admin=admin, csrf_token=session["_csrf_token"])
@@ -22,6 +25,8 @@ class AdminViews:
         def list_students():
             admin_id = session.get("user_id")
             admin = self.controller.get_info_admin(admin_id)
+            if type(admin) == NoneType:
+                return redirect(url_for("auth_bp.login"))
             if "error" in admin:
                 return redirect(url_for("auth_bp.login"))
             students = self.controller.list_students()
@@ -40,6 +45,8 @@ class AdminViews:
         def list_teachers():
             admin_id = session.get("user_id")
             admin = self.controller.get_info_admin(admin_id)
+            if type(admin) == NoneType:
+                return redirect(url_for("auth_bp.login"))
             if "error" in admin:
                 return redirect(url_for("auth_bp.login"))
             teachers = self.controller.list_teachers()

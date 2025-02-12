@@ -14,6 +14,7 @@ FIXED_KEY = os.getenv('fixed_key_aes',default = '').encode()  # 256-bit key (32 
 FIXED_IV = os.getenv('fixed_iv_aes',default = '').encode()  # 128-bit IV (16 bytes)
 
 def encrypt_username(plaintext):
+    plaintext = plaintext[:31]
     cipher = AES.new(FIXED_KEY, AES.MODE_CBC, FIXED_IV)
     ciphertext = cipher.encrypt(pad(plaintext.encode(), AES.block_size))
     return base64.b64encode(ciphertext)
@@ -25,6 +26,7 @@ def decrypt_username(ciphertext):
     return plaintext.decode()
 
 def encrypt_data(data):
+    data = data[:31]
     return fernet.encrypt(data.encode()).decode() if type(data) != bytes else fernet.encrypt(data).decode()
 
 def decrypt_data(data):

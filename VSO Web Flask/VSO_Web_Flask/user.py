@@ -46,16 +46,18 @@ class UserModel:
         return user_id
 
     def create_user(self,first_name,last_name,password,role,Mail,classe_id,matiere):
-        if len(first_name) >= 63:
-            first_name = first_name[:63]
+        if len(first_name) <= 1 or len(last_name) <=1 or len(password) <= 8 or len(matiere) <= 1 or len(Mail) <=1:
+            return False
+        if len(first_name) >= 29:
+            first_name = first_name[:29]
             self.username = str(first_name[:29]+'.'+last_name[0])
 
         else:
             self.username = str(first_name+'.'+last_name[0])
         self.username = encrypt_username(self.username)
 
-        if len(last_name) >= 63:
-            last_name = last_name[:63]
+        if len(last_name) >= 29:
+            last_name = last_name[:29]
 
         if len(Mail) >= 254:
             Mail = Mail[:254]

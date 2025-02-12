@@ -1,3 +1,4 @@
+from types import NoneType
 from flask import Blueprint, render_template, request, session, redirect, url_for
 from VSO_Web_Flask.controller import AuthenticationController
 
@@ -12,6 +13,8 @@ class StudentViews:
         def student_details():
             student_id = session.get("user_id")
             student = self.controller.get_info_student(student_id)
+            if type(student) == NoneType:
+                return redirect(url_for("auth_bp.login"))
             role_id = self.controller.get_role()
             matieres = self.controller.list_student_matieres(student_id)
             matieres = [D['Matiere'] for D in matieres]
@@ -26,6 +29,12 @@ class StudentViews:
 
         @self.student_bp.route("/grades/all")
         def list_grades():
+            student_id = session.get("user_id")
+            student = self.controller.get_info_student(student_id)
+            if type(student) == NoneType:
+                return redirect(url_for("auth_bp.login"))
+            if "error" in student:
+                return redirect(url_for("auth_bp.login"))
             grades = self.controller.list_grades()
             return render_template("student_grades.html", grades=grades)
 
@@ -33,6 +42,8 @@ class StudentViews:
         def modifier_student(id):
             student_id = session.get("user_id")
             student = self.controller.get_info_student(student_id)
+            if type(student) == NoneType:
+                return redirect(url_for("auth_bp.login"))
             grades = self.controller.list_grades_matiere(id)
             if "error" in student:
                 return redirect(url_for("auth_bp.login"))

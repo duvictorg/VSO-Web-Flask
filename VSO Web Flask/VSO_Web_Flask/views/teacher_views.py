@@ -1,3 +1,4 @@
+from types import NoneType
 from flask import Blueprint, render_template, request, session, redirect, url_for
 
 from VSO_Web_Flask.controller import AuthenticationController
@@ -13,6 +14,8 @@ class TeacherViews:
         def teacher_details():
             teacher_id = session.get("user_id")
             teacher = self.controller.get_info_teacher(teacher_id)
+            if type(teacher) == NoneType:
+                return redirect(url_for("auth_bp.login"))
             if "error" in teacher:
                 return redirect(url_for("auth_bp.login"))
             classes = self.controller.list_teachers_classes(teacher_id)
@@ -20,6 +23,12 @@ class TeacherViews:
         
         @self.teacher_bp.route("/list")
         def list_teachers():
+            teacher_id = session.get("user_id")
+            teacher = self.controller.get_info_teacher(teacher_id)
+            if type(teacher) == NoneType:
+                return redirect(url_for("auth_bp.login"))
+            if "error" in teacher:
+                return redirect(url_for("auth_bp.login"))
             teachers = self.controller.list_teachers()
             return render_template("teachers_add.html")
 
@@ -27,6 +36,8 @@ class TeacherViews:
         def add_grades(id):
             teacher_id = session.get("user_id")
             teacher = self.controller.get_info_teacher(teacher_id)
+            if type(teacher) == NoneType:
+                return redirect(url_for("auth_bp.login"))
             if "error" in teacher:
                 return redirect(url_for("auth_bp.login"))
             return render_template("teachers_add.html")
@@ -35,6 +46,8 @@ class TeacherViews:
         def teacher_students_classe(id):
             teacher_id = session.get("user_id")
             teacher = self.controller.get_info_teacher(teacher_id)
+            if type(teacher) == NoneType:
+                return redirect(url_for("auth_bp.login"))
             if "error" in teacher:
                 return redirect(url_for("auth_bp.login"))
             students = self.controller.list_students_classe(id)

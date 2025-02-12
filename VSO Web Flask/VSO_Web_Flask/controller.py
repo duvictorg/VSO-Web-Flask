@@ -1,3 +1,4 @@
+from types import NoneType
 from VSO_Web_Flask.db import decrypt_username, encrypt_username
 from .user import UserModel
 from flask import session
@@ -24,11 +25,20 @@ class AuthenticationController:
         return {"success": "Deconnexion reussie"}
 
     def register(self,first_name,last_name,password,role,mail,annee,numero_classe,matiere):
-        classe_id = self.get_id_classe(annee,numero_classe)
-        r = self.user_model.create_user(first_name,last_name,password,role, mail, classe_id,matiere)
-        return {"success": "Inscription reussie", "Nom d'utilisateur" : self.user_model.username} if r != False else {"error": "Personne deja existante"}
+        if type(annee) != NoneType and type(numero_classe) != NoneType and type(matiere) != NoneType and type(first_name) != NoneType and type(last_name) != NoneType and type(role) != NoneType:
+
+            if len(annee) > 0 and len(numero_classe) >0:
+                classe_id = self.get_id_classe(annee,numero_classe)
+            else:
+                return {"error": "Erreur entree"}
+            r = self.user_model.create_user(first_name,last_name,password,role, mail, classe_id,matiere)
+            return {"success": "Inscription reussie", "Nom d'utilisateur" : self.user_model.username} if r != False else {"error": "Personne deja existante"}
+        else :
+            return {"error": "Erreur entree"}
 
     def delete_account(self,username):
+        if type(username) == NoneType:
+            return {"error": "Utilisateur non efface"}
         result = self.user_model.delete_user(username)
         return {"success": "Utilisateur efface"} if result else {"error": "Utilisateur non efface"}
 
