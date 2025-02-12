@@ -1,45 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
     const Prof_btn = document.querySelector("#Prof-btn");
-    const eleve_btn = document.querySelector("#Eleve-btn");
-    const matiereField = document.querySelector(".matiere-field");
-    const classeFields = document.querySelector(".classe-fields");
+    const Eleve_btn = document.querySelector("#Eleve-btn");
+    const matiereFields = document.querySelectorAll(".matiere-field");
+    const classeFields = document.querySelectorAll(".classe-fields");
     const addBtn = document.querySelector('#add');
     const editBtn = document.querySelector('#edit');
     const deleteBtn = document.querySelector('#delete');
     const addForm = document.querySelector('#add-form');
+    const editForm = document.querySelector('#edit-form');
     const deleteForm = document.querySelector('#delete-form');
-    const eleveselect = document.querySelector('#select-eleve');
-    const teacherselect = document.querySelectorAll('#select-prof');
-    const classeSelects = document.querySelector(".classe-selects");
 
-    Prof_btn.addEventListener('click', () => {
-        matiereField.style.display = "block";
-        classeFields.style.display = "none";
-        eleveselect.style.display = "none";
-        teacherselect.style.display = "block";
-        classeSelects.style.display = "blocks";
-    });
+    function toggleFields(isMatiere) {
+        matiereFields.forEach(field => {
+            field.style.display = isMatiere ? "block" : "none";
+        });
+        classeFields.forEach(field => {
+            field.style.display = isMatiere ? "none" : "flex";
+        });
+    }
 
-    eleve_btn.addEventListener('click', () => {
-        matiereField.style.display = "none";
-        classeFields.style.display = "flex";
-        eleveselect.style.display = "block";
-        teacherselect.style.display = "none";
-        classeSelects.style.display = "blocks";
-    });
+    Prof_btn.addEventListener('click', () => toggleFields(true));
+    Eleve_btn.addEventListener('click', () => toggleFields(false));
 
     addBtn.addEventListener('click', function () {
         addForm.style.display = 'block';
+        editForm.style.display = 'none';
         deleteForm.style.display = 'none';
     });
 
     editBtn.addEventListener('click', function () {
         addForm.style.display = 'none';
-        deleteForm.style.display = 'block';
+        editForm.style.display = 'block';
+        deleteForm.style.display = 'none';
     });
 
     deleteBtn.addEventListener('click', function () {
         addForm.style.display = 'none';
+        editForm.style.display = 'none';
         deleteForm.style.display = 'block';
     });
 });

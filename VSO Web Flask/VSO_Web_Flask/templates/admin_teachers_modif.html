@@ -16,11 +16,10 @@
         <div class="form-container">
             <div class="form-inner">
                 <form action="/admin/register" class="signup" method="post">
-
                     <div class="slide-controls">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
                         <input type="radio" name="role" value="1" id="Prof">
-                        <input type="radio" name="role" value="0" id="Eleve">
+                        <input type="radio" name="role" value="0" id="Eleve" checked>
                         <label for="Prof" class="slide Prof" id="Prof-btn">Matière</label>
                         <label for="Eleve" class="slide Eleve" id="Eleve-btn">Classe</label>
                         <div class="slider-tab"></div>
@@ -34,7 +33,7 @@
                         <label for="delete" class="slide delete" id="delete-btn">Supprimer</label>
                         <div class="slider-tab action-slider-tab"></div>
                     </div>
-                    <div id="add-form" class="dynamic-form" style="display:none;">
+                    <div id="add-form" class="dynamic-form">
                         <div class="field matiere-field">
                             <input name="matiere" placeholder="Matière">
                         </div>
@@ -47,28 +46,60 @@
                             </div>
                         </div>
                     </div>
-                    <div id="delete-form" class="dynamic-form" style="display:none;">
-                        <div class="field classe-selects">
-                            <select id="select-prof" class="role-selection" name="username" style="display: none;">
-                                <option value="" disabled selected>Année</option>
-                                {% for annee in annees %}
-                                <option value="{{ annee }}">{{ annee }}</option>
-                                {% endfor %}
-                            </select>
-                            <select id="select-prof" class="role-selection" name="username" style="display: none;">
-                                <option value="" disabled selected>Numéro de classe</option>
-                                {% for numero in numeros %}
-                                <option value="{{ numero }}">{{ numero }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="field">
-                            <select id="select-eleve" class="role-selection" name="username">
+                    <div id="edit-form" class="dynamic-form" style="display:none;">
+                        <div class="field matiere-field">
+                            <select name="edit_matiere">
                                 <option value="" disabled selected>Matière</option>
                                 {% for matiere in matieres %}
                                 <option value="{{ matiere }}">{{ matiere }}</option>
                                 {% endfor %}
                             </select>
+                        </div>
+                        <div class="field-row classe-fields">
+                            <div class="field">
+                                <select name="edit_annee">
+                                    <option value="" disabled selected>Année</option>
+                                    {% for annee in annees %}
+                                    <option value="{{ annee }}">{{ annee }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="field">
+                                <select name="edit_numero_classe">
+                                    <option value="" disabled selected>Numéro de classe</option>
+                                    {% for numero in numeros %}
+                                    <option value="{{ numero }}">{{ numero }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="delete-form" class="dynamic-form" style="display:none;">
+                        <div class="field matiere-field">
+                            <select name="delete_matiere">
+                                <option value="" disabled selected>Matière</option>
+                                {% for matiere in matieres %}
+                                <option value="{{ matiere }}">{{ matiere }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="field-row classe-fields">
+                            <div class="field">
+                                <select name="delete_annee">
+                                    <option value="" disabled selected>Année</option>
+                                    {% for annee in annees %}
+                                    <option value="{{ annee }}">{{ annee }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="field">
+                                <select name="delete_numero_classe">
+                                    <option value="" disabled selected>Numéro de classe</option>
+                                    {% for numero in numeros %}
+                                    <option value="{{ numero }}">{{ numero }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="field btn">
